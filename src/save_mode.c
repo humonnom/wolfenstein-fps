@@ -10,9 +10,8 @@ void	ft_bitdraw(t_all *s)
 	ray.i = 0;
 	ray.v = 0;
 	ray.w = 0;
-	hit.x = 0;
-	hit.y = 0;
-	hit.d = 0;
+	hit.f = 0;
+	hit.s = 0;
 	s->ray = ray;
 	s->hit = hit;
 	ft_screen(s);

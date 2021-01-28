@@ -4,18 +4,16 @@ CC = gcc
 
 SRC = main \
 	  cub3d \
-	  sprite \
 	  screen \
-	  screen_col \
 	  key \
 	  tools \
 	  parse \
 	  parse_map \
 	  parse_check \
 	  parse_tools \
-	  save_mode \
 	  gnl/get_next_line \
-	  minimap
+	  minimap \
+	  mark
 
 FIL = $(addsuffix .c, $(addprefix ./, $(SRC)))
 
@@ -47,5 +45,8 @@ test: re
 
 save: re
 	./$(NAME) ../maps/map.cub --save
+
+lldb: $(OBJ)
+	$(CC) -g -o $(NAME) $(LIB_OPT) $(MLX_OPT) $(LXFLAGS) $(OBJ)
 
 .PHONY: all clean fclean re test save

@@ -44,22 +44,22 @@ int		ft_map(t_all *s, char *line, int *i)
 
 
 	s->err.m = 1;
-	if (!(tmp = malloc(sizeof(char *) * (s->map.y + 2))))
+	if (!(tmp = malloc(sizeof(char *) * (s->map.h + 2))))
 		return (MAP_ALLOC_FAIL);
 	j = -1;
-	while (++j < s->map.y)
+	while (++j < s->map.h)
 		tmp[j] = s->map.tab[j];
-	if ((tmp[s->map.y] = ft_slab(s, line, i)) == NULL)
+	if ((tmp[s->map.h] = ft_slab(s, line, i)) == NULL)
 	{
 		tmp = ft_free(tmp);
 		return (MAP_INV);
 	}	
-	tmp[s->map.y + 1] = NULL;
-	if (s->map.y > 0)
+	tmp[s->map.h + 1] = NULL;
+	if (s->map.h > 0)
 		free(s->map.tab);
 	s->map.tab = tmp;
-	s->map.y++;
-	if ((s->map.x = ft_slablen(s, line)) == -1)
+	s->map.h++;
+	if ((s->map.w = ft_slablen(s, line)) == -1)
 		return (MAP_SHAPE);
 	return (0);
 }
@@ -102,7 +102,7 @@ int		ft_slablen(t_all *s, char *line)
 			count++;
 		i++;
 	}
-	if (s->map.x != 0 && s->map.x != count)
+	if (s->map.w != 0 && s->map.w != count)
 		return (-1);
 	return(count);
 }

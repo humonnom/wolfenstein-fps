@@ -70,9 +70,9 @@ void	ft_pos(t_all *s)
 
 	i = -1;
 	j = -1;
-	while (++i < s->map.y)
+	while (++i < s->map.h)
 	{
-		while (++j < s->map.x)
+		while (++j < s->map.w)
 		{
 			c = s->map.tab[i][j];
 			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
@@ -108,10 +108,10 @@ int		ft_slist(t_all *s)
 		return (ERR);
 	i = 0;
 	j = 0;
-	while (j < s->map.y)
+	while (j < s->map.h)
 	{
 		k = 0;
-		while (k < s->map.x)
+		while (k < s->map.w)
 		{
 			if (s->map.tab[j][k] == '2')
 			{

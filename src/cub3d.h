@@ -10,6 +10,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
+# include <time.h>
 
 # include "../mlx/mlx.h"
 # include "libft/libft.h"
@@ -60,12 +61,19 @@
 # define LEFT 123
 # define RIGHT 124
 
-# define SPEED 15
-# define TURN 0.05
+# define SPEED 0.1
+# define TURN 0.5
+# define PLANEX 0
+# define PLANEY 0.66
 
 //      bonus      //
 # define BLOCK_MIN 15
 # define BLOCK_MAX 20
+
+//      test        //
+# define pf(X) printf(""#X" :%f\n", X)
+# define pd(X) printf(""#X" :%d\n", X)
+# define pxy(X) printf(""#X" :(%f, %f)\n", (double)s->X.x, (double)s->X.y)
 
 typedef struct		s_arg
 {
@@ -117,8 +125,10 @@ typedef struct  s_stk
 typedef struct  s_map
 {
     char            **tab; //map 전체저장
+    int             w;
+    int             h;	//map의 높이
     int             x;
-    int             y;	//map의 높이
+    int             y;
     int             spr;
 }               t_map;
 
@@ -144,9 +154,8 @@ typedef struct	s_ray
 
 typedef struct  s_hit
 {
-    double          x;
-    double          y;
-    double          d;
+	int			f;
+	int			s;
 }               t_hit;
 
 typedef struct	s_pos
@@ -162,6 +171,53 @@ typedef struct	s_dir
 	double			a;
 }				t_dir;
 
+
+typedef struct	s_pla
+{
+	double			x;
+	double			y;
+
+}				t_pla;
+
+typedef struct	s_tim
+{
+	double			now;
+	double			old;
+	double			frame;
+	double			ms;
+	double			rs;
+}				t_tim;
+
+typedef struct	s_cmr
+{
+	double			x;
+	double			y;
+
+}				t_cmr;
+
+typedef struct	s_stp
+{
+	int				x;
+	int				y;
+
+}				t_stp;
+
+typedef struct	s_dst
+{
+	double			sx;
+	double			sy;
+	double			dx;
+	double			dy;
+	double			pw;
+}				t_dst;
+
+typedef struct	s_scr
+{
+	int				lh;
+	int				ds;
+	int				de;
+}				t_scr;
+
 typedef struct		s_all
 {
 	t_mlx			mlx;
@@ -174,6 +230,12 @@ typedef struct		s_all
 	t_hit			hit;
 	t_pos			pos;
 	t_dir			dir;
+	t_pla			pla;	//plane
+	t_tim			tim;	//time
+	t_cmr			cmr;	//camera
+	t_dst			dst;	//dist
+	t_stp			stp;	//step
+	t_scr			scr;	//screen
 	t_spr			*spr;
 	t_stk			*stk;
 
@@ -205,6 +267,10 @@ void			ft_declaremini(t_all *s, t_bonus *b);
 void			ft_drawmini(t_all *s, t_bonus *b);
 void			ft_lect(int sort, t_all *s, t_bonus *b);
 
+/*mark*/
+void			ft_mark(t_all *s, t_bonus *b);
+void			ft_markpos(t_all *s, t_bonus *b);
+void			ft_markray(t_all *s, t_bonus *b, int pos);
 
 ////////////////////// functions //////////////////////
 
@@ -213,6 +279,7 @@ int				ft_exit(t_arg arg);
 
 /*cub3D.c*/
 void			ft_init(char *cub, int save);
+void			ft_initd(t_all s, char *cub, int save);
 void			ft_declare(t_all s, char *cub, int save);
 int				ft_cubed(t_all s, char *cub, int save);
 void			ft_draw(t_all *s);
@@ -229,16 +296,18 @@ void			ft_strafe(t_all *s, double c);
 
 /*screen.c*/
 void			ft_screen(t_all *s);
+void			ft_set(t_all *s, int x);
 void			ft_ray(t_all *s);
-void			ft_dir(t_all *s);
-void			ft_ver(t_all *s);
-void			ft_hor(t_all *s);
+void			ft_dda(t_all *s);
+void			ft_dst(t_all *s);
+void			ft_time(t_all *s);
+void			ft_vertical(t_all *s, int x);
 
-/*screen_col.c*/
-void			ft_stock(t_all *s);
-int				ft_size(t_all *s);
-void			ft_column(t_all *s, int start);
-unsigned int	ft_pixel(t_all *s, double i);
+///*screen_col.c*/
+//void			ft_stock(t_all *s);
+//int				ft_size(t_all *s);
+//void			ft_column(t_all *s, int start);
+//unsigned int	ft_pixel(t_all *s, double i);
 
 /*sprite.c*/
 void			ft_sprite(t_all *s);
@@ -248,12 +317,12 @@ void			ft_sdraw(t_all *s, int loc, double dist);
 unsigned int	ft_spixel(t_all *s, int index, unsigned int col);
 
 
-/*save_mode.c*/
-int				ft_bitmap(t_all *s);
-void			ft_bitdraw(t_all *s);
-void			ft_bitfile(t_all *s, int fd);
-void			ft_bitinfo(t_all *s, int fd);
-void			ft_bitdata(t_all *s, int fd);
+///*save_mode.c*/
+//int				ft_bitmap(t_all *s);
+//void			ft_bitdraw(t_all *s);
+//void			ft_bitfile(t_all *s, int fd);
+//void			ft_bitinfo(t_all *s, int fd);
+//void			ft_bitdata(t_all *s, int fd);
 
 /*parse.c*/
 int				ft_line(t_all *s, char *line);

@@ -12,7 +12,7 @@ int		ft_close(t_all *s, int win)
 	int i;
 
 	i = -1;
-	while (++i < s->map.y)
+	while (++i < s->map.h)
 		s->map.tab[i] = ft_free(s->map.tab[i]);
 	s->map.tab = ft_free(s->map.tab);
 	s->tex.n = ft_free(s->tex.n);
@@ -27,50 +27,64 @@ int		ft_close(t_all *s, int win)
 	return(1);
 }
 
-/*******************************************
--function: move
--ar:	s 		->	structure(t_all)
-		c		-> 	plus/minus flag
--return: non
--call: ft_slist()
- *******************************************/
+/*****************************************
+**-function: move
+**-ar:	s 		->	structure(t_all)
+**		c		-> 	plus/minus flag
+**-return: non
+**-call: ft_slist()
+******************************************/
+
 void	ft_move(t_all *s, double c)
 {
-	s->pos.x += c * (s->dir.x * SPEED / 100);
-	if (s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
-		s->pos.x -= c * (s->dir.x * SPEED / 100);
-	s->pos.y += c * (s->dir.y * SPEED / 100);
-	if (s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
-		s->pos.y -= c * (s->dir.y * SPEED / 100);
-	if (s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '2')
+	int tmp;
+
+	if ((int)c == 1)
 	{
-		s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] = '0';
-		s->map.spr--;
-		ft_slist(s);
+		tmp = (int)(s->pos.x + s->dir.x * s->tim.ms);
+		if(tmp < s->map.w && tmp > 0 && \
+				s->map.tab[tmp][(int)(s->pos.y)] != '1')
+			s->pos.x += s->dir.x * s->tim.ms;
+		tmp = (int)(s->pos.y + s->dir.y * s->tim.ms);
+		if(tmp < s->map.h && tmp > 0 && \
+				s->map.tab[(int)(s->pos.x)][tmp] != '1')
+			s->pos.y += s->dir.y * s->tim.ms;
 	}
-	printf("move\t");
-	printf("s->pos.x = %f, s->pos.y = %f\n", s->pos.x, s->pos.y);  
-	printf("\t\ts->dir.x = %f, s->dir.y = %f\n", s->dir.x, s->dir.y);  
+	else
+	{
+		tmp = (int)(s->pos.x - s->dir.x * s->tim.ms);
+		if(tmp < s->map.w && tmp > 0 && \
+				s->map.tab[tmp][(int)(s->pos.y)] != '1')
+			s->pos.x -= s->dir.x * s->tim.ms;
+		tmp = (int)(s->pos.y - s->dir.y * s->tim.ms);
+		if(tmp < s->map.h && tmp > 0 && \
+				s->map.tab[(int)(s->pos.x)][tmp] != '1')
+			s->pos.y -= s->dir.y * s->tim.ms;
+	}
+	pxy(pos);
+	pxy(dir);
 }
 
 /*******************************************
--function: rotate
--ar:	s 		->	structure(t_all)
-		c		-> 	plus/minus flag
--return: non
--call:
- *******************************************/
+**-function: rotate
+**-ar:	s 		->	structure(t_all)
+**		c		-> 	plus/minus flag
+**-return: non
+**-call:
+********************************************/
 void	ft_rotate(t_all *s, double c)
 {
-	double	dist;
-	s->dir.x = s->dir.x * cos(c * TURN) - s->dir.y * sin(c * TURN);
-	s->dir.y = s->dir.y * cos(c * TURN) + s->dir.x * sin(c * TURN);
-	dist = hypot(s->dir.x, s->dir.y);
-	s->dir.x /= dist;
-	s->dir.y /= dist;
-	printf("rotate\t");
-	printf("s->pos.x = %f, s->pos.y = %f\n", s->pos.x, s->pos.y);  
-	printf("\t\ts->dir.x = %f, s->dir.y = %f\n", s->dir.x, s->dir.y);  
+	double olddir;
+	double oldplane;
+	double rotspeed;
+
+	rotspeed = s->tim.rs * c;
+	olddir = s->dir.x;
+	s->dir.x = s->dir.x * cos(rotspeed) - s->dir.y * sin(rotspeed);
+	s->dir.y = olddir * sin(rotspeed) + s->dir.y * cos(rotspeed);
+	oldplane = s->pla.x;
+	s->pla.x = s->pla.x * cos(rotspeed) - s->pla.y * sin(rotspeed);
+	s->pla.y = oldplane * sin(rotspeed) + s->pla.y * cos(rotspeed);
 }
 
 /*******************************************
@@ -82,21 +96,30 @@ void	ft_rotate(t_all *s, double c)
  *******************************************/
 void	ft_strafe(t_all *s, double c)
 {
-	s->pos.x -= c * (s->dir.y * SPEED / 100);
-	if (s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
-	s->pos.x += c * (s->dir.y * SPEED / 100);
-	s->pos.y += c * (s->dir.x * SPEED / 100);
-	if (s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
-	s->pos.y -= c * (s->dir.x * SPEED / 100);
-	if (s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '2')
+	int tmp;
+	
+	if ((int)c == 1)
 	{
-		s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] = '0';
-		s->map.spr--;
-		ft_slist(s);
+		tmp = (int)(s->pos.x - s->dir.y * s->tim.ms);
+		if(tmp < s->map.w && tmp > 0 && \
+				s->map.tab[tmp][(int)(s->pos.y)] != '1')
+			s->pos.x -= s->dir.y * s->tim.ms;
+		tmp = (int)(s->pos.y + s->dir.x * s->tim.ms);
+		if(tmp < s->map.h && tmp > 0 && \
+				s->map.tab[(int)(s->pos.x)][tmp] != '1')
+			s->pos.y += s->dir.x * s->tim.ms;
 	}
-	printf("strafe\t");
-	printf("s->pos.x = %f, s->pos.y = %f\n", s->pos.x, s->pos.y);  
-	printf("\t\ts->dir.x = %f, s->dir.y = %f\n", s->dir.x, s->dir.y);  
+	else
+	{
+		tmp = (int)(s->pos.x + s->dir.y * s->tim.ms);
+		if(tmp < s->map.w && tmp > 0 && \
+				s->map.tab[tmp][(int)(s->pos.y)] != '1')
+			s->pos.x += s->dir.y * s->tim.ms;
+		tmp = (int)(s->pos.y - s->dir.x * s->tim.ms);
+		if(tmp < s->map.h && tmp > 0 && \
+				s->map.tab[(int)(s->pos.x)][tmp] != '1')
+			s->pos.y -= s->dir.x * s->tim.ms;
+	}
 }
 
 /*******************************************
@@ -124,9 +147,9 @@ int		ft_key(int key, t_all *s)
 	else if(key == D)
 		ft_strafe(s, 1);
 	else if(key == LEFT)
-		ft_rotate(s, -1);
-	else if(key == RIGHT)
 		ft_rotate(s, 1);
+	else if(key == RIGHT)
+		ft_rotate(s, -1);
 	ft_draw(s);
 	return (1);
 }

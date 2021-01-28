@@ -20,18 +20,18 @@ int		ft_mapcheck(t_all *s)
 
 	i = 0;
 	j = 0;
-	while (i < s->map.y)
+	while (i < s->map.h)
 	{
 		j = 0;
-		while (j < s->map.x)
+		while (j < s->map.w)
 		{
 			if (s->map.tab[i][j] != '1' && i == 0)
 				return (ERR);
 			else if (s->map.tab[i][j] != '1' && j == 0)
 				return (ERR);
-			else if (s->map.tab[i][j] != '1' && i == s->map.y - 1)
+			else if (s->map.tab[i][j] != '1' && i == s->map.h - 1)
 				return (ERR);
-			else if (s->map.tab[i][j] != '1' && j == s->map.x - 1)
+			else if (s->map.tab[i][j] != '1' && j == s->map.w - 1)
 				return (ERR);
 			j++;
 		} 
