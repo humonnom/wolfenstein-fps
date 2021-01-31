@@ -43,6 +43,18 @@ re: fclean all
 test: re
 	./$(NAME) ../maps/map.cub
 
+n: re
+	./$(NAME) ../maps/n.cub
+
+w: re
+	./$(NAME) ../maps/w.cub
+
+e: re
+	./$(NAME) ../maps/e.cub
+
+s: re
+	./$(NAME) ../maps/s.cub
+
 save: re
 	./$(NAME) ../maps/map.cub --save
 

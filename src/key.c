@@ -61,8 +61,6 @@ void	ft_move(t_all *s, double c)
 				s->map.tab[(int)(s->pos.x)][tmp] != '1')
 			s->pos.y -= s->dir.y * s->tim.ms;
 	}
-	pxy(pos);
-	pxy(dir);
 }
 
 /*******************************************
@@ -77,6 +75,21 @@ void	ft_rotate(t_all *s, double c)
 	double olddir;
 	double oldplane;
 	double rotspeed;
+
+//	if ((int)c == -1)
+//	{
+//		olddir = s->dir.x;
+//		rotspeed = s->tim.rs;
+//		s->dir.x = s->dir.x * cos(-rotspeed) - \
+//				   s->dir.y * sin(-rotspeed);
+//		s->dir.y = olddir * sin(-rotspeed) + \
+//				   s->dir.y * cos(-rotspeed);
+//		oldplane = s->pla.x;
+//		s->pla.x = s->pla.x * cos(-rotspeed) - \
+//				   s->pla.y * sin(-rotspeed);
+//		s->pla.y = oldplane * sin(rotspeed) +\
+//				   s->pla.y * cos(-rotspeed);
+//	}
 
 	rotspeed = s->tim.rs * c;
 	olddir = s->dir.x;
@@ -147,9 +160,9 @@ int		ft_key(int key, t_all *s)
 	else if(key == D)
 		ft_strafe(s, 1);
 	else if(key == LEFT)
-		ft_rotate(s, 1);
-	else if(key == RIGHT)
 		ft_rotate(s, -1);
+	else if(key == RIGHT)
+		ft_rotate(s, 1);
 	ft_draw(s);
 	return (1);
 }

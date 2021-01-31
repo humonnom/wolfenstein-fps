@@ -88,6 +88,11 @@ void	ft_pos(t_all *s)
 		}
 		j = -1;
 	}
+	if (s->dir.x == 0)
+	{
+		s->pla.x = PLANEY;
+		s->pla.y = PLANEX;
+	}
 }
 
 /*******************************************

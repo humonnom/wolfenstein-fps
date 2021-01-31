@@ -24,14 +24,17 @@ void	ft_screen(t_all *s)
 	s->img.adr = (unsigned int *)mlx_get_data_addr(s->img.ptr, &bpp, &sl, &end);
 	s->stk = malloc(sizeof(t_stk) * s->win.x);
 	x = 0;
+	pxy(dir);
 	while(x < s->win.x)
 	{
 		if (x == 0 || x == s->win.x /2 || x == s->win.x -1)
+		//if (x == s->win.x -1)
 		{
 			ft_set(s, x);
 			ft_ray(s);	
 			ft_dda(s);
 			ft_dst(s);
+			pxy(ray);
 			ft_minimap(s);
 		}
 		//ft_vertical(s, x);
@@ -51,17 +54,8 @@ void	ft_set(t_all *s, int x)
 	s->hit.f = 0;
 	s->hit.s = 0;
 	s->cmr.x = 2 * x / (double)(s->win.x) - 1;
-	if (s->dir.x == 0) //이거 왜했는지 기억이 안남....
-	{
-		s->ray.x = s->dir.x + s->pla.y * s->cmr.x;
-		s->ray.y = s->dir.y + s->pla.x * s->cmr.x;
-	}
-	else
-	{
-		s->ray.x = s->dir.x + s->pla.x * s->cmr.x;
-		s->ray.y = s->dir.y + s->pla.y * s->cmr.x;
-	}
-	pxy(ray);
+	s->ray.x = s->dir.x + s->pla.x * s->cmr.x;
+	s->ray.y = s->dir.y + s->pla.y * s->cmr.x;
 	tmpx = (sqrt(1 + (s->ray.y * s->ray.y) / (s->ray.x * s->ray.x)));
 	tmpy = (sqrt(1 + (s->ray.x * s->ray.x) / (s->ray.y * s->ray.y)));
 	s->dst.dx = (s->ray.y == 0) ? 0 : ((s->ray.x == 0) ? 1 : tmpx);
@@ -70,8 +64,6 @@ void	ft_set(t_all *s, int x)
 
 void	ft_ray(t_all *s)
 {
-//	pf(s->dst.sx);
-//	pf(s->dst.sy);
 	if (s->ray.x < 0)
 	{
 		s->stp.x = -1;
@@ -92,9 +84,6 @@ void	ft_ray(t_all *s)
 		s->stp.y = 1;
 		s->dst.sy = (s->map.y + 1.0 - s->pos.y) * s->dst.dy;
 	}
-//	pxy(ray);
-//	pf(s->dst.sx);
-//	pf(s->dst.sy);
 }
 
 void	ft_dda(t_all *s)
