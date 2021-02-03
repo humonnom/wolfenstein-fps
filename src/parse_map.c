@@ -12,7 +12,7 @@ int		ft_xpm(t_all *s, unsigned int **adr, char *file)
 		return (ERR);
 	close(fd);
 	img = mlx_xpm_file_to_image(s->mlx.ptr, file, &tab[0], &tab[1]);
-	if (img == NULL || tab[0] != 64 || tab[1] != 64)
+	if (img == NULL || tab[0] != PIXEL_SIZE || tab[1] != PIXEL_SIZE)
 		return (ERR);
 	*adr = (unsigned int *)mlx_get_data_addr(img, &tab[2], &tab[3], &tab[4]);
 	img = ft_free(img);

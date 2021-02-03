@@ -19,6 +19,7 @@
 // Define //
 # define EXIT_BTN 17
 # define KEY 2
+# define PIXEL_SIZE 64
 
 # define ERR -1
 # define FILE_OPEN -20
@@ -62,8 +63,8 @@
 # define RIGHT 124
 
 # define SPEED 0.1
-# define TURN 0.5
-# define PLANEX 0
+# define TURN 0.03
+# define PLANEX 0.00
 # define PLANEY 0.66
 
 //      bonus      //
@@ -74,6 +75,17 @@
 # define pf(X) printf(""#X" :%f\n", X)
 # define pd(X) printf(""#X" :%d\n", X)
 # define pxy(X) printf(""#X" :(%f, %f)\n", (double)s->X.x, (double)s->X.y)
+
+typedef struct		s_wall
+{
+	unsigned int	*texture_x;
+	unsigned int	*texture_y;
+	double			wallx;
+	double			step;
+	double			texpos;
+	int				tex_x;
+	int				tex_y;
+}					t_wall;
 
 typedef struct		s_arg
 {
@@ -168,7 +180,7 @@ typedef struct	s_dir
 {
 	double			x;
 	double			y;
-	double			a;
+	char			d;
 }				t_dir;
 
 
@@ -261,16 +273,16 @@ typedef struct	s_bonus
 }				t_bonus;
 
 /* minimap.c */
-void		 	ft_minimap(t_all *s);
+void			ft_minimap(t_all *s);
 void			ft_initmini(t_bonus b);
 void			ft_declaremini(t_all *s, t_bonus *b);
 void			ft_drawmini(t_all *s, t_bonus *b);
 void			ft_lect(int sort, t_all *s, t_bonus *b);
 
-/*mark*/
-void			ft_mark(t_all *s, t_bonus *b);
-void			ft_markpos(t_all *s, t_bonus *b);
-void			ft_markray(t_all *s, t_bonus *b, int pos);
+/* minimap_mark.c*/
+void			ft_mark(t_all *s, const t_mini *m);
+void			ft_markpos(t_all *s, const t_mini *m);
+void			ft_markray(t_all *s, const t_mini *m, int pos);
 
 ////////////////////// functions //////////////////////
 
@@ -291,23 +303,24 @@ int				ft_strerr(int err);
 int				ft_close(t_all *s, int win);
 int				ft_key(int key, t_all *s);
 void			ft_rotate(t_all *s, double c);
-void			ft_move(t_all *s, double c);
-void			ft_strafe(t_all *s, double c);
+void			ft_move(t_all *s, int c);
+void			ft_strafe(t_all *s, int c);
 
 /*screen.c*/
 void			ft_screen(t_all *s);
+void			ft_time(t_all *s);
+
+/*screen_col.c*/
+void			ft_screen_col(t_all *s, int x);
 void			ft_set(t_all *s, int x);
 void			ft_ray(t_all *s);
 void			ft_dda(t_all *s);
 void			ft_dst(t_all *s);
-void			ft_time(t_all *s);
-void			ft_vertical(t_all *s, int x);
 
-///*screen_col.c*/
-//void			ft_stock(t_all *s);
-//int				ft_size(t_all *s);
-//void			ft_column(t_all *s, int start);
-//unsigned int	ft_pixel(t_all *s, double i);
+/*wall.c*/
+void			ft_wall(t_all *s, int x);
+static void		ft_get_info(t_all *s, t_wall *w);
+static void		ft_init_wall(t_wall w);
 
 /*sprite.c*/
 void			ft_sprite(t_all *s);
@@ -347,5 +360,4 @@ int				ft_slablen(t_all *s, char *line);
 int				ft_xpm(t_all *s, unsigned int **adr, char *file);
 
 /*has to be deleted*/
-void			print_struct(t_all s);
 #endif

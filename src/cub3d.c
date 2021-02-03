@@ -48,6 +48,7 @@ int		ft_cubed(t_all s, char *cub, int save)
 	pos.y = 0;
 	dir.x = 0;
 	dir.y = 0;
+	dir.d = '0';
 	pla.x = PLANEX;
 	pla.y = PLANEY;
 	s.pos = pos;

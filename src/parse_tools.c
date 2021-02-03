@@ -84,6 +84,7 @@ void	ft_pos(t_all *s)
 				s->dir.y = (c == 'S' || c == 'N') ? 1 : 0;
 				s->dir.y *= (c == 'N') ? -1 : 1;
 				s->err.p++;
+				s->dir.d = c;
 			}
 		}
 		j = -1;

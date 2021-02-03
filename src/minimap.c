@@ -24,7 +24,6 @@ void	ft_declaremini(t_all *s, t_bonus *b)
 		b->mini.w = b->mini.bsize * s->map.w;
 		b->mini.h = b->mini.bsize * s->map.h;
 	}
-	//pf((double)b->mini.bsize);
 }
 
 void	ft_lect(int sort, t_all *s, t_bonus *b)
@@ -47,8 +46,8 @@ void	ft_lect(int sort, t_all *s, t_bonus *b)
 					s->img.adr[cur] = WHITE ;
 			else if (sort == '1')
 				s->img.adr[cur] = s->tex.f/2;
-//			else
-//				s->img.adr[cur] = s->tex.f;
+			else
+				s->img.adr[cur] = BLACK;
 			cur++;
 		}
 		ys++;
@@ -72,13 +71,12 @@ void	ft_drawmini(t_all *s, t_bonus *b)
 			b->mini.xs = (b->mini.w/s->map.w) * cnt_w;
 			b->mini.xe = b->mini.xs + b->mini.w/s->map.w;
 			ft_lect(s->map.tab[cnt_h][cnt_w], s, b);
-			ft_mark(s, b);
 		}
 	}
 
 }
 
-void ft_minimap(t_all *s)
+void	ft_minimap(t_all *s)
 {
 	t_bonus b;
 
@@ -86,4 +84,5 @@ void ft_minimap(t_all *s)
 	ft_declaremini(s,&b);
 	if (b.mini.w * b.mini.h)
 		ft_drawmini(s, &b);
+	ft_mark(s, &b.mini);
 }

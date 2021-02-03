@@ -1,19 +1,19 @@
 #include "cub3d.h"
 
-void	ft_mark(t_all *s, t_bonus *b)
+void	ft_mark(t_all *s, const t_mini *m)
 {
-	ft_markpos(s, b);
+	ft_markpos(s, m);
 }
 
-void	ft_markpos(t_all *s, t_bonus *b)
+void	ft_markpos(t_all *s, const t_mini *m)
 {
-	int	pos;
+	int pos;
 	int pm;
 	int	i;
 	int	j;
 
-	pos = (int)(b->mini.bsize * s->pos.x + \
-		(b->mini.bsize * s->pos.y * s->win.x));
+	pos = (int)(s->pos.x * m->bsize) + \
+			(int)(s->pos.y * m->bsize) * s->win.x;
 	pm = 3;
 	i = -pm;
 	while(++i < pm)
@@ -22,10 +22,10 @@ void	ft_markpos(t_all *s, t_bonus *b)
 		while(++j < pm)
 			s->img.adr[pos + j + (s->win.x * i)] = BLUE;
 	}
-	ft_markray(s, b, pos);
+	ft_markray(s, m, pos);
 }
 
-void	ft_markray(t_all *s, t_bonus *b, int pos)
+void	ft_markray(t_all *s, const t_mini *m, int pos)
 {
 	double	x;
 	double	y;
@@ -33,14 +33,14 @@ void	ft_markray(t_all *s, t_bonus *b, int pos)
 	int		ray;
 	int		i;
 
-	x = s->ray.x * b->mini.bsize;
-	y = s->ray.y * b->mini.bsize;
+	x = s->dir.x * m->bsize;
+	y = s->dir.y * m->bsize;
 	tmp = (fabs(y) == 0) ? fabs(x) : fabs(y);
 	i = 0;
 	while (i++ < tmp)
 	{
 		ray = (x * i / tmp) + ((y * i / tmp) * s->win.x);
-		if ((pos + ray) > 0 && (pos + ray) < (s->win.x * b->mini.h))
+		if ((pos + ray) > 0 && (pos + ray) < (s->win.x * m->h))
 			s->img.adr[pos + ray] = YELLOW;
 	}
 }

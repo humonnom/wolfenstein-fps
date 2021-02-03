@@ -1,35 +1,5 @@
 #include "cub3d.h"
 
-
-// for TEST only //
-void print_struct(t_all s)	
-{
-	printf("s.mlx.ptr:%p\n", s.mlx.ptr);
-	printf("s.win.ptr:%p\n", s.win.ptr);
-	printf("s.img.ptr:%p\n", s.img.ptr);
-	printf("s.img.adr:%p\n", s.img.adr);
-	printf("s.win.x:  %d\n", s.win.x);
-	printf("s.win.y:  %d\n", s.win.y);
-	printf("s.img.fsh:%d\n", s.img.fsh);
-	printf("s.err.n:  %d\n", s.err.n);
-	printf("s.err.m:  %d\n", s.err.m);
-	printf("s.err.p:  %d\n", s.err.p);
-	printf("s.tex.n : %p\n ", s.tex.n );
-	printf("s.tex.s : %p\n ", s.tex.s );
-	printf("s.tex.e : %p\n ", s.tex.e );
-	printf("s.tex.w : %p\n ", s.tex.w );
-	printf("s.tex.i : %p\n ", s.tex.i );
-	printf("s.spr :   %p\n ", s.spr  );
-	printf("s.stk :   %p\n ", s.stk  );
-	printf("s.map.x : %d\n ", s.map.x );
-	printf("s.map.y : %d\n ", s.map.y );
-	printf("s.map.spr:%d\n ", s.map.spr);
-	printf("s.tex.c : %u\n ", s.tex.c );
-	printf("s.tex.f : %u\n ", s.tex.f );
-}
-///////////////////
-
-
 int		ft_exit(t_arg arg)
 {
 	write(1, "Invalid...", 10);

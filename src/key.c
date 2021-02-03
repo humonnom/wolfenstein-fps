@@ -34,32 +34,19 @@ int		ft_close(t_all *s, int win)
 **-return: non
 **-call: ft_slist()
 ******************************************/
-
-void	ft_move(t_all *s, double c)
+void	ft_move(t_all *s, int c)
 {
-	int tmp;
+	int x;
+	int y;
 
-	if ((int)c == 1)
+	x = s->pos.x + s->dir.x * s->tim.ms * c;
+	y = s->pos.y + s->dir.y * s->tim.ms * c;
+	if (x > 0 && y > 0 &&\
+		x < s->map.w && y < s->map.h &&\
+		s->map.tab[y][x] != '1')
 	{
-		tmp = (int)(s->pos.x + s->dir.x * s->tim.ms);
-		if(tmp < s->map.w && tmp > 0 && \
-				s->map.tab[tmp][(int)(s->pos.y)] != '1')
-			s->pos.x += s->dir.x * s->tim.ms;
-		tmp = (int)(s->pos.y + s->dir.y * s->tim.ms);
-		if(tmp < s->map.h && tmp > 0 && \
-				s->map.tab[(int)(s->pos.x)][tmp] != '1')
-			s->pos.y += s->dir.y * s->tim.ms;
-	}
-	else
-	{
-		tmp = (int)(s->pos.x - s->dir.x * s->tim.ms);
-		if(tmp < s->map.w && tmp > 0 && \
-				s->map.tab[tmp][(int)(s->pos.y)] != '1')
-			s->pos.x -= s->dir.x * s->tim.ms;
-		tmp = (int)(s->pos.y - s->dir.y * s->tim.ms);
-		if(tmp < s->map.h && tmp > 0 && \
-				s->map.tab[(int)(s->pos.x)][tmp] != '1')
-			s->pos.y -= s->dir.y * s->tim.ms;
+		s->pos.x += s->dir.x * s->tim.ms * c;
+		s->pos.y += s->dir.y * s->tim.ms * c;
 	}
 }
 
@@ -75,21 +62,6 @@ void	ft_rotate(t_all *s, double c)
 	double olddir;
 	double oldplane;
 	double rotspeed;
-
-//	if ((int)c == -1)
-//	{
-//		olddir = s->dir.x;
-//		rotspeed = s->tim.rs;
-//		s->dir.x = s->dir.x * cos(-rotspeed) - \
-//				   s->dir.y * sin(-rotspeed);
-//		s->dir.y = olddir * sin(-rotspeed) + \
-//				   s->dir.y * cos(-rotspeed);
-//		oldplane = s->pla.x;
-//		s->pla.x = s->pla.x * cos(-rotspeed) - \
-//				   s->pla.y * sin(-rotspeed);
-//		s->pla.y = oldplane * sin(rotspeed) +\
-//				   s->pla.y * cos(-rotspeed);
-//	}
 
 	rotspeed = s->tim.rs * c;
 	olddir = s->dir.x;
@@ -107,31 +79,19 @@ void	ft_rotate(t_all *s, double c)
 -return: non
 -call: ft_slist()
  *******************************************/
-void	ft_strafe(t_all *s, double c)
+void	ft_strafe(t_all *s, int c)
 {
-	int tmp;
-	
-	if ((int)c == 1)
+	int x;
+	int y;
+
+	x = s->pos.x + s->dir.y * s->tim.ms * -c;
+	y = s->pos.y + s->dir.x * s->tim.ms * c;
+	if (x > 0 && y > 0 &&\
+		x < s->map.w && y < s->map.h &&\
+		s->map.tab[y][x] != '1')
 	{
-		tmp = (int)(s->pos.x - s->dir.y * s->tim.ms);
-		if(tmp < s->map.w && tmp > 0 && \
-				s->map.tab[tmp][(int)(s->pos.y)] != '1')
-			s->pos.x -= s->dir.y * s->tim.ms;
-		tmp = (int)(s->pos.y + s->dir.x * s->tim.ms);
-		if(tmp < s->map.h && tmp > 0 && \
-				s->map.tab[(int)(s->pos.x)][tmp] != '1')
-			s->pos.y += s->dir.x * s->tim.ms;
-	}
-	else
-	{
-		tmp = (int)(s->pos.x + s->dir.y * s->tim.ms);
-		if(tmp < s->map.w && tmp > 0 && \
-				s->map.tab[tmp][(int)(s->pos.y)] != '1')
-			s->pos.x += s->dir.y * s->tim.ms;
-		tmp = (int)(s->pos.y - s->dir.x * s->tim.ms);
-		if(tmp < s->map.h && tmp > 0 && \
-				s->map.tab[(int)(s->pos.x)][tmp] != '1')
-			s->pos.y -= s->dir.x * s->tim.ms;
+		s->pos.x += s->dir.y * s->tim.ms * -c;
+		s->pos.y += s->dir.x * s->tim.ms * c;
 	}
 }
 

@@ -5,6 +5,8 @@ CC = gcc
 SRC = main \
 	  cub3d \
 	  screen \
+	  screen_col \
+	  wall \
 	  key \
 	  tools \
 	  parse \
@@ -13,7 +15,7 @@ SRC = main \
 	  parse_tools \
 	  gnl/get_next_line \
 	  minimap \
-	  mark
+	  minimap_mark 
 
 FIL = $(addsuffix .c, $(addprefix ./, $(SRC)))
 
