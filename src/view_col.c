@@ -1,15 +1,15 @@
 #include "cub3d.h"
 
-void	ft_screen_col(t_all *s, int x)
+void	get_3d_col(t_all *s, int x)
 {
-  	ft_set(s, x);
-	ft_ray(s);	
-	ft_dda(s);
-	ft_dst(s);
-	ft_wall(s, x);
+  	set_init(s, x);
+	set_step(s);	
+	run_dda(s);
+	set_draw_range(s);
+	draw_wall(s, x);
 }
 
-void	ft_set(t_all *s, int x)
+void	set_init(t_all *s, int x)
 {
 	double	tmpx;
 	double	tmpy;
@@ -27,7 +27,7 @@ void	ft_set(t_all *s, int x)
 	s->dst.dy = (s->ray.x == 0) ? 0 : ((s->ray.y == 0) ? 1 : tmpy);
 }
 
-void	ft_ray(t_all *s)
+void	set_step(t_all *s)
 {
 	if (s->ray.x < 0)
 	{
@@ -51,7 +51,7 @@ void	ft_ray(t_all *s)
 	}
 }
 
-void	ft_dda(t_all *s)
+void	run_dda(t_all *s)
 {
 	while (s->hit.f == 0)
 	{
@@ -71,7 +71,8 @@ void	ft_dda(t_all *s)
 			s->hit.f = 1;
 	}
 }
-void	ft_dst(t_all *s)
+
+void	set_draw_range(t_all *s)
 {
 	if (s->hit.s == 0)
 	{

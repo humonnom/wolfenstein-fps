@@ -22,6 +22,7 @@
 # define PIXEL_SIZE 64
 
 # define ERR -1
+# define DONE 1
 # define FILE_OPEN -20
 # define FILE_PARSE -2
 # define RES_DOUBLE -3
@@ -41,6 +42,11 @@
 # define POS_MISSING -17
 # define POS_DOUBLE -18
 # define MAP_CRACK -19
+# define MARK_ERR -21
+# define ARG_NUM -22
+# define MAP_NAME -23
+# define SAVE_OPT -24
+# define INIT_FAIL -25
 
 # define NONE 0xFF000000
 # define WHITE 0x00FFFFFF
@@ -76,6 +82,13 @@
 # define pd(X) printf(""#X" :%d\n", X)
 # define pxy(X) printf(""#X" :(%f, %f)\n", (double)s->X.x, (double)s->X.y)
 
+typedef struct  s_spr
+{
+    double          x;
+    double          y;
+    double          d;
+}               t_spr;
+
 typedef struct		s_wall
 {
 	unsigned int	*texture_x;
@@ -86,13 +99,6 @@ typedef struct		s_wall
 	int				tex_x;
 	int				tex_y;
 }					t_wall;
-
-typedef struct		s_arg
-{
-	unsigned int	num;
-	unsigned int	map;
-	unsigned int	save;
-}					t_arg;
 
 typedef struct		s_mlx
 {
@@ -110,7 +116,6 @@ typedef struct		s_img
 {
 	void			*ptr;
 	unsigned int	*adr;
-	int				fsh;	
 }					t_img;
 
 typedef struct		s_win
@@ -119,20 +124,6 @@ typedef struct		s_win
 	int				x;
 	int				y;
 }					t_win;
-
-typedef struct  s_spr
-{
-    double          x;
-    double          y;
-    double          d;
-}               t_spr;
-
-typedef struct  s_stk
-{
-    double          x;
-    double          y;
-    double          d;
-}               t_stk;
 
 typedef struct  s_map
 {
@@ -249,7 +240,6 @@ typedef struct		s_all
 	t_stp			stp;	//step
 	t_scr			scr;	//screen
 	t_spr			*spr;
-	t_stk			*stk;
 
 }					t_all;
 
@@ -280,24 +270,31 @@ void			ft_drawmini(t_all *s, t_bonus *b);
 void			ft_lect(int sort, t_all *s, t_bonus *b);
 
 /* minimap_mark.c*/
-void			ft_mark(t_all *s, const t_mini *m);
-void			ft_markpos(t_all *s, const t_mini *m);
-void			ft_markray(t_all *s, const t_mini *m, int pos);
+int				ft_mark(t_all *s, const t_mini *m);
+int				ft_markpos(t_all *s, const t_mini *m);
+int				ft_markray(t_all *s, const t_mini *m, int pos);
 
-////////////////////// functions //////////////////////
 
-/*main.c */
-int				ft_exit(t_arg arg);
+/*init.c*/
+int 			ft_init(t_all *s);
+void			ft_init_mlx(t_all *s);
+void			ft_init_ray(t_all *s);
+void			ft_init_map(t_all *s);
+void			ft_init_else(t_all *s);
+
+/*main.c*/
+int				main(int argc, char **argv);
 
 /*cub3D.c*/
-void			ft_init(char *cub, int save);
-void			ft_initd(t_all s, char *cub, int save);
-void			ft_declare(t_all s, char *cub, int save);
-int				ft_cubed(t_all s, char *cub, int save);
-void			ft_draw(t_all *s);
+int				cub3d_loop(t_all s, char *cub, int save);
+void			draw_window(t_all *s);
 
-/*tools.c*/
+
+/*error.c*/
 int				ft_strerr(int err);
+void			ft_printerr(const char *s);
+
+////////////////////// Modified //////////////////////
 
 /*key.c*/
 int				ft_close(t_all *s, int win);
@@ -306,19 +303,19 @@ void			ft_rotate(t_all *s, double c);
 void			ft_move(t_all *s, int c);
 void			ft_strafe(t_all *s, int c);
 
-/*screen.c*/
-void			ft_screen(t_all *s);
+/*3dview.c*/
+void			get_3d(t_all *s);
 void			ft_time(t_all *s);
 
-/*screen_col.c*/
-void			ft_screen_col(t_all *s, int x);
-void			ft_set(t_all *s, int x);
-void			ft_ray(t_all *s);
-void			ft_dda(t_all *s);
-void			ft_dst(t_all *s);
+/*3dview_col.c*/
+void			get_3d_col(t_all *s, int x);
+void			set_init(t_all *s, int x);
+void			set_step(t_all *s);
+void			run_dda(t_all *s);
+void			set_draw_range(t_all *s);
 
 /*wall.c*/
-void			ft_wall(t_all *s, int x);
+void			draw_wall(t_all *s, int x);
 static void		ft_get_info(t_all *s, t_wall *w);
 static void		ft_init_wall(t_wall w);
 
@@ -330,7 +327,7 @@ void			ft_sdraw(t_all *s, int loc, double dist);
 unsigned int	ft_spixel(t_all *s, int index, unsigned int col);
 
 
-///*save_mode.c*/
+///*save.c*/
 //int				ft_bitmap(t_all *s);
 //void			ft_bitdraw(t_all *s);
 //void			ft_bitfile(t_all *s, int fd);

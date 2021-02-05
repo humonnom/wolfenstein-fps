@@ -1,13 +1,6 @@
 #include "cub3d.h"
 
-/*******************************************
--function:	
--ar:	s 		->	structure(t_all)
--return: non
--call:	ft_screen_col()
-		ft_sprite()
- *******************************************/
-void	ft_screen(t_all *s)
+void	get_3d(t_all *s)
 {
 	int		tab[3];
 	int		x;
@@ -16,9 +9,7 @@ void	ft_screen(t_all *s)
 	s->img.adr = (unsigned int *)mlx_get_data_addr(s->img.ptr, &tab[0], &tab[1], &tab[2]);
 	x = -1;
 	while(++x < s->win.x)
-	{
-		ft_screen_col(s, x);
-	}
+		get_3d_col(s, x);
 	ft_minimap(s);
 //	ft_sprite(s);
 	ft_time(s);

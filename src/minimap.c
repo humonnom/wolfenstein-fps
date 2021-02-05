@@ -17,10 +17,9 @@ void	ft_declaremini(t_all *s, t_bonus *b)
 {
 	if (s->win.x >= 500 && s->win.y >= 500)
 	{	
-		b->mini.bsize = 50;
-//		b->mini.bsize = ft_min(s->win.x/30, s->win.y/30);
-//		b->mini.bsize = ft_max(b->mini.bsize, BLOCK_MIN);
-//		b->mini.bsize = ft_min(b->mini.bsize, BLOCK_MAX);
+		b->mini.bsize = ft_min(s->win.x/30, s->win.y/30);
+		b->mini.bsize = ft_max(b->mini.bsize, BLOCK_MIN);
+		b->mini.bsize = ft_min(b->mini.bsize, BLOCK_MAX);
 		b->mini.w = b->mini.bsize * s->map.w;
 		b->mini.h = b->mini.bsize * s->map.h;
 	}
@@ -46,8 +45,8 @@ void	ft_lect(int sort, t_all *s, t_bonus *b)
 					s->img.adr[cur] = WHITE ;
 			else if (sort == '1')
 				s->img.adr[cur] = s->tex.f/2;
-//			else
-//				s->img.adr[cur] = BLACK;
+			else
+				s->img.adr[cur] = BLACK;
 			cur++;
 		}
 		ys++;

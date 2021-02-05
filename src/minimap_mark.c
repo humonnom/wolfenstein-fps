@@ -1,11 +1,15 @@
 #include "cub3d.h"
 
-void	ft_mark(t_all *s, const t_mini *m)
+int		ft_mark(t_all *s, const t_mini *m)
 {
-	ft_markpos(s, m);
+	int pos;
+
+	if (!(pos = ft_markpos(s, m)))
+		return (MARK_ERR);
+	return(ft_markray(s, m, pos));
 }
 
-void	ft_markpos(t_all *s, const t_mini *m)
+int		ft_markpos(t_all *s, const t_mini *m)
 {
 	int pos;
 	int pm;
@@ -22,10 +26,10 @@ void	ft_markpos(t_all *s, const t_mini *m)
 		while(++j < pm)
 			s->img.adr[pos + j + (s->win.x * i)] = BLUE;
 	}
-	ft_markray(s, m, pos);
+	return (pos);
 }
 
-void	ft_markray(t_all *s, const t_mini *m, int pos)
+int		ft_markray(t_all *s, const t_mini *m, int pos)
 {
 	double	x;
 	double	y;
@@ -40,7 +44,9 @@ void	ft_markray(t_all *s, const t_mini *m, int pos)
 	while (i++ < tmp)
 	{
 		ray = (x * i / tmp) - ((y * i / tmp) * s->win.x);
-		if ((pos + ray) > 0 && (pos + ray) < (s->win.x * m->h))
+		if ((pos + ray) > 0 && (pos + ray) < (s->win.x * m->h)\
+			&&	((pos + ray) % s->win.x) < (m->bsize * s->map.w))
 			s->img.adr[pos + ray] = YELLOW;
 	}
+	return (DONE);
 }

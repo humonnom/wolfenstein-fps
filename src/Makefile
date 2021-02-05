@@ -3,12 +3,13 @@ NAME = cub3d
 CC = gcc
 
 SRC = main \
+	  init \
 	  cub3d \
-	  screen \
-	  screen_col \
+	  error \
+	  view \
+	  view_col \
 	  wall \
 	  key \
-	  tools \
 	  parse \
 	  parse_map \
 	  parse_check \

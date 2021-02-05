@@ -114,15 +114,15 @@ int		ft_key(int key, t_all *s)
 	else if(key == W)
 		ft_move(s, 1);
 	else if(key == A)
-		ft_strafe(s, -1);
+		ft_strafe(s, 1);
 	else if(key == S)
 		ft_move(s, -1);
 	else if(key == D)
-		ft_strafe(s, 1);
+		ft_strafe(s, -1);
 	else if(key == LEFT)
 		ft_rotate(s, 1);
 	else if(key == RIGHT)
 		ft_rotate(s, -1);
-	ft_draw(s);
+	draw_window(s);
 	return (1);
 }

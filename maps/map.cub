@@ -1,16 +1,23 @@
-R  800 800
-NO ../textures/brick.xpm
-SO ../textures/blue.xpm
-WE ../textures/wood.xpm
-EA ../textures/grey.xpm
+R  3000 3000
+NO ../textures/north.xpm
+SO ../textures/south.xpm
+WE ../textures/west.xpm
+EA ../textures/east.xpm
 
 S ../textures/chest.xpm
 F 224,172,105
 C 205,249,255
 
-1 1 1 1 1 1 1
-1 0 0 0 0 0 1
-1 0 0 W 0 0 1
-1 0 0 0 1 1 1
-1 0 0 0 0 0 1
-1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1
+1 0 0 0 0 0 0 0 0 1
+1 0 0 W 0 0 0 0 0 1
+1 0 0 0 0 0 0 0 0 1
+1 0 0 0 1 1 1 1 1 1
+1 0 0 0 0 0 0 0 0 1
+1 1 1 0 0 0 0 0 0 1
+1 0 0 0 0 0 0 0 0 1
+1 1 1 1 1 0 1 1 1 1
+1 1 1 1 1 0 0 0 0 1
+1 1 1 1 1 0 0 0 0 1
+1 1 1 1 1 0 0 0 0 1
+1 1 1 1 1 1 1 1 1 1

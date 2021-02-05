@@ -26,11 +26,11 @@ static void		ft_get_info(t_all *s, t_wall *w)
 	w->step = 1.0 * PIXEL_SIZE / s->scr.lh;
 	w->texpos = (s->scr.ds - s->win.y / 2 + s->scr.lh / 2) * w->step;
 	
-//	w->texture_x = (s->ray.x < 0) ? s->tex.w : s->tex.e;
-//	w->texture_y = (s->ray.y < 0) ? s->tex.n : s->tex.s;
+	w->texture_x = (s->ray.x < 0) ? s->tex.w : s->tex.e;
+	w->texture_y = (s->ray.y < 0) ? s->tex.s : s->tex.n;
 }
 
-void	ft_wall(t_all *s, int x)
+void	draw_wall(t_all *s, int x)
 {
 	unsigned int pixel;
 	t_wall	w;
@@ -40,20 +40,17 @@ void	ft_wall(t_all *s, int x)
 	pixel = s->hit.s ? BLUE/2 : RED;
 	while (++y < s->scr.de)
 		s->img.adr[(s->win.x * y) + x] = pixel;
-//	ft_init_wall(w);
-//	ft_get_info(s, &w);
-//	y = s->scr.ds - 1;
-//	while (++y < s->scr.de)
-//	{
-//		w.tex_y = (int)w.texpos & (PIXEL_SIZE - 1);
-//		w.texpos += w.step;
-////		if (s->hit.s == 0)
-////			pixel = w.texture_x[PIXEL_SIZE * w.tex_y + w.tex_x];
-////		if (s->hit.s == 1)
-////			pixel = w.texture_y[PIXEL_SIZE * w.tex_y + w.tex_x];
-////		s->img.adr[y * s->win.x + x] = pixel;
-//		s->img.adr[y * s->win.x + x] = RED/2;
-//		if (s->hit.s == 1)
-//			s->img.adr[y * s->win.x + x] = BLUE/2;
-//	}
+	ft_init_wall(w);
+	ft_get_info(s, &w);
+	y = s->scr.ds - 1;
+	while (++y < s->scr.de)
+	{
+		w.tex_y = (int)w.texpos & (PIXEL_SIZE - 1);
+		w.texpos += w.step;
+		if (s->hit.s == 0)
+			pixel = w.texture_x[PIXEL_SIZE * w.tex_y + w.tex_x];
+		if (s->hit.s == 1)
+			pixel = w.texture_y[PIXEL_SIZE * w.tex_y + w.tex_x];
+		s->img.adr[y * s->win.x + x] = pixel;
+	}
 }
