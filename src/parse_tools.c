@@ -82,7 +82,7 @@ void	ft_pos(t_all *s)
 				s->dir.x = (c == 'E' || c == 'W') ? 1 : 0;
 				s->dir.x *= (c == 'W') ? -1 : 1;
 				s->dir.y = (c == 'S' || c == 'N') ? 1 : 0;
-				s->dir.y *= (c == 'N') ? -1 : 1;
+				s->dir.y *= (c == 'S') ? -1 : 1;
 				s->err.p++;
 				s->dir.d = c;
 			}
@@ -94,6 +94,8 @@ void	ft_pos(t_all *s)
 		s->pla.x = PLANEY;
 		s->pla.y = PLANEX;
 	}
+	s->pla.x *= (s->dir.d == 'S') ? -1 : 1;
+	s->pla.y *= (s->dir.d == 'E') ? -1 : 1;
 }
 
 /*******************************************

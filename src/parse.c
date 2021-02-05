@@ -70,10 +70,7 @@ int		ft_parse(t_all *s, char *cub)
 	}
 	close(fd);
 	if (ret == ERR || ret == -3)
-	{
-		printf("////////////////%d//////////////\n", ret);
 		return (ft_strerr(FILE_PARSE));
-	}
 	ft_pos(s);
 	s->spr = NULL;
 	ft_slist(s);

@@ -13,7 +13,7 @@ void	ft_markpos(t_all *s, const t_mini *m)
 	int	j;
 
 	pos = (int)(s->pos.x * m->bsize) + \
-			(int)(s->pos.y * m->bsize) * s->win.x;
+			(int)((s->map.h - s->pos.y) * m->bsize) * s->win.x;
 	pm = 3;
 	i = -pm;
 	while(++i < pm)
@@ -39,7 +39,7 @@ void	ft_markray(t_all *s, const t_mini *m, int pos)
 	i = 0;
 	while (i++ < tmp)
 	{
-		ray = (x * i / tmp) + ((y * i / tmp) * s->win.x);
+		ray = (x * i / tmp) - ((y * i / tmp) * s->win.x);
 		if ((pos + ray) > 0 && (pos + ray) < (s->win.x * m->h))
 			s->img.adr[pos + ray] = YELLOW;
 	}

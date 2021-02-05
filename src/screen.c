@@ -16,9 +16,11 @@ void	ft_screen(t_all *s)
 	s->img.adr = (unsigned int *)mlx_get_data_addr(s->img.ptr, &tab[0], &tab[1], &tab[2]);
 	x = -1;
 	while(++x < s->win.x)
+	{
 		ft_screen_col(s, x);
+	}
+	ft_minimap(s);
 //	ft_sprite(s);
-  	ft_minimap(s);
 	ft_time(s);
 }
 

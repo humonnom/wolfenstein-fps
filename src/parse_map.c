@@ -42,14 +42,13 @@ int		ft_map(t_all *s, char *line, int *i)
 	char	**tmp;
 	int		j;
 
-
 	s->err.m = 1;
 	if (!(tmp = malloc(sizeof(char *) * (s->map.h + 2))))
 		return (MAP_ALLOC_FAIL);
-	j = -1;
-	while (++j < s->map.h)
-		tmp[j] = s->map.tab[j];
-	if ((tmp[s->map.h] = ft_slab(s, line, i)) == NULL)
+	j = s->map.h + 1;
+	while (--j > 0)
+		tmp[j] = s->map.tab[j - 1];
+	if ((tmp[0] = ft_slab(s, line, i)) == NULL)
 	{
 		tmp = ft_free(tmp);
 		return (MAP_INV);

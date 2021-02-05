@@ -120,9 +120,9 @@ int		ft_key(int key, t_all *s)
 	else if(key == D)
 		ft_strafe(s, 1);
 	else if(key == LEFT)
-		ft_rotate(s, -1);
-	else if(key == RIGHT)
 		ft_rotate(s, 1);
+	else if(key == RIGHT)
+		ft_rotate(s, -1);
 	ft_draw(s);
 	return (1);
 }

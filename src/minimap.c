@@ -46,8 +46,8 @@ void	ft_lect(int sort, t_all *s, t_bonus *b)
 					s->img.adr[cur] = WHITE ;
 			else if (sort == '1')
 				s->img.adr[cur] = s->tex.f/2;
-			else
-				s->img.adr[cur] = BLACK;
+//			else
+//				s->img.adr[cur] = BLACK;
 			cur++;
 		}
 		ys++;
@@ -59,14 +59,16 @@ void	ft_drawmini(t_all *s, t_bonus *b)
 {
 	int		cnt_w;
 	int		cnt_h;
+	int		tab_h;
 
 	cnt_h = -1;
 	while(++cnt_h < s->map.h)
 	{
+		tab_h = s->map.h - cnt_h - 1;
 		cnt_w = -1;
 		while (++cnt_w < s->map.w)
 		{
-			b->mini.ys = (b->mini.h/s->map.h) * cnt_h;
+			b->mini.ys = (b->mini.h/s->map.h) * tab_h;
 			b->mini.ye = b->mini.ys + b->mini.h/s->map.h;
 			b->mini.xs = (b->mini.w/s->map.w) * cnt_w;
 			b->mini.xe = b->mini.xs + b->mini.w/s->map.w;
@@ -82,7 +84,8 @@ void	ft_minimap(t_all *s)
 
 	ft_initmini(b);
 	ft_declaremini(s,&b);
-	if (b.mini.w * b.mini.h)
-		ft_drawmini(s, &b);
+	if (b.mini.w * b.mini.h == 0)
+		return ;
+	ft_drawmini(s, &b);
 	ft_mark(s, &b.mini);
 }
