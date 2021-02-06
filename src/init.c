@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-
 /*******************************************
 -function: init structures(2)
 -ar:	s 		->	structure(t_all)
@@ -51,11 +50,8 @@ static void	init_else(t_all *s)
 	s->dir = dir;
 	s->pla = pla;
 	spr = NULL;
-	tim.now = 0;
-	tim.old = 0;
-	tim.frame = 0;
-	tim.ms = 0;
-	tim.rs = 0;
+	tim.ms = SPEED;
+	tim.rs = TURN;
 	s->tim = tim;
 	s->spr = spr;
 }

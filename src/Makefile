@@ -15,7 +15,8 @@ SRC = cub3d \
 	  parse_tools \
 	  gnl/get_next_line \
 	  minimap \
-	  minimap_mark 
+	  minimap_mark \
+	  sound
 
 FIL = $(addsuffix .c, $(addprefix ./, $(SRC)))
 
@@ -63,4 +64,4 @@ save: re
 lldb: $(OBJ)
 	$(CC) -g -o $(NAME) $(LIB_OPT) $(MLX_OPT) $(LXFLAGS) $(OBJ)
 
-.PHONY: all clean fclean re test save
+.PHONY: all clean fclean re test n w e s save lldb

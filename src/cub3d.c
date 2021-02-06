@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-
 int		cub3d_loop(t_all s, char *cub, int save)
 {
 	s.mlx.ptr = mlx_init();
@@ -18,16 +17,27 @@ int		cub3d_loop(t_all s, char *cub, int save)
 
 int		main(int argc, char **argv)
 {
-	t_all s;
+	t_all	s;
+	int		pid;
 
-	if (!(argc >= 2 && argc <= 3))
-		return(err_filter(ARG_NUM));
-	if (!(argc >= 2 && !ft_strncmp_reverse(argv[1], ".cub", 4)))
-		return(err_filter(MAP_NAME));
-	if (!(argc == 2 || !ft_strncmp(argv[2], "--save", 6)))
-		return(err_filter(SAVE_OPT));
-	if (!init_all(&s))
-		return(err_filter(INIT_FAIL));
-	cub3d_loop(s, argv[1], argc == 3);
+	pid = -1;
+	pid = fork();
+	if (pid == 0)
+	{
+//		system("afplay ../bonus/sound/human_dream.mp3");
+		exit(0);
+	}
+	else
+	{
+		if (!(argc >= 2 && argc <= 3))
+			return(err_filter(ARG_NUM));
+		if (!(argc >= 2 && !ft_strncmp_reverse(argv[1], ".cub", 4)))
+			return(err_filter(MAP_NAME));
+		if (!(argc == 2 || !ft_strncmp(argv[2], "--save", 6)))
+			return(err_filter(SAVE_OPT));
+		if (!init_all(&s))
+			return(err_filter(INIT_FAIL));
+		cub3d_loop(s, argv[1], argc == 3);
+	}
 	return(0);
 }

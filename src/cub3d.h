@@ -11,6 +11,8 @@
 # include <math.h>
 # include <fcntl.h>
 # include <time.h>
+# include <OpenAL/al.h>
+# include <OpenAL/alc.h>
 
 # include "../mlx/mlx.h"
 # include "libft/libft.h"
@@ -68,8 +70,8 @@
 # define LEFT 123
 # define RIGHT 124
 
-# define SPEED 0.1
-# define TURN 0.03
+# define SPEED 0.07
+# define TURN 0.04
 # define PLANEX 0.00
 # define PLANEY 0.66
 
@@ -150,9 +152,6 @@ typedef struct	s_ray
 {
 	double			x;
 	double			y;
-	int				i;
-	double			v;
-	double			w;
 }				t_ray;
 
 typedef struct  s_hit
@@ -184,9 +183,6 @@ typedef struct	s_pla
 
 typedef struct	s_tim
 {
-	double			now;
-	double			old;
-	double			frame;
 	double			ms;
 	double			rs;
 }				t_tim;
@@ -341,5 +337,10 @@ int				exit_game(t_all *s, int win);
 static void		handle_rotate(t_all *s, double c);
 static void		handle_move(t_all *s, int c);
 static void		handle_strafe(t_all *s, int c);
+
+
+//=====================/*sound.c*/==========================
+int				get_sound();
+
 
 #endif

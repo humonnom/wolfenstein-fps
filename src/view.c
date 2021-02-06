@@ -7,20 +7,8 @@ void	init_view(t_all *s)
 
 	ray.x = 0;
 	ray.y = 0;
-	ray.i = 0;
-	ray.v = 0;
-	ray.w = 0;
 	s->ray = ray;
 	s->hit = hit;
-}
-
-void	set_time(t_all *s)
-{
-	s->tim.old = s->tim.now;
-	s->tim.now = clock();
-	s->tim.frame = (s->tim.now - s->tim.old) / 1000.0;
-	s->tim.ms = SPEED;//s->tim.frame * 5.0;	
-	s->tim.rs = TURN;//s->tim.frame * 3.0;	
 }
 
 void	draw_view(t_all *s)
@@ -35,7 +23,6 @@ void	draw_view(t_all *s)
 		draw_view_col(s, x);
 	draw_minimap(s);
 //	draw_sprite(s);
-	set_time(s);
 }
 
 void	draw_window(t_all *s)
