@@ -7,7 +7,7 @@
 -return: int (1 or)
 -call: non
  *******************************************/
-int		ft_close(t_all *s, int win)
+int		exit_game(t_all *s, int win)
 {
 	int i;
 
@@ -34,7 +34,7 @@ int		ft_close(t_all *s, int win)
 **-return: non
 **-call: ft_slist()
 ******************************************/
-void	ft_move(t_all *s, int c)
+static void	handle_move(t_all *s, int c)
 {
 	int x;
 	int y;
@@ -57,7 +57,7 @@ void	ft_move(t_all *s, int c)
 **-return: non
 **-call:
 ********************************************/
-void	ft_rotate(t_all *s, double c)
+static void	handle_rotate(t_all *s, double c)
 {
 	double olddir;
 	double oldplane;
@@ -79,7 +79,7 @@ void	ft_rotate(t_all *s, double c)
 -return: non
 -call: ft_slist()
  *******************************************/
-void	ft_strafe(t_all *s, int c)
+static void	handle_strafe(t_all *s, int c)
 {
 	int x;
 	int y;
@@ -100,29 +100,29 @@ void	ft_strafe(t_all *s, int c)
 -ar:	key 	->	pressed key
 		arg		-> 	???
 -return: int (1)
--call:	ft_close()
-		ft_move()
-		ft_strafe()
-		ft_move()
-		ft_rotate()
-		ft_draw()
+-call:	exit_game()
+		handle_move()
+		handle_strafe()
+		handle_move()
+		handle_rotate()
+		handle_draw()
  *******************************************/
-int		ft_key(int key, t_all *s)
+int		get_key(int key, t_all *s)
 {
 	if (key == ESC)
-		ft_close(s, 1);
+		exit_game(s, 1);
 	else if(key == W)
-		ft_move(s, 1);
-	else if(key == A)
-		ft_strafe(s, 1);
+		handle_move(s, 1);
 	else if(key == S)
-		ft_move(s, -1);
+		handle_move(s, -1);
+	else if(key == A)
+		handle_strafe(s, 1);
 	else if(key == D)
-		ft_strafe(s, -1);
+		handle_strafe(s, -1);
 	else if(key == LEFT)
-		ft_rotate(s, 1);
+		handle_rotate(s, 1);
 	else if(key == RIGHT)
-		ft_rotate(s, -1);
+		handle_rotate(s, -1);
 	draw_window(s);
-	return (1);
+	return (DONE);
 }

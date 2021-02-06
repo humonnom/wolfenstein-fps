@@ -1,12 +1,12 @@
 #include "cub3d.h"
 
-void	get_3d_col(t_all *s, int x)
+void	draw_view_col(t_all *s, int x)
 {
   	set_init(s, x);
 	set_step(s);	
-	run_dda(s);
-	set_draw_range(s);
-	draw_wall(s, x);
+	set_dda(s);
+	set_range(s);
+	set_wall(s, x);
 }
 
 void	set_init(t_all *s, int x)
@@ -51,7 +51,7 @@ void	set_step(t_all *s)
 	}
 }
 
-void	run_dda(t_all *s)
+void	set_dda(t_all *s)
 {
 	while (s->hit.f == 0)
 	{
@@ -72,7 +72,7 @@ void	run_dda(t_all *s)
 	}
 }
 
-void	set_draw_range(t_all *s)
+void	set_range(t_all *s)
 {
 	if (s->hit.s == 0)
 	{

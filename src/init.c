@@ -10,7 +10,7 @@
 -call: ft_cubed()
  *******************************************/
 
-void	ft_init_map(t_all *s)
+static void	init_map(t_all *s)
 {
 	t_map	map;
 	t_tex	tex;
@@ -32,7 +32,7 @@ void	ft_init_map(t_all *s)
 	s->map = map;
 }
 
-void	ft_init_else(t_all *s)
+static void	init_else(t_all *s)
 {
 	t_tim	tim;
 	t_spr	*spr;
@@ -60,7 +60,7 @@ void	ft_init_else(t_all *s)
 	s->spr = spr;
 }
 
-void	ft_init_ray(t_all *s)
+static void	init_ray(t_all *s)
 {
 	t_cmr	cmr;
 	t_dst	dst;
@@ -84,7 +84,7 @@ void	ft_init_ray(t_all *s)
 	s->stp = stp;
 }
 
-void	ft_init_mlx(t_all *s)
+static void	init_mlx(t_all *s)
 {
 	t_mlx	mlx;
 	t_win	win;
@@ -106,11 +106,11 @@ void	ft_init_mlx(t_all *s)
 	s->err = err;
 }
 
-int 	ft_init(t_all *s)
+int			init_all(t_all *s)
 {
-	ft_init_mlx(s);
-	ft_init_ray(s);
-	ft_init_map(s);
-	ft_init_else(s);
+	init_mlx(s);
+	init_ray(s);
+	init_map(s);
+	init_else(s);
 	return (DONE);
 }

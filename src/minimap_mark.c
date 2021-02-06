@@ -1,15 +1,15 @@
 #include "cub3d.h"
 
-int		ft_mark(t_all *s, const t_mini *m)
+int		mark_position(t_all *s, const t_mini *m)
 {
 	int pos;
 
-	if (!(pos = ft_markpos(s, m)))
+	if (!(pos = mark_cur_pos(s, m)))
 		return (MARK_ERR);
-	return(ft_markray(s, m, pos));
+	return(mark_cur_dir(s, m, pos));
 }
 
-int		ft_markpos(t_all *s, const t_mini *m)
+int		mark_cur_pos(t_all *s, const t_mini *m)
 {
 	int pos;
 	int pm;
@@ -29,24 +29,25 @@ int		ft_markpos(t_all *s, const t_mini *m)
 	return (pos);
 }
 
-int		ft_markray(t_all *s, const t_mini *m, int pos)
+int		mark_cur_dir(t_all *s, const t_mini *m, int pos)
 {
 	double	x;
 	double	y;
-	double	tmp;
-	int		ray;
+	double	len;
+	int		dir;
 	int		i;
 
 	x = s->dir.x * m->bsize;
 	y = s->dir.y * m->bsize;
-	tmp = (fabs(y) == 0) ? fabs(x) : fabs(y);
+	len = (fabs(y) == 0) ? fabs(x) : fabs(y);
 	i = 0;
-	while (i++ < tmp)
+	while (i++ < len)
 	{
-		ray = (x * i / tmp) - ((y * i / tmp) * s->win.x);
-		if ((pos + ray) > 0 && (pos + ray) < (s->win.x * m->h)\
-			&&	((pos + ray) % s->win.x) < (m->bsize * s->map.w))
-			s->img.adr[pos + ray] = YELLOW;
+		dir = ((x * i / len) - ((y * i / len) * s->win.x)) + pos;
+		if (dir > 0 && dir < (s->win.x * m->h) \
+			&& (dir % s->win.x) > (pos % s->win.x - m->bsize) \
+			&& (dir % s->win.x) < (pos % s->win.x + m->bsize))
+			s->img.adr[dir] = YELLOW;
 	}
 	return (DONE);
 }

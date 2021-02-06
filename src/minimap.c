@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	ft_initmini(t_bonus b)
+static void	init_mini(t_bonus b)
 {
 	t_mini mini;
 	mini.w = 0;
@@ -13,7 +13,7 @@ void	ft_initmini(t_bonus b)
 	b.mini = mini;
 }
 
-void	ft_declaremini(t_all *s, t_bonus *b)
+static void	declare_mini(t_all *s, t_bonus *b)
 {
 	if (s->win.x >= 500 && s->win.y >= 500)
 	{	
@@ -25,20 +25,20 @@ void	ft_declaremini(t_all *s, t_bonus *b)
 	}
 }
 
-void	ft_lect(int sort, t_all *s, t_bonus *b)
+static void	draw_lectangle(int sort, t_all *s, t_bonus *b)
 {
 	int cur;
 	int	end;
 	int ys;
 	int x;
 
-	ys = b->mini.ys;
-	while(ys < b->mini.ye)
+	ys = b->mini.ys - 1;
+	while(++ys < b->mini.ye)
 	{
 		cur = b->mini.xs + (s->win.x * ys);
 		end = b->mini.xe + (s->win.x * ys);
-		x = cur;
-		while(cur < end)
+		x = cur - 1;
+		while(++cur < end)
 		{
 			if (cur == x || cur == end - 1||\
 				ys == b->mini.ye - 1 || ys == b->mini.ys)
@@ -47,14 +47,11 @@ void	ft_lect(int sort, t_all *s, t_bonus *b)
 				s->img.adr[cur] = s->tex.f/2;
 			else
 				s->img.adr[cur] = BLACK;
-			cur++;
 		}
-		ys++;
 	}
-	return ;
 }
 
-void	ft_drawmini(t_all *s, t_bonus *b)
+static void	draw_mini(t_all *s, t_bonus *b)
 {
 	int		cnt_w;
 	int		cnt_h;
@@ -71,20 +68,20 @@ void	ft_drawmini(t_all *s, t_bonus *b)
 			b->mini.ye = b->mini.ys + b->mini.h/s->map.h;
 			b->mini.xs = (b->mini.w/s->map.w) * cnt_w;
 			b->mini.xe = b->mini.xs + b->mini.w/s->map.w;
-			ft_lect(s->map.tab[cnt_h][cnt_w], s, b);
+			draw_lectangle(s->map.tab[cnt_h][cnt_w], s, b);
 		}
 	}
 
 }
 
-void	ft_minimap(t_all *s)
+void	draw_minimap(t_all *s)
 {
 	t_bonus b;
 
-	ft_initmini(b);
-	ft_declaremini(s,&b);
+	init_mini(b);
+	declare_mini(s,&b);
 	if (b.mini.w * b.mini.h == 0)
 		return ;
-	ft_drawmini(s, &b);
-	ft_mark(s, &b.mini);
+	draw_mini(s, &b);
+	mark_position(s, &b.mini);
 }

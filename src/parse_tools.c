@@ -1,15 +1,6 @@
 #include "cub3d.h"
 
-/*******************************************
--function:  parse resolution
--ar:	s			-> structure(t_all)
-		line		-> each line
-		i			-> index
--return: err number of 0
--call:	ft_atoiskip()
-		ft_spaceskip()
- *******************************************/
-int		ft_res(t_all *s, char *line, int *i)
+int		parse_resolution(t_all *s, char *line, int *i)
 {
 	if (s->win.x != 0 || s->win.y != 0)
 		return (RES_DOUBLE);
@@ -26,16 +17,7 @@ int		ft_res(t_all *s, char *line, int *i)
 	return (0);	
 }
 
-/*******************************************
--function:  parse color
--ar:	color		-> color pointer
-		line		-> each line
-		i			-> index
--return: err number of 0
--call:	ft_atoiskip()
-		ft_spaceskip()
- *******************************************/
-int		ft_colors(unsigned int *color, char *line, int *i)
+int		parse_colors(unsigned int *color, char *line, int *i)
 {
 	int	r;
 	int	g;
@@ -56,22 +38,27 @@ int		ft_colors(unsigned int *color, char *line, int *i)
 	return (0);
 }
 
-/*******************************************
--function: parse pos 
--ar:	s 		->	structure(t_all)
--return: non 
--call: non
- *******************************************/
-void	ft_pos(t_all *s)
+void	parse_plane(t_all *s)
+{
+	if (s->dir.x == 0)
+	{
+		s->pla.x = PLANEY;
+		s->pla.y = PLANEX;
+	}
+	s->pla.x *= (s->dir.d == 'S') ? -1 : 1;
+	s->pla.y *= (s->dir.d == 'E') ? -1 : 1;
+}
+
+void	parse_pos(t_all *s)
 {
 	char	c;
 	int		i;
 	int		j;
 
 	i = -1;
-	j = -1;
 	while (++i < s->map.h)
 	{
+		j = -1;
 		while (++j < s->map.w)
 		{
 			c = s->map.tab[i][j];
@@ -87,24 +74,10 @@ void	ft_pos(t_all *s)
 				s->dir.d = c;
 			}
 		}
-		j = -1;
 	}
-	if (s->dir.x == 0)
-	{
-		s->pla.x = PLANEY;
-		s->pla.y = PLANEX;
-	}
-	s->pla.x *= (s->dir.d == 'S') ? -1 : 1;
-	s->pla.y *= (s->dir.d == 'E') ? -1 : 1;
 }
 
-/*******************************************
--function: parse sprite's lacation
--ar:	s 		->	structure(t_all)
--return: err number or 0
--call:	ft_free()
- *******************************************/
-int		ft_slist(t_all *s)
+int		parse_slist(t_all *s)
 {
 	int	i;
 	int	j;
@@ -115,20 +88,18 @@ int		ft_slist(t_all *s)
 	if (!(s->spr = malloc(sizeof(t_spr) * s->map.spr)))
 		return (ERR);
 	i = 0;
-	j = 0;
-	while (j < s->map.h)
+	j = -1;
+	while (++j < s->map.h)
 	{
-		k = 0;
-		while (k < s->map.w)
+		k = -1;
+		while (++k < s->map.w)
 		{
 			if (s->map.tab[j][k] == '2')
 			{
 				s->spr[i].y = (double)j + 0.5;
 				s->spr[i++].x = (double)k + 0.5;
 			}
-			k++;
 		}
-		j++;
 	}	
-	return (1);
+	return (DONE);
 }

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static void	ft_init_wall(t_wall w)
+static void		init_wall(t_wall w)
 {
 	w.texture_x = NULL;
 	w.texture_y = NULL;
@@ -11,7 +11,7 @@ static void	ft_init_wall(t_wall w)
 	w.tex_y = 0;
 }
 
-static void		ft_get_info(t_all *s, t_wall *w)
+static void		get_wall_info(t_all *s, t_wall *w)
 {
 	if (s->hit.s == 0)
 		w->wallx = s->pos.y + s->dst.pw * s->ray.y;
@@ -30,7 +30,7 @@ static void		ft_get_info(t_all *s, t_wall *w)
 	w->texture_y = (s->ray.y < 0) ? s->tex.s : s->tex.n;
 }
 
-void	draw_wall(t_all *s, int x)
+void	set_wall(t_all *s, int x)
 {
 	unsigned int pixel;
 	t_wall	w;
@@ -40,8 +40,8 @@ void	draw_wall(t_all *s, int x)
 	pixel = s->hit.s ? BLUE/2 : RED;
 	while (++y < s->scr.de)
 		s->img.adr[(s->win.x * y) + x] = pixel;
-	ft_init_wall(w);
-	ft_get_info(s, &w);
+	init_wall(w);
+	get_wall_info(s, &w);
 	y = s->scr.ds - 1;
 	while (++y < s->scr.de)
 	{

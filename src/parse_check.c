@@ -1,19 +1,12 @@
 #include "cub3d.h"
 
-int		ft_savecheck(char *arg, char *save)
+int		parse_savecheck(char *arg, char *save)
 {
 	printf("You need to write save check!!\n");	
 	return (0);
 }
 
-/*******************************************
--function: check parsed map
--ar:	s 		->	structure(t_all)
--return: -1(return value of ft_strerr) of 1
--call:	ft_strerr()
- 		ft_mapcheck()
- *******************************************/
-int		ft_mapcheck(t_all *s)
+int		parse_mapcheck(t_all *s)
 {
 	int	i;
 	int j;
@@ -40,27 +33,20 @@ int		ft_mapcheck(t_all *s)
 	return (1);
 }
 
-/*******************************************
--function: check parsed info 
--ar:	s 		->	structure(t_all)
--return: -1(return value of ft_strerr) of 1
--call:	ft_strerr()
- 		ft_mapcheck()
- *******************************************/
-int		ft_parcheck(t_all *s)
+int		parse_check(t_all *s)
 {
 	if (s->win.x <= 0 || s->win.y <= 0)
-		return (ft_strerr(RES_MISSING));
+		return (err_filter(RES_MISSING));
 	else if (s->tex.n == NULL || s->tex.s == NULL ||\
 			s->tex.e == NULL || s->tex.w == NULL || s->tex.i == NULL )
-		return (ft_strerr(TEX_MISSING));
+		return (err_filter(TEX_MISSING));
 	else if (s->tex.c == NONE || s->tex.f == NONE)
-		return (ft_strerr(FC_MISSING));
+		return (err_filter(FC_MISSING));
 	else if (s->err.p == 0)
-		return (ft_strerr(POS_MISSING));
+		return (err_filter(POS_MISSING));
 	else if (s->err.p > 1)
-		return (ft_strerr(POS_DOUBLE));
-	else if (ft_mapcheck(s) == -1)
-		return (ft_strerr(MAP_CRACK));
+		return (err_filter(POS_DOUBLE));
+	else if (parse_mapcheck(s) == -1)
+		return (err_filter(MAP_CRACK));
 	return (1);
 }

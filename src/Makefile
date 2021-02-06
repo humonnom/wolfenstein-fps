@@ -2,9 +2,8 @@ NAME = cub3d
 
 CC = gcc
 
-SRC = main \
+SRC = cub3d \
 	  init \
-	  cub3d \
 	  error \
 	  view \
 	  view_col \

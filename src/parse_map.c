@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		ft_xpm(t_all *s, unsigned int **adr, char *file)
+int		parse_xpm(t_all *s, unsigned int **adr, char *file)
 {
 	int		fd;
 	void	*img;
@@ -19,7 +19,7 @@ int		ft_xpm(t_all *s, unsigned int **adr, char *file)
 	return (0);
 }
 
-int		ft_texture(t_all *s, unsigned int **adr, char *line, int *i)
+int		parse_texture(t_all *s, unsigned int **adr, char *line, int *i)
 {
 	char	*file;
 	int		get;
@@ -32,12 +32,12 @@ int		ft_texture(t_all *s, unsigned int **adr, char *line, int *i)
 	if (!(file = ft_strdup(&line[*i])))
 		return (TEX_ALLOC_FAIL);
 	(*i) += ft_strlen(file);
-	get = ft_xpm(s, adr, file);
+	get = parse_xpm(s, adr, file);
 	file = ft_free(file);
 	return ( get == ERR ? TEX_INV : 0);
 }
 
-int		ft_map(t_all *s, char *line, int *i)
+int		parse_map(t_all *s, char *line, int *i)
 {
 	char	**tmp;
 	int		j;
@@ -48,7 +48,7 @@ int		ft_map(t_all *s, char *line, int *i)
 	j = s->map.h + 1;
 	while (--j > 0)
 		tmp[j] = s->map.tab[j - 1];
-	if ((tmp[0] = ft_slab(s, line, i)) == NULL)
+	if ((tmp[0] = parse_slab(s, line, i)) == NULL)
 	{
 		tmp = ft_free(tmp);
 		return (MAP_INV);
@@ -58,17 +58,17 @@ int		ft_map(t_all *s, char *line, int *i)
 		free(s->map.tab);
 	s->map.tab = tmp;
 	s->map.h++;
-	if ((s->map.w = ft_slablen(s, line)) == -1)
+	if ((s->map.w = parse_slablen(s, line)) == -1)
 		return (MAP_SHAPE);
 	return (0);
 }
 
-char	*ft_slab(t_all *s, char *line, int *i)
+char	*parse_slab(t_all *s, char *line, int *i)
 {
 	char	*slab;
 	int		j;
 
-	if (!(slab = malloc(sizeof(char) * (ft_slablen(s, line) + 1))))
+	if (!(slab = malloc(sizeof(char) * (parse_slablen(s, line) + 1))))
 		return (0);
 	j = 0;
 	while (line[*i] != '\0')
@@ -88,7 +88,7 @@ char	*ft_slab(t_all *s, char *line, int *i)
 	return(slab);
 }
 
-int		ft_slablen(t_all *s, char *line)
+int		parse_slablen(t_all *s, char *line)
 {
 	int	i;
 	int count;
