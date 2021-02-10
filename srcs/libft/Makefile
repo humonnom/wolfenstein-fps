@@ -6,7 +6,7 @@
 #    By: juepark <juepark@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/12 13:59:53 by juepark           #+#    #+#              #
-#    Updated: 2021/01/21 13:37:43 by jackjoo          ###   ########.fr        #
+#    Updated: 2021/02/10 23:51:34 by jackjoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,18 +69,18 @@ SRCS = $(addsuffix .c, $(FUNCS))
 OBJS = $(SRCS:.c=.o)
 
 .c.o :
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
+	@$(AR) $(ARFLAGS) $@ $^
 
 all : $(NAME)
 
 clean :
-	$(RM) $(OBJS) $(OBJS_B)
+	@$(RM) $(OBJS) $(OBJS_B)
 
 fclean : clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re : fclean all
 
