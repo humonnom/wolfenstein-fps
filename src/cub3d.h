@@ -69,6 +69,8 @@
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
+# define VOLUME_UP 126
+# define VOLUME_DOWN 125
 
 # define SPEED 0.07
 # define TURN 0.04
@@ -80,6 +82,7 @@
 # define BLOCK_MAX 20
 
 //      test        //
+# define ps(X) printf("%s\n", X)
 # define pf(X) printf(""#X" :%f\n", X)
 # define pd(X) printf(""#X" :%d\n", X)
 # define pxy(X) printf(""#X" :(%f, %f)\n", (double)s->X.x, (double)s->X.y)
@@ -259,40 +262,40 @@ typedef struct	s_bonus
 }				t_bonus;
 
 
-//=====================/*struct*/==========================
+//=====================/*meta*/==========================
 /*cub3D.c*/
 int				main(int argc, char **argv);
 int				cub3d_loop(t_all s, char *cub, int save);
-void			draw_window(t_all *s);
 
 /*init.c*/
 int 			init_all(t_all *s);
-static void		init_mlx(t_all *s);
-static void		init_ray(t_all *s);
-static void		init_map(t_all *s);
-static void		init_else(t_all *s);
 
 /*error.c*/
 int				err_filter(int err);
-static void		write_err(const char *s);
 
 //=====================/*view*/==========================
 /*view.c*/
-void			draw_view(t_all *s);
-void			init_view(t_all *s);
-void			set_time(t_all *s);
+void			draw_window(t_all *s);
 
 /*view_col.c*/
 void			draw_view_col(t_all *s, int x);
-void			set_init(t_all *s, int x);
-void			set_step(t_all *s);
-void			set_dda(t_all *s);
-void			set_range(t_all *s);
 
 //=====================/*parse*/==========================
 /*parse.c*/
-int				parse_line(t_all *s, char *line);
 int				parse_file(t_all *s, char *cub);
+
+/*parse_check.c*/
+int				parse_check(t_all *s);
+
+/*parse_map.c*/
+int				parse_map(t_all *s, char *line, int *i);
+
+/*parse_tex.c*/
+int				parse_texture(
+				t_all *s,
+				unsigned int **adr,
+				char *line, int *i);
+
 
 /*parse_tools.c*/
 void			parse_pos(t_all *s);
@@ -301,25 +304,9 @@ int				parse_resolution(t_all *s, char *line, int *i);
 int				parse_colors(unsigned int *color, char *line, int *i);
 int				parse_slist(t_all *s);
 
-/*parse_check.c*/
-int				parse_savecheck(char *arg, char *save);
-int				parse_mapcheck(t_all *s);
-int				parse_check(t_all *s);
-
-/*parse_map.c*/
-int				parse_texture(t_all *s, unsigned int **adr, char *line, int *i);
-int				parse_map(t_all *s, char *line, int *i);
-char			*parse_slab(t_all *s, char *line, int *i);
-int				parse_slablen(t_all *s, char *line);
-int				parse_xpm(t_all *s, unsigned int **adr, char *file);
-
 //=====================/* minimap */==========================
 /* minimap.c */
 void			draw_minimap(t_all *s);
-static void		init_mini(t_bonus b);
-static void		declare_mini(t_all *s, t_bonus *b);
-static void		draw_mini(t_all *s, t_bonus *b);
-static void		draw_lectangle(int sort, t_all *s, t_bonus *b);
 
 /* minimap_mark.c*/
 int				mark_position(t_all *s, const t_mini *m);
@@ -328,19 +315,15 @@ int				mark_cur_dir(t_all *s, const t_mini *m, int pos);
 
 //=====================/*wall.c*/==========================
 void			set_wall(t_all *s, int x);
-static void		get_wall_info(t_all *s, t_wall *w);
-static void		init_wall(t_wall w);
 
 //=====================/*key.c*/==========================
 int				get_key(int key, t_all *s);
 int				exit_game(t_all *s, int win);
-static void		handle_rotate(t_all *s, double c);
-static void		handle_move(t_all *s, int c);
-static void		handle_strafe(t_all *s, int c);
 
 
 //=====================/*sound.c*/==========================
-int				get_sound();
+int				run_sound();
+void			handle_sound(int step);
 
 
 #endif

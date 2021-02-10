@@ -1,12 +1,6 @@
 #include "cub3d.h"
 
-int		parse_savecheck(char *arg, char *save)
-{
-	printf("You need to write save check!!\n");	
-	return (0);
-}
-
-int		parse_mapcheck(t_all *s)
+static int		parse_mapcheck(t_all *s)
 {
 	int	i;
 	int j;

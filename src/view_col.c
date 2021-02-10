@@ -1,15 +1,6 @@
 #include "cub3d.h"
 
-void	draw_view_col(t_all *s, int x)
-{
-  	set_init(s, x);
-	set_step(s);	
-	set_dda(s);
-	set_range(s);
-	set_wall(s, x);
-}
-
-void	set_init(t_all *s, int x)
+static void	set_init(t_all *s, int x)
 {
 	double	tmpx;
 	double	tmpy;
@@ -27,7 +18,7 @@ void	set_init(t_all *s, int x)
 	s->dst.dy = (s->ray.x == 0) ? 0 : ((s->ray.y == 0) ? 1 : tmpy);
 }
 
-void	set_step(t_all *s)
+static void	set_step(t_all *s)
 {
 	if (s->ray.x < 0)
 	{
@@ -51,7 +42,7 @@ void	set_step(t_all *s)
 	}
 }
 
-void	set_dda(t_all *s)
+static void	set_dda(t_all *s)
 {
 	while (s->hit.f == 0)
 	{
@@ -72,7 +63,7 @@ void	set_dda(t_all *s)
 	}
 }
 
-void	set_range(t_all *s)
+static void	set_range(t_all *s)
 {
 	if (s->hit.s == 0)
 	{
@@ -89,4 +80,13 @@ void	set_range(t_all *s)
 	s->scr.ds = (s->scr.ds < 0) ? 0 : s->scr.ds;
 	s->scr.de = s->scr.lh / 2 + s->win.y / 2;
 	s->scr.de = (s->scr.de >= s->win.y) ? s->win.y - 1 : s->scr.de;
+}
+
+void	draw_view_col(t_all *s, int x)
+{
+  	set_init(s, x);
+	set_step(s);	
+	set_dda(s);
+	set_range(s);
+	set_wall(s, x);
 }

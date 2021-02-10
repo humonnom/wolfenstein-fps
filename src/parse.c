@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		parse_line(t_all *s, char *line)
+static int		parse_line(t_all *s, char *line)
 {
 	int	 i;
 	

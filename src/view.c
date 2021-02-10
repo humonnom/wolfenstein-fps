@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	init_view(t_all *s)
+static void	init_view(t_all *s)
 {
 	t_ray	ray;
 	t_hit	hit;
@@ -11,7 +11,7 @@ void	init_view(t_all *s)
 	s->hit = hit;
 }
 
-void	draw_view(t_all *s)
+static void	draw_view(t_all *s)
 {
 	int		tab[3];
 	int		x;

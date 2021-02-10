@@ -1,7 +1,8 @@
 #include "cub3d.h"
 
-int		get_sound()
+int		run_sound()
 {
+//	
 //	ALCdevice	*device;
 //
 //	device = alcOpenDevice(NULL);
@@ -18,4 +19,10 @@ int		get_sound()
 ////	else
 ////	        // enumeration supported
 	return 0;
+}
+
+void	handle_sound(int step)
+{
+	ps("sound control");
+	run_sound();
 }

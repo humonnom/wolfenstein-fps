@@ -2,23 +2,30 @@ NAME = cub3d
 
 CC = gcc
 
-SRC = cub3d \
-	  init \
-	  error \
-	  view \
-	  view_col \
-	  wall \
-	  key \
-	  parse \
-	  parse_map \
-	  parse_check \
-	  parse_tools \
-	  gnl/get_next_line \
-	  minimap \
-	  minimap_mark \
-	  sound
+SRC =	cub3d \
+		init \
+		error \
+		view \
+		view_col \
+		wall \
+		key
+
+PARSE =	parse \
+		parse_map \
+		parse_tex \
+		parse_check \
+		parse_tools
+
+GNL =	gnl/get_next_line
+
+BONUS =	minimap \
+		minimap_mark \
+		sound
 
 FIL = $(addsuffix .c, $(addprefix ./, $(SRC)))
+FIL = $(addsuffix .c, $(addprefix parse/, $(PARSE)))
+FIL = $(addsuffix .c, $(addprefix gnl/, $(GNL)))
+FIL = $(addsuffix .c, $(addprefix bonus/, $(BONUS)))
 
 OBJ = $(FIL:.c=.o)
 
