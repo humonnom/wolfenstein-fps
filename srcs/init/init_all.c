@@ -19,7 +19,7 @@ static void	init_map(t_all *s)
 	tex.e = NULL;
 	tex.w = NULL;
 	tex.i = NULL;
-	map.spr = 0;
+	map.sprite = 0;
 	map.x = 0;
 	map.y = 0;
 	map.w = 0;
@@ -33,7 +33,7 @@ static void	init_map(t_all *s)
 static void	init_else(t_all *s)
 {
 	t_tim	tim;
-	t_spr	*spr;
+	t_sprite	*sprite;
 	t_pos	pos;
 	t_dir	dir;
 	t_pla	pla;
@@ -48,11 +48,11 @@ static void	init_else(t_all *s)
 	s->pos = pos;
 	s->dir = dir;
 	s->pla = pla;
-	spr = NULL;
+	sprite = NULL;
 	tim.ms = SPEED;
 	tim.rs = TURN;
 	s->tim = tim;
-	s->spr = spr;
+	s->sprite = sprite;
 }
 
 static void	init_ray(t_all *s)

@@ -50,7 +50,7 @@ int		parse_file(t_all *s, char *cub)
 	if (ret == ERR || ret == -3)
 		return (err_filter(FILE_PARSE));
 	parse_pos(s);
-	s->spr = NULL;
+	s->sprite = NULL;
 	parse_sprite(s);
 	return (parse_check(s));
 }

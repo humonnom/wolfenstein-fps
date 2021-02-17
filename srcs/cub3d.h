@@ -87,12 +87,12 @@
 # define pd(X) printf(""#X" :%d\n", X)
 # define pxy(X) printf(""#X" :(%f, %f)\n", (double)s->X.x, (double)s->X.y)
 
-typedef struct  s_spr
+typedef struct  s_sprite
 {
     double          x;
     double          y;
     double          d;
-}               t_spr;
+}               t_sprite;
 
 typedef struct		s_wall
 {
@@ -137,7 +137,7 @@ typedef struct  s_map
     int             h;	//map의 높이
     int             x;
     int             y;
-    int             spr;
+    int             sprite;
 }               t_map;
 
 typedef struct  s_tex
@@ -239,7 +239,7 @@ typedef struct		s_all
 	t_dst			dst;	//dist
 	t_stp			stp;	//step
 	t_scr			scr;	//screen
-	t_spr			*spr;
+	t_sprite			*sprite;
 
 }					t_all;
 

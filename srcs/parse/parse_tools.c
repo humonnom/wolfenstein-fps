@@ -83,9 +83,9 @@ int		parse_sprite(t_all *s)
 	int	j;
 	int	k;
 
-	if (s->spr != NULL)
-		s->spr = ft_free(s->spr);
-	if (!(s->spr = malloc(sizeof(t_spr) * s->map.spr)))
+	if (s->sprite != NULL)
+		s->sprite = ft_free(s->sprite);
+	if (!(s->sprite = malloc(sizeof(t_sprite) * s->map.sprite)))
 		return (ERR);
 	i = 0;
 	j = -1;
@@ -96,8 +96,8 @@ int		parse_sprite(t_all *s)
 		{
 			if (s->map.tab[j][k] == '2')
 			{
-				s->spr[i].y = (double)j + 0.5;
-				s->spr[i++].x = (double)k + 0.5;
+				s->sprite[i].y = (double)j + 0.5;
+				s->sprite[i++].x = (double)k + 0.5;
 			}
 		}
 	}	

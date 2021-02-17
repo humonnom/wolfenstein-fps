@@ -32,7 +32,7 @@ static char	*parse_map_part(t_all *s, char *line, int *i)
 		else if (line[*i] == '2')
 		{
 			part[j++] = line[*i];
-			s->map.spr++;
+			s->map.sprite++;
 		}
 		else if (line[*i] != ' ')
 			return(part = ft_free(part));
