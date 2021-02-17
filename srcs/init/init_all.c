@@ -32,51 +32,51 @@ static void	init_map(t_all *s)
 
 static void	init_else(t_all *s)
 {
-	t_tim	tim;
+	t_time	time;
 	t_sprite	*sprite;
 	t_pos	pos;
 	t_dir	dir;
-	t_pla	pla;
+	t_plane	plane;
 
 	pos.x = 0;
 	pos.y = 0;
 	dir.x = 0;
 	dir.y = 0;
 	dir.d = '0';
-	pla.x = PLANEX;
-	pla.y = PLANEY;
+	plane.x = PLANEX;
+	plane.y = PLANEY;
 	s->pos = pos;
 	s->dir = dir;
-	s->pla = pla;
+	s->plane = plane;
 	sprite = NULL;
-	tim.ms = SPEED;
-	tim.rs = TURN;
-	s->tim = tim;
+	time.ms = SPEED;
+	time.rs = TURN;
+	s->time = time;
 	s->sprite = sprite;
 }
 
 static void	init_ray(t_all *s)
 {
-	t_cmr	cmr;
-	t_dst	dst;
-	t_stp	stp;
-	t_scr	scr;
+	t_camera	camera;
+	t_dist	dist;
+	t_step	step;
+	t_screen	screen;
 
-	cmr.x = 0;
-	cmr.y = 0;
-	dst.sx = 0;
-	dst.sy = 0;
-	dst.dx = 0;
-	dst.dy = 0;
-	dst.pw = 0;
-	stp.x = 0;
-    stp.y = 0;
-	scr.ds = 0;
-	scr.de = 0;
-	scr.lh = 0;
-	s->cmr = cmr;
-	s->dst = dst;
-	s->stp = stp;
+	camera.x = 0;
+	camera.y = 0;
+	dist.sx = 0;
+	dist.sy = 0;
+	dist.dx = 0;
+	dist.dy = 0;
+	dist.pw = 0;
+	step.x = 0;
+    step.y = 0;
+	screen.ds = 0;
+	screen.de = 0;
+	screen.lh = 0;
+	s->camera = camera;
+	s->dist = dist;
+	s->step = step;
 }
 
 static void	init_mlx(t_all *s)

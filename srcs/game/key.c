@@ -11,14 +11,14 @@ static void	handle_move(t_all *s, int c)
 	int x;
 	int y;
 
-	x = s->pos.x + s->dir.x * s->tim.ms * c;
-	y = s->pos.y + s->dir.y * s->tim.ms * c;
+	x = s->pos.x + s->dir.x * s->time.ms * c;
+	y = s->pos.y + s->dir.y * s->time.ms * c;
 	if (x > 0 && y > 0 &&\
 		x < s->map.w && y < s->map.h &&\
 		s->map.tab[y][x] != '1')
 	{
-		s->pos.x += s->dir.x * s->tim.ms * c;
-		s->pos.y += s->dir.y * s->tim.ms * c;
+		s->pos.x += s->dir.x * s->time.ms * c;
+		s->pos.y += s->dir.y * s->time.ms * c;
 	}
 }
 
@@ -35,13 +35,13 @@ static void	handle_rotate(t_all *s, double c)
 	double oldplane;
 	double rotspeed;
 
-	rotspeed = s->tim.rs * c;
+	rotspeed = s->time.rs * c;
 	olddir = s->dir.x;
 	s->dir.x = s->dir.x * cos(rotspeed) - s->dir.y * sin(rotspeed);
 	s->dir.y = olddir * sin(rotspeed) + s->dir.y * cos(rotspeed);
-	oldplane = s->pla.x;
-	s->pla.x = s->pla.x * cos(rotspeed) - s->pla.y * sin(rotspeed);
-	s->pla.y = oldplane * sin(rotspeed) + s->pla.y * cos(rotspeed);
+	oldplane = s->plane.x;
+	s->plane.x = s->plane.x * cos(rotspeed) - s->plane.y * sin(rotspeed);
+	s->plane.y = oldplane * sin(rotspeed) + s->plane.y * cos(rotspeed);
 }
 
 /*******************************************
@@ -56,14 +56,14 @@ static void	handle_strafe(t_all *s, int c)
 	int x;
 	int y;
 
-	x = s->pos.x + s->dir.y * s->tim.ms * -c;
-	y = s->pos.y + s->dir.x * s->tim.ms * c;
+	x = s->pos.x + s->dir.y * s->time.ms * -c;
+	y = s->pos.y + s->dir.x * s->time.ms * c;
 	if (x > 0 && y > 0 &&\
 		x < s->map.w && y < s->map.h &&\
 		s->map.tab[y][x] != '1')
 	{
-		s->pos.x += s->dir.y * s->tim.ms * -c;
-		s->pos.y += s->dir.x * s->tim.ms * c;
+		s->pos.x += s->dir.y * s->time.ms * -c;
+		s->pos.y += s->dir.x * s->time.ms * c;
 	}
 }
 

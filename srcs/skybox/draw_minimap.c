@@ -4,10 +4,10 @@ static void	init_mini(t_mini *mini)
 {
 	mini->w = 0;
 	mini->h = 0;
-	mini->xs = 0;
-	mini->xe = 0;
-	mini->ys = 0;
-	mini->ye = 0;
+	mini->x_head = 0;
+	mini->x_tail = 0;
+	mini->y_head = 0;
+	mini->y_tail = 0;
 	mini->bsize = 0;
 }
 
@@ -27,19 +27,19 @@ static void	draw_lectangle(int sort, t_all *s, t_bonus *b)
 {
 	int cur;
 	int	end;
-	int ys;
+	int y_head;
 	int x;
 
-	ys = b->mini.ys - 1;
-	while(++ys < b->mini.ye)
+	y_head = b->mini.y_head - 1;
+	while(++y_head < b->mini.y_tail)
 	{
-		cur = b->mini.xs + (s->win.x * ys);
-		end = b->mini.xe + (s->win.x * ys);
+		cur = b->mini.x_head + (s->win.x * y_head);
+		end = b->mini.x_tail + (s->win.x * y_head);
 		x = cur - 1;
 		while(++cur < end)
 		{
 			if (cur == x || cur == end - 1||\
-				ys == b->mini.ye - 1 || ys == b->mini.ys)
+				y_head == b->mini.y_tail - 1 || y_head == b->mini.y_head)
 					s->img.adr[cur] = WHITE ;
 			else if (sort == '1')
 				s->img.adr[cur] = s->tex.f/2;
@@ -62,10 +62,10 @@ static void	draw_mini(t_all *s, t_bonus *b)
 		cnt_w = -1;
 		while (++cnt_w < s->map.w)
 		{
-			b->mini.ys = (b->mini.h/s->map.h) * tab_h;
-			b->mini.ye = b->mini.ys + b->mini.h/s->map.h;
-			b->mini.xs = (b->mini.w/s->map.w) * cnt_w;
-			b->mini.xe = b->mini.xs + b->mini.w/s->map.w;
+			b->mini.y_head = (b->mini.h/s->map.h) * tab_h;
+			b->mini.y_tail = b->mini.y_head + b->mini.h/s->map.h;
+			b->mini.x_head = (b->mini.w/s->map.w) * cnt_w;
+			b->mini.x_tail = b->mini.x_head + b->mini.w/s->map.w;
 			draw_lectangle(s->map.tab[cnt_h][cnt_w], s, b);
 		}
 	}

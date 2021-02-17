@@ -177,48 +177,48 @@ typedef struct	s_dir
 }				t_dir;
 
 
-typedef struct	s_pla
+typedef struct	s_plane
 {
 	double			x;
 	double			y;
 
-}				t_pla;
+}				t_plane;
 
-typedef struct	s_tim
+typedef struct	s_time
 {
 	double			ms;
 	double			rs;
-}				t_tim;
+}				t_time;
 
-typedef struct	s_cmr
+typedef struct	s_camera
 {
 	double			x;
 	double			y;
 
-}				t_cmr;
+}				t_camera;
 
-typedef struct	s_stp
+typedef struct	s_step
 {
 	int				x;
 	int				y;
 
-}				t_stp;
+}				t_step;
 
-typedef struct	s_dst
+typedef struct	s_dist
 {
 	double			sx;
 	double			sy;
 	double			dx;
 	double			dy;
 	double			pw;
-}				t_dst;
+}				t_dist;
 
-typedef struct	s_scr
+typedef struct	s_screen
 {
 	int				lh;
 	int				ds;
 	int				de;
-}				t_scr;
+}				t_screen;
 
 typedef struct		s_all
 {
@@ -233,13 +233,13 @@ typedef struct		s_all
 	t_hit			hit;
 	t_pos			pos;
 	t_dir			dir;
-	t_pla			pla;	//plane
-	t_tim			tim;	//time
-	t_cmr			cmr;	//camera
-	t_dst			dst;	//dist
-	t_stp			stp;	//step
-	t_scr			scr;	//screen
-	t_sprite			*sprite;
+	t_time			time;	//time
+	t_plane			plane;	//plane
+	t_camera		camera;	//camera
+	t_dist			dist;	//dist
+	t_step			step;	//step
+	t_screen		screen;	//screeneen
+	t_sprite		*sprite;
 
 }					t_all;
 
@@ -250,10 +250,10 @@ typedef struct	s_mini
 {
 	int	w;
 	int	h;
-	int xs;
-	int	xe;
-	int	ys;
-	int ye;
+	int x_head;
+	int	x_tail;
+	int	y_head;
+	int y_tail;
 	int bsize;
 }				t_mini;
 

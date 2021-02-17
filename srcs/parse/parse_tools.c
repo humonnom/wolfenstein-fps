@@ -42,11 +42,11 @@ void	parse_plane(t_all *s)
 {
 	if (s->dir.x == 0)
 	{
-		s->pla.x = PLANEY;
-		s->pla.y = PLANEX;
+		s->plane.x = PLANEY;
+		s->plane.y = PLANEX;
 	}
-	s->pla.x *= (s->dir.d == 'S') ? -1 : 1;
-	s->pla.y *= (s->dir.d == 'E') ? -1 : 1;
+	s->plane.x *= (s->dir.d == 'S') ? -1 : 1;
+	s->plane.y *= (s->dir.d == 'E') ? -1 : 1;
 }
 
 void	parse_pos(t_all *s)
