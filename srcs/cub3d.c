@@ -25,9 +25,14 @@ int		main(int argc, char **argv)
 		return(err_filter(MAP_NAME));
 	if (!(argc == 2 || !ft_strncmp(argv[2], "--save", 6)))
 		return(err_filter(SAVE_OPT));
-	if (!init_all(&s))
-		return(err_filter(INIT_FAIL));
-	cub3d_loop(s, argv[1], argc == 3);
-	//run_sound();
+	s.pid = fork();
+	if (s.pid == 0)
+		system("afplay ../bonus/sound/human_dream.mp3");
+	else
+	{
+		if (!init_all(&s))
+			return(err_filter(INIT_FAIL));
+		cub3d_loop(s, argv[1], argc == 3);
+	}
 	return(0);
 }

@@ -4,28 +4,44 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC =	cub3d \
-		init \
-		error \
-		view \
-		view_col \
-		wall \
-		key \
-		minimap \
-		minimap_mark \
-		sound
+SRC =	cub3d
 
-PARSE = parse \
+INIT =	init_all
+
+
+PARSE = parse_file \
 		parse_map \
-		parse_tex \
+		parse_texture \
 		parse_check \
 		parse_tools \
 
 GNL =	get_next_line
 
+DRAW =	draw_window \
+		draw_window_col \
+		set_wall
+
+SKYBOX = draw_minimap \
+		 mark_position \
+		 mark_direction \
+		 mark_sprite \
+		 mark_objects
+
+SOUND =	sound
+
+GAME =	key \
+		error \
+		exit_game
+
 FIL =	$(addsuffix .c, $(addprefix ./, $(SRC))) \
-		$(addsuffix .c, $(addprefix ./, $(PARSE))) \
-		$(addsuffix .c, $(addprefix gnl/, $(GNL)))
+		$(addsuffix .c, $(addprefix parse/, $(PARSE))) \
+		$(addsuffix .c, $(addprefix gnl/, $(GNL))) \
+		$(addsuffix .c, $(addprefix draw/, $(DRAW))) \
+		$(addsuffix .c, $(addprefix skybox/, $(SKYBOX))) \
+		$(addsuffix .c, $(addprefix sound/, $(SOUND))) \
+		$(addsuffix .c, $(addprefix game/, $(GAME))) \
+		$(addsuffix .c, $(addprefix init/, $(INIT))) \
+		$(addsuffix .c, $(addprefix err/, $(ERR)))
 
 OBJ = $(FIL:.c=.o)
 

@@ -222,6 +222,7 @@ typedef struct	s_scr
 
 typedef struct		s_all
 {
+	int				pid;
 	t_mlx			mlx;
 	t_err			err;
 	t_win			win;
@@ -267,7 +268,7 @@ typedef struct	s_bonus
 int				main(int argc, char **argv);
 int				cub3d_loop(t_all s, char *cub, int save);
 
-/*init.c*/
+/*init_all.c*/
 int 			init_all(t_all *s);
 
 /*error.c*/
@@ -278,7 +279,7 @@ int				err_filter(int err);
 void			draw_window(t_all *s);
 
 /*view_col.c*/
-void			draw_view_col(t_all *s, int x);
+void			draw_window_col(t_all *s, int x);
 
 //=====================/*parse*/==========================
 /*parse.c*/
@@ -302,16 +303,16 @@ void			parse_pos(t_all *s);
 void			parse_plane(t_all *s);
 int				parse_resolution(t_all *s, char *line, int *i);
 int				parse_colors(unsigned int *color, char *line, int *i);
-int				parse_slist(t_all *s);
+int				parse_sprite(t_all *s);
 
 //=====================/* minimap */==========================
 /* minimap.c */
-void			draw_minimap(t_all *s);
+int				draw_minimap(t_all *s);
 
-/* minimap_mark.c*/
+void			mark_direction(t_all *s, const t_mini *m, int pos);
 int				mark_position(t_all *s, const t_mini *m);
-int				mark_cur_pos(t_all *s, const t_mini *m);
-int				mark_cur_dir(t_all *s, const t_mini *m, int pos);
+int				mark_sprite(t_all *s, const t_mini *m);
+int				mark_objects(t_all *s, const t_mini *m);
 
 //=====================/*wall.c*/==========================
 void			set_wall(t_all *s, int x);
@@ -325,5 +326,7 @@ int				exit_game(t_all *s, int win);
 int				run_sound();
 void			handle_sound(int step);
 
+//====================/*handle sprite*/=======================
+int				handle_sprite(t_all *s);
 
 #endif
