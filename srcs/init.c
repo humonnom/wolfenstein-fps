@@ -8,7 +8,6 @@
 -return: non
 -call: ft_cubed()
  *******************************************/
-
 static void	init_map(t_all *s)
 {
 	t_map	map;

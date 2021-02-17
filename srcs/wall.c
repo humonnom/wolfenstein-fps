@@ -1,14 +1,14 @@
 #include "cub3d.h"
 
-static void		init_wall(t_wall w)
+static void init_wall(t_wall *w)
 {
-	w.texture_x = NULL;
-	w.texture_y = NULL;
-	w.wallx = 0;
-	w.step = 0;
-	w.texpos = 0;
-	w.tex_x = 0;
-	w.tex_y = 0;
+	w->texture_x = NULL;
+	w->texture_y = NULL;
+	w->wallx = 0;
+	w->step = 0;
+	w->texpos = 0;
+	w->tex_x = 0;
+	w->tex_y = 0;
 }
 
 static void		get_wall_info(t_all *s, t_wall *w)
@@ -40,7 +40,7 @@ void	set_wall(t_all *s, int x)
 	pixel = s->hit.s ? BLUE/2 : RED;
 	while (++y < s->scr.de)
 		s->img.adr[(s->win.x * y) + x] = pixel;
-	init_wall(w);
+	init_wall(&w);
 	get_wall_info(s, &w);
 	y = s->scr.ds - 1;
 	while (++y < s->scr.de)

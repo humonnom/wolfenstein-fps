@@ -23,6 +23,7 @@ int		run_sound()
 
 void	handle_sound(int step)
 {
+	(void)step;
 	ps("sound control");
 	run_sound();
 }

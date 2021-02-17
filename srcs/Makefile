@@ -2,6 +2,8 @@ NAME = cub3d
 
 CC = gcc
 
+CFLAGS = -Wall -Wextra -Werror
+
 SRC =	cub3d \
 		init \
 		error \
@@ -9,43 +11,51 @@ SRC =	cub3d \
 		view_col \
 		wall \
 		key \
-		parse \
+		minimap \
+		minimap_mark \
+		sound
+
+PARSE = parse \
 		parse_map \
 		parse_tex \
 		parse_check \
 		parse_tools \
-		minimap \
-		minimap_mark \
-		sound \
-		gnl/get_next_line
 
+GNL =	get_next_line
 
-FIL = $(addsuffix .c, $(addprefix ./, $(SRC)))
+FIL =	$(addsuffix .c, $(addprefix ./, $(SRC))) \
+		$(addsuffix .c, $(addprefix ./, $(PARSE))) \
+		$(addsuffix .c, $(addprefix gnl/, $(GNL)))
 
 OBJ = $(FIL:.c=.o)
 
-LIB_DIR = ./libft
+LIBDIR = ./libft
 
-LIB_OPT = -L./libft -lft
+INCDIR = ./
 
-MLX_OPT = -L../mlx -lmlx
+LIBOPT = -L./libft -lft
+
+MLXOPT = -L../mlx -lmlx
 
 LXFLAGS = -framework OpenGL -framework Appkit
 
-all: $(NAME) 
+all: $(NAME)
+
+.c.o:
+	@$(CC) $(CFLAGS) -I$(INCDIR) -o $@ -c $<
 
 $(NAME): $(OBJ)
-	@$(MAKE) -C $(LIB_DIR) all
-	@$(CC) -o $(NAME) $(LIB_OPT) $(MLX_OPT) $(LXFLAGS) $(OBJ)
+	@$(MAKE) -C $(LIBDIR) all
+	@$(CC) -o $(NAME) $(LIBOPT) $(MLXOPT) $(LXFLAGS) $(OBJ)
 
 clean:
 	@rm -rf $(OBJ)
 	@rm -f bitmap.bmp
-	@$(MAKE) -C $(LIB_DIR) clean
+	@$(MAKE) -C $(LIBDIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
-	@$(MAKE) -C $(LIB_DIR) fclean
+	@$(MAKE) -C $(LIBDIR) fclean
 
 re: fclean all
 
@@ -68,6 +78,6 @@ save: re
 	@./$(NAME) ../maps/map.cub --save
 
 lldb: $(OBJ)
-	@$(CC) -g -o $(NAME) $(LIB_OPT) $(MLX_OPT) $(LXFLAGS) $(OBJ)
+	@$(CC) -g -o $(NAME) $(LIBOPT) $(MLXOPT) $(LXFLAGS) $(OBJ)
 
 .PHONY: all clean fclean re test n w e s save lldb

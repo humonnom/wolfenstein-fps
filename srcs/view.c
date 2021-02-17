@@ -7,6 +7,8 @@ static void	init_view(t_all *s)
 
 	ray.x = 0;
 	ray.y = 0;
+	hit.f = 0;
+	hit.s = 0;
 	s->ray = ray;
 	s->hit = hit;
 }

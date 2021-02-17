@@ -1,16 +1,14 @@
 #include "cub3d.h"
 
-static void	init_mini(t_bonus b)
+static void	init_mini(t_mini *mini)
 {
-	t_mini mini;
-	mini.w = 0;
-	mini.h = 0;
-	mini.xs = 0;
-	mini.xe = 0;
-	mini.ys = 0;
-	mini.ye = 0;
-	mini.bsize = 0;
-	b.mini = mini;
+	mini->w = 0;
+	mini->h = 0;
+	mini->xs = 0;
+	mini->xe = 0;
+	mini->ys = 0;
+	mini->ye = 0;
+	mini->bsize = 0;
 }
 
 static void	declare_mini(t_all *s, t_bonus *b)
@@ -76,9 +74,11 @@ static void	draw_mini(t_all *s, t_bonus *b)
 
 void	draw_minimap(t_all *s)
 {
-	t_bonus b;
+	t_mini	mini;
+	t_bonus	b;
 
-	init_mini(b);
+	init_mini(&mini);
+	b.mini = mini;	
 	declare_mini(s,&b);
 	if (b.mini.w * b.mini.h == 0)
 		return ;
