@@ -22,10 +22,11 @@ DRAW =	draw_window \
 		set_wall
 
 SKYBOX = draw_minimap \
-		 mark_position \
+		 mark_objects \
+		 mark_user_position \
 		 mark_direction \
 		 mark_sprite \
-		 mark_objects
+		 mark_tools
 
 SOUND =	sound
 

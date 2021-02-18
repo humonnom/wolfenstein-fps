@@ -2,16 +2,14 @@
 
 int		mark_objects(t_all *s, const t_mini *m)
 {
-	int pos;
+	int user_pos;
 	int ret;
 
-	ret = 0;
-	if (!(pos = mark_position(s, m)))
-		ret = MARK_ERR;
-	else
-	{
-		mark_direction(s, m, pos);
-	}
-	return (ret);
+	ret = (!(user_pos = mark_user_position(s, m)));
+	if (ret == 0)
+		mark_direction(s, m, user_pos);
+	if (ret == 0)
+		ret = mark_sprite(s, m);
+	return (ret ? MARK_ERR : 0);
 }
 

@@ -239,7 +239,7 @@ typedef struct		s_all
 	t_camera		camera;	//camera
 	t_dist			dist;	//dist
 	t_step			step;	//step
-	t_screen		screen;	//screeneen
+	t_screen		screen;	//screen
 	t_sprite		*sprite;
 
 }					t_all;
@@ -310,10 +310,16 @@ int				parse_sprite(t_all *s);
 /* minimap.c */
 int				draw_minimap(t_all *s);
 
-void			mark_direction(t_all *s, const t_mini *m, int pos);
-int				mark_position(t_all *s, const t_mini *m);
-int				mark_sprite(t_all *s, const t_mini *m);
+//mark_obj
 int				mark_objects(t_all *s, const t_mini *m);
+
+int				mark_sprite(t_all *s, const t_mini *m);
+int				mark_user_position(t_all *s, const t_mini *m);
+void			mark_direction(t_all *s, const t_mini *m, int pos);
+
+//tools
+void			draw_circle(t_all *s, int pos, int color);
+int				get_position(t_pos pos, int bsize, int win_x, int map_h);
 
 //=====================/*wall.c*/==========================
 void			set_wall(t_all *s, int x);
