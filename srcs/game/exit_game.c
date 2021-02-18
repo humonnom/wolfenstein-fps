@@ -26,7 +26,8 @@ int		exit_game(t_all *s, int win)
 	if (win == 1)
 		mlx_destroy_window(s->mlx.ptr, s->win.ptr);
 	s->mlx.ptr = ft_free(s->mlx.ptr);
-	kill(s->pid + 1, SIGTERM);
+	if (s->pid > 0)
+		kill(s->pid + 1, SIGTERM);
 	exit(0);
 	return(1);
 }

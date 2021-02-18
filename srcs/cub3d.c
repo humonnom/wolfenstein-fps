@@ -25,10 +25,11 @@ int		main(int argc, char **argv)
 		return(err_filter(MAP_NAME));
 	if (!(argc == 2 || !ft_strncmp(argv[2], "--save", 6)))
 		return(err_filter(SAVE_OPT));
+	s.pid = -1;
 	s.pid = fork();
 	if (s.pid == 0)
 		system("afplay ../bonus/sound/human_dream.mp3");
-	else
+	if (s.pid != 0)
 	{
 		if (!init_all(&s))
 			return(err_filter(INIT_FAIL));

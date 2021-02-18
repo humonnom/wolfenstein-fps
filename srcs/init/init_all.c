@@ -107,6 +107,5 @@ int			init_all(t_all *s)
 	init_ray(s);
 	init_map(s);
 	init_else(s);
-	s->pid = -1;
 	return (DONE);
 }

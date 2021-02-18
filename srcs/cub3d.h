@@ -2,7 +2,6 @@
 # define CUB3D_H
 
 /*------------------FOR TEST ONLY------------------*/
-# include <stdio.h>
 /*-------------------------------------------------*/
 
 // Library //
@@ -11,8 +10,10 @@
 # include <math.h>
 # include <fcntl.h>
 # include <time.h>
-# include <OpenAL/al.h>
-# include <OpenAL/alc.h>
+# include <signal.h>
+# include <stdio.h>
+//# include <OpenAL/al.h>
+//# include <OpenAL/alc.h>
 
 # include "../mlx/mlx.h"
 # include "libft/libft.h"
@@ -222,7 +223,7 @@ typedef struct	s_screen
 
 typedef struct		s_all
 {
-	int				pid;
+	pid_t			pid;
 	t_mlx			mlx;
 	t_err			err;
 	t_win			win;
