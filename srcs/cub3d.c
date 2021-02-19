@@ -20,19 +20,18 @@ int		main(int argc, char **argv)
 	t_info	info;
 
 	if (!(argc >= 2 && argc <= 3))
-		return(err_filter(ARG_NUM));
+		return(report_err(ARG_NUM));
 	if (!(argc >= 2 && !ft_strncmp_reverse(argv[1], ".cub", 4)))
-		return(err_filter(MAP_NAME));
+		return(report_err(MAP_NAME));
 	if (!(argc == 2 || !ft_strncmp(argv[2], "--save", 6)))
-		return(err_filter(SAVE_OPT));
+		return(report_err(SAVE_OPT));
 	info.pid = -1;
 //	info.pid = fork();
 //	if (info.pid == 0)
 //		system("afplay ../bonus/sound/human_dream.mp3");
 	if (info.pid != 0)
 	{
-		if (!init_info(&info))
-			return(err_filter(INIT_FAIL));
+		init_info(&info);
 		cub3d_loop(info, argv[1], argc == 3);
 	}
 	return(0);

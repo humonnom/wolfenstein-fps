@@ -29,17 +29,17 @@ static int		parse_mapcheck(t_info *info)
 int		parse_check(t_info *info)
 {
 	if (info->win.x <= 0 || info->win.y <= 0)
-		return (err_filter(RES_MISSING));
+		return (report_err(RES_MISSING));
 	else if (info->tex.n == NULL || info->tex.s == NULL ||\
 			info->tex.e == NULL || info->tex.w == NULL || info->tex.i == NULL )
-		return (err_filter(TEX_MISSING));
+		return (report_err(TEX_MISSING));
 	else if (info->tex.c == NONE || info->tex.f == NONE)
-		return (err_filter(FC_MISSING));
+		return (report_err(FC_MISSING));
 	else if (info->err.p == 0)
-		return (err_filter(POS_MISSING));
+		return (report_err(POS_MISSING));
 	else if (info->err.p > 1)
-		return (err_filter(POS_DOUBLE));
+		return (report_err(POS_DOUBLE));
 	else if (parse_mapcheck(info) == -1)
-		return (err_filter(MAP_CRACK));
+		return (report_err(MAP_CRACK));
 	return (1);
 }

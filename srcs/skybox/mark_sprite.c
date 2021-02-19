@@ -18,7 +18,7 @@ int				mark_sprite(t_info *info, const t_mini *m)
 		if (ret == 0)
 			ret = (!(sprite_pos = get_position(pos, m->bsize, info->win.x, info->map.h))); 
 		if (ret == 0)
-			draw_circle(info, sprite_pos, WHITE);
+			draw_circle(info, sprite_pos, LIGHT_BLUE_GREY);
 	}
 	return (ret);
 }

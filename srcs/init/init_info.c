@@ -1,35 +1,5 @@
 #include "cub3d.h"
 
-/*******************************************
--function: init structures(2)
--ar:	s 		->	structure(t_info)
-		cub		->	char *, map file name
-		save	-> 	save mode(0 or 1)
--return: non
--call: ft_cubed()
- *******************************************/
-static void	init_map(t_info *info)
-{
-	t_map	map;
-	t_tex	tex;
-
-	map.tab = NULL;
-	tex.n = NULL;
-	tex.s = NULL;
-	tex.e = NULL;
-	tex.w = NULL;
-	tex.i = NULL;
-	map.sprite = 0;
-	map.x = 0;
-	map.y = 0;
-	map.w = 0;
-	map.h = 0;
-	tex.c = NONE;
-	tex.f = NONE;
-	info->tex = tex;
-	info->map = map;
-}
-
 static void	init_else(t_info *info)
 {
 	t_time	time;
@@ -53,6 +23,28 @@ static void	init_else(t_info *info)
 	time.rs = TURN;
 	info->time = time;
 	info->sprite = sprite;
+}
+
+static void	init_map(t_info *info)
+{
+	t_map	map;
+	t_tex	tex;
+
+	map.tab = NULL;
+	tex.n = NULL;
+	tex.s = NULL;
+	tex.e = NULL;
+	tex.w = NULL;
+	tex.i = NULL;
+	map.sprite = 0;
+	map.x = 0;
+	map.y = 0;
+	map.w = 0;
+	map.h = 0;
+	tex.c = NONE;
+	tex.f = NONE;
+	info->tex = tex;
+	info->map = map;
 }
 
 static void	init_ray(t_info *info)
@@ -101,11 +93,16 @@ static void	init_mlx(t_info *info)
 	info->err = err;
 }
 
-int			init_info(t_info *info)
+/*******************************************
+**-function: init info 
+**-ar:	info 		->	structure(t_info)
+**-return: non
+**-call: ft_cubed()
+*******************************************/
+void		init_info(t_info *info)
 {
 	init_mlx(info);
 	init_ray(info);
 	init_map(info);
 	init_else(info);
-	return (DONE);
 }

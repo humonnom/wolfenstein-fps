@@ -11,6 +11,8 @@ INIT =	init_info
 
 PARSE = parse_file \
 		parse_map \
+		parse_map_part \
+		parse_map_tools \
 		parse_texture \
 		parse_check \
 		parse_tools \
@@ -18,6 +20,7 @@ PARSE = parse_file \
 GNL =	get_next_line
 
 DRAW =	draw_view \
+		draw_background \
 		draw_window \
 		draw_window_col \
 		set_wall

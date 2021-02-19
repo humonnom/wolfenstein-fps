@@ -27,6 +27,9 @@
 # define PRINT 1
 # define NON_PRINT 0
 
+# define FLOOR 1
+# define CEILING 0
+
 # define ERR -1
 # define DONE 1
 # define FILE_OPEN -20
@@ -56,10 +59,13 @@
 
 # define NONE 0xFF000000
 # define WHITE 0x00FFFFFF
+# define GREY 0x00A9A9A9
 # define BLACK 0x00000000
 # define RED 0x00FF0000
 # define GREEN 0x0000FF00
 # define BLUE 0x3CAEFF
+# define DARK_BLUE 0x002F4F4F
+# define LIGHT_BLUE_GREY 0x00778899
 # define MAGENTA 0x00FF00FF
 # define YELLOW 0x00FFFF00
 # define CYAN 0x0000FFFF
@@ -276,13 +282,14 @@ int				main(int argc, char **argv);
 int				cub3d_loop(t_info info, char *cub, int save);
 
 /*init_info.c*/
-int 			init_info(t_info *info);
+void 			init_info(t_info *info);
 
 /*error.c*/
-int				err_filter(int err);
+int				report_err(int err);
 
 /*draw*/
 void			draw_view(t_info *info, int print);
+void			draw_background(t_info *info);
 void			draw_window(t_info *info);
 void			draw_window_col(t_info *info, int x);
 
@@ -295,6 +302,9 @@ int				parse_check(t_info *info);
 
 /*parse_map.c*/
 int				parse_map(t_info *info, char *line, int *i);
+char			*parse_map_part(t_info *info, char *line, int *i);
+int				get_part_len(t_info *info, char *line);
+
 
 /*parse_tex.c*/
 int				parse_texture(

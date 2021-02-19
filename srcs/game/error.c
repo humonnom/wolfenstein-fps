@@ -5,7 +5,7 @@ static void	write_err(const char *s)
 	write(2, s, ft_strlen(s)); 
 }
 
-int		err_filter(int err)
+int		report_err(int err)
 {
 	(err == -1) ? write_err("Couldn't open file (FD)\n") : 0;
 	(err == -2) ? write_err("Couldn't parse file (GNL)\n") : 0;

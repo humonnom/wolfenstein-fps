@@ -18,7 +18,7 @@ void		mark_direction(t_info *info, const t_mini *m, int pos)
 		if (dir > 0 && dir < (info->win.x * m->h) \
 			&& (dir % info->win.x) > (pos % info->win.x - m->bsize) \
 			&& (dir % info->win.x) < (pos % info->win.x + m->bsize))
-			info->img.adr[dir] = YELLOW;
+			info->img.adr[dir] = DARK_BLUE;
 	}
 }
 

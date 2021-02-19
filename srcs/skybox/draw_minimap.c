@@ -33,23 +33,23 @@ static void	draw_lectangle(int sort, t_info *info, t_bonus *bonus)
 	y_head = bonus->mini.y_head - 1;
 	while(++y_head < bonus->mini.y_tail)
 	{
-		cur = bonus->mini.x_head + (info->win.x * y_head);
+		cur = bonus->mini.x_head + (info->win.x * y_head) - 1;
 		end = bonus->mini.x_tail + (info->win.x * y_head);
 		x = cur - 1;
 		while(++cur < end)
 		{
 			if (cur == x || cur == end - 1||\
 				y_head == bonus->mini.y_tail - 1 || y_head == bonus->mini.y_head)
-					info->img.adr[cur] = WHITE ;
+					info->img.adr[cur] = BLACK ;
 			else if (sort == '1')
-				info->img.adr[cur] = info->tex.f/2;
+				info->img.adr[cur] = GREY;
 			else
-				info->img.adr[cur] = BLACK;
+				info->img.adr[cur] = WHITE;
 		}
 	}
 }
 
-static void	draw_mini(t_info *info, t_bonus *bonus)
+static void	draw_map(t_info *info, t_bonus *bonus)
 {
 	int		cnt_w;
 	int		cnt_h;
@@ -82,9 +82,9 @@ int		draw_minimap(t_info *info)
 	init_mini(&mini);
 	bonus.mini = mini;	
 	declare_mini(info,&bonus);
-	if (bonus.mini.w * bonus.mini.h != 0)
+	if (bonus.mini.w > 0 || bonus.mini.h > 0)
 	{
-		draw_mini(info, &bonus);
+		draw_map(info, &bonus);
 		ret = mark_objects(info, &bonus.mini);
 	}
 	return (ret);
