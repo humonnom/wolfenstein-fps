@@ -89,7 +89,7 @@
 # define ps(X) printf("%s\n", X)
 # define pf(X) printf(""#X" :%f\n", X)
 # define pd(X) printf(""#X" :%d\n", X)
-# define pxy(X) printf(""#X" :(%f, %f)\n", (double)s->X.x, (double)s->X.y)
+# define pxy(X) printf(""#X" :(%f, %f)\n", (double)info->X.x, (double)info->X.y)
 
 typedef struct  s_sprite
 {
@@ -227,7 +227,7 @@ typedef struct	s_screen
 	int				de;
 }				t_screen;
 
-typedef struct		s_all
+typedef struct		s_info
 {
 	pid_t			pid;
 	t_mlx			mlx;
@@ -240,15 +240,15 @@ typedef struct		s_all
 	t_hit			hit;
 	t_pos			pos;
 	t_dir			dir;
-	t_time			time;	//time
-	t_plane			plane;	//plane
-	t_camera		camera;	//camera
-	t_dist			dist;	//dist
-	t_step			step;	//step
-	t_screen		screen;	//screen
+	t_time			time;
+	t_plane			plane;
+	t_camera		camera;
+	t_dist			dist;
+	t_step			step;
+	t_screen		screen;
 	t_sprite		*sprite;
 
-}					t_all;
+}					t_info;
 
 ////////////////////bonus////////////////////
 
@@ -273,64 +273,64 @@ typedef struct	s_bonus
 //=====================/*meta*/==========================
 /*cub3D.c*/
 int				main(int argc, char **argv);
-int				cub3d_loop(t_all s, char *cub, int save);
+int				cub3d_loop(t_info info, char *cub, int save);
 
-/*init_all.c*/
-int 			init_all(t_all *s);
+/*init_info.c*/
+int 			init_info(t_info *info);
 
 /*error.c*/
 int				err_filter(int err);
 
 /*draw*/
-void			draw_view(t_all *s, int print);
-void			draw_window(t_all *s);
-void			draw_window_col(t_all *s, int x);
+void			draw_view(t_info *info, int print);
+void			draw_window(t_info *info);
+void			draw_window_col(t_info *info, int x);
 
 //=====================/*parse*/==========================
 /*parse.c*/
-int				parse_file(t_all *s, char *cub);
+int				parse_file(t_info *info, char *cub);
 
 /*parse_check.c*/
-int				parse_check(t_all *s);
+int				parse_check(t_info *info);
 
 /*parse_map.c*/
-int				parse_map(t_all *s, char *line, int *i);
+int				parse_map(t_info *info, char *line, int *i);
 
 /*parse_tex.c*/
 int				parse_texture(
-				t_all *s,
+				t_info *info,
 				unsigned int **adr,
 				char *line, int *i);
 
 
 /*parse_tools.c*/
-void			parse_pos(t_all *s);
-void			parse_plane(t_all *s);
-int				parse_resolution(t_all *s, char *line, int *i);
+void			parse_pos(t_info *info);
+void			parse_plane(t_info *info);
+int				parse_resolution(t_info *info, char *line, int *i);
 int				parse_colors(unsigned int *color, char *line, int *i);
-int				parse_sprite(t_all *s);
+int				parse_sprite(t_info *info);
 
 //=====================/* minimap */==========================
 /* minimap.c */
-int				draw_minimap(t_all *s);
+int				draw_minimap(t_info *info);
 
 //mark_obj
-int				mark_objects(t_all *s, const t_mini *m);
+int				mark_objects(t_info *info, const t_mini *m);
 
-int				mark_sprite(t_all *s, const t_mini *m);
-int				mark_user_position(t_all *s, const t_mini *m);
-void			mark_direction(t_all *s, const t_mini *m, int pos);
+int				mark_sprite(t_info *info, const t_mini *m);
+int				mark_user_position(t_info *info, const t_mini *m);
+void			mark_direction(t_info *info, const t_mini *m, int pos);
 
 //tools
-void			draw_circle(t_all *s, int pos, int color);
+void			draw_circle(t_info *info, int poinfo, int color);
 int				get_position(t_pos pos, int bsize, int win_x, int map_h);
 
 //=====================/*wall.c*/==========================
-void			set_wall(t_all *s, int x);
+void			set_wall(t_info *info, int x);
 
 //=====================/*key.c*/==========================
-int				get_key(int key, t_all *s);
-int				exit_game(t_all *s, int win);
+int				get_key(int key, t_info *info);
+int				exit_game(t_info *info, int win);
 
 
 //=====================/*sound.c*/==========================
@@ -338,10 +338,10 @@ int				run_sound();
 void			handle_sound(int step);
 
 //====================/*handle sprite*/=======================
-int				handle_sprite(t_all *s);
+int				handle_sprite(t_info *info);
 
 //====================/*save*/=======================
-int				save_bitmap(t_all *s);
-int				make_bitmap_file(t_all *s);
+int				save_bitmap(t_info *info);
+int				make_bitmap_file(t_info *info);
 
 #endif

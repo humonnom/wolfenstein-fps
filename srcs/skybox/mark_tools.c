@@ -8,7 +8,7 @@ int	get_position(t_pos pos, int bsize, int win_x, int map_h)
 	return (position);
 }
 
-void draw_circle(t_all *s, int pos, int color)
+void draw_circle(t_info *info, int pos, int color)
 {
 	int pm;
 	int	i;
@@ -20,7 +20,7 @@ void draw_circle(t_all *s, int pos, int color)
 	{
 		j = -pm;
 		while(++j < pm)
-			s->img.adr[pos + j + (s->win.x * i)] = color;
+			info->img.adr[pos + j + (info->win.x * i)] = color;
 	}
 }
 

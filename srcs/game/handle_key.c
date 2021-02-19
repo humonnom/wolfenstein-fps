@@ -1,69 +1,69 @@
 #include "cub3d.h"
 /*****************************************
 **-function: move
-**-ar:	s 		->	structure(t_all)
+**-ar:	s 		->	structure(t_info)
 **		c		-> 	plus/minus flag
 **-return: non
 **-call: ft_slist()
 ******************************************/
-static void	handle_move(t_all *s, int c)
+static void	handle_move(t_info *info, int c)
 {
 	int x;
 	int y;
 
-	x = s->pos.x + s->dir.x * s->time.ms * c;
-	y = s->pos.y + s->dir.y * s->time.ms * c;
+	x = info->pos.x + info->dir.x * info->time.ms * c;
+	y = info->pos.y + info->dir.y * info->time.ms * c;
 	if (x > 0 && y > 0 &&\
-		x < s->map.w && y < s->map.h &&\
-		s->map.tab[y][x] != '1')
+		x < info->map.w && y < info->map.h &&\
+		info->map.tab[y][x] != '1')
 	{
-		s->pos.x += s->dir.x * s->time.ms * c;
-		s->pos.y += s->dir.y * s->time.ms * c;
+		info->pos.x += info->dir.x * info->time.ms * c;
+		info->pos.y += info->dir.y * info->time.ms * c;
 	}
 }
 
 /*******************************************
 **-function: rotate
-**-ar:	s 		->	structure(t_all)
+**-ar:	s 		->	structure(t_info)
 **		c		-> 	plus/minus flag
 **-return: non
 **-call:
 ********************************************/
-static void	handle_rotate(t_all *s, double c)
+static void	handle_rotate(t_info *info, double c)
 {
 	double olddir;
 	double oldplane;
 	double rotspeed;
 
-	rotspeed = s->time.rs * c;
-	olddir = s->dir.x;
-	s->dir.x = s->dir.x * cos(rotspeed) - s->dir.y * sin(rotspeed);
-	s->dir.y = olddir * sin(rotspeed) + s->dir.y * cos(rotspeed);
-	oldplane = s->plane.x;
-	s->plane.x = s->plane.x * cos(rotspeed) - s->plane.y * sin(rotspeed);
-	s->plane.y = oldplane * sin(rotspeed) + s->plane.y * cos(rotspeed);
+	rotspeed = info->time.rs * c;
+	olddir = info->dir.x;
+	info->dir.x = info->dir.x * cos(rotspeed) - info->dir.y * sin(rotspeed);
+	info->dir.y = olddir * sin(rotspeed) + info->dir.y * cos(rotspeed);
+	oldplane = info->plane.x;
+	info->plane.x = info->plane.x * cos(rotspeed) - info->plane.y * sin(rotspeed);
+	info->plane.y = oldplane * sin(rotspeed) + info->plane.y * cos(rotspeed);
 }
 
 /*******************************************
 -function: strafe
--ar:	s 		->	structure(t_all)
+-ar:	s 		->	structure(t_info)
 		c		-> 	plus/minus flag
 -return: non
 -call: ft_slist()
  *******************************************/
-static void	handle_strafe(t_all *s, int c)
+static void	handle_strafe(t_info *info, int c)
 {
 	int x;
 	int y;
 
-	x = s->pos.x + s->dir.y * s->time.ms * -c;
-	y = s->pos.y + s->dir.x * s->time.ms * c;
+	x = info->pos.x + info->dir.y * info->time.ms * -c;
+	y = info->pos.y + info->dir.x * info->time.ms * c;
 	if (x > 0 && y > 0 &&\
-		x < s->map.w && y < s->map.h &&\
-		s->map.tab[y][x] != '1')
+		x < info->map.w && y < info->map.h &&\
+		info->map.tab[y][x] != '1')
 	{
-		s->pos.x += s->dir.y * s->time.ms * -c;
-		s->pos.y += s->dir.x * s->time.ms * c;
+		info->pos.x += info->dir.y * info->time.ms * -c;
+		info->pos.y += info->dir.x * info->time.ms * c;
 	}
 }
 
@@ -79,26 +79,26 @@ static void	handle_strafe(t_all *s, int c)
 		handle_rotate()
 		handle_draw()
  *******************************************/
-int		get_key(int key, t_all *s)
+int		get_key(int key, t_info *info)
 {
 	if (key == ESC)
-		exit_game(s, 1);
+		exit_game(info, 1);
 	else if(key == W)
-		handle_move(s, 1);
+		handle_move(info, 1);
 	else if(key == S)
-		handle_move(s, -1);
+		handle_move(info, -1);
 	else if(key == A)
-		handle_strafe(s, 1);
+		handle_strafe(info, 1);
 	else if(key == D)
-		handle_strafe(s, -1);
+		handle_strafe(info, -1);
 	else if(key == LEFT)
-		handle_rotate(s, 1);
+		handle_rotate(info, 1);
 	else if(key == RIGHT)
-		handle_rotate(s, -1);
+		handle_rotate(info, -1);
 	else if(key == VOLUME_UP)
 		handle_sound(1);
 	else if(key == VOLUME_DOWN)
 		handle_sound(-1);
-	draw_view(s, PRINT);
+	draw_view(info, PRINT);
 	return (DONE);
 }

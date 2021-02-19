@@ -11,81 +11,81 @@ static void	init_mini(t_mini *mini)
 	mini->bsize = 0;
 }
 
-static void	declare_mini(t_all *s, t_bonus *b)
+static void	declare_mini(t_info *info, t_bonus *bonus)
 {
-	if (s->win.x >= 500 && s->win.y >= 500)
+	if (info->win.x >= 500 && info->win.y >= 500)
 	{	
-		b->mini.bsize = ft_min(s->win.x/30, s->win.y/30);
-		b->mini.bsize = ft_max(b->mini.bsize, BLOCK_MIN);
-		b->mini.bsize = ft_min(b->mini.bsize, BLOCK_MAX);
-		b->mini.w = b->mini.bsize * s->map.w;
-		b->mini.h = b->mini.bsize * s->map.h;
+		bonus->mini.bsize = ft_min(info->win.x/30, info->win.y/30);
+		bonus->mini.bsize = ft_max(bonus->mini.bsize, BLOCK_MIN);
+		bonus->mini.bsize = ft_min(bonus->mini.bsize, BLOCK_MAX);
+		bonus->mini.w = bonus->mini.bsize * info->map.w;
+		bonus->mini.h = bonus->mini.bsize * info->map.h;
 	}
 }
 
-static void	draw_lectangle(int sort, t_all *s, t_bonus *b)
+static void	draw_lectangle(int sort, t_info *info, t_bonus *bonus)
 {
 	int cur;
 	int	end;
 	int y_head;
 	int x;
 
-	y_head = b->mini.y_head - 1;
-	while(++y_head < b->mini.y_tail)
+	y_head = bonus->mini.y_head - 1;
+	while(++y_head < bonus->mini.y_tail)
 	{
-		cur = b->mini.x_head + (s->win.x * y_head);
-		end = b->mini.x_tail + (s->win.x * y_head);
+		cur = bonus->mini.x_head + (info->win.x * y_head);
+		end = bonus->mini.x_tail + (info->win.x * y_head);
 		x = cur - 1;
 		while(++cur < end)
 		{
 			if (cur == x || cur == end - 1||\
-				y_head == b->mini.y_tail - 1 || y_head == b->mini.y_head)
-					s->img.adr[cur] = WHITE ;
+				y_head == bonus->mini.y_tail - 1 || y_head == bonus->mini.y_head)
+					info->img.adr[cur] = WHITE ;
 			else if (sort == '1')
-				s->img.adr[cur] = s->tex.f/2;
+				info->img.adr[cur] = info->tex.f/2;
 			else
-				s->img.adr[cur] = BLACK;
+				info->img.adr[cur] = BLACK;
 		}
 	}
 }
 
-static void	draw_mini(t_all *s, t_bonus *b)
+static void	draw_mini(t_info *info, t_bonus *bonus)
 {
 	int		cnt_w;
 	int		cnt_h;
 	int		tab_h;
 
 	cnt_h = -1;
-	while(++cnt_h < s->map.h)
+	while(++cnt_h < info->map.h)
 	{
-		tab_h = s->map.h - cnt_h - 1;
+		tab_h = info->map.h - cnt_h - 1;
 		cnt_w = -1;
-		while (++cnt_w < s->map.w)
+		while (++cnt_w < info->map.w)
 		{
-			b->mini.y_head = (b->mini.h/s->map.h) * tab_h;
-			b->mini.y_tail = b->mini.y_head + b->mini.h/s->map.h;
-			b->mini.x_head = (b->mini.w/s->map.w) * cnt_w;
-			b->mini.x_tail = b->mini.x_head + b->mini.w/s->map.w;
-			draw_lectangle(s->map.tab[cnt_h][cnt_w], s, b);
+			bonus->mini.y_head = (bonus->mini.h/info->map.h) * tab_h;
+			bonus->mini.y_tail = bonus->mini.y_head + bonus->mini.h/info->map.h;
+			bonus->mini.x_head = (bonus->mini.w/info->map.w) * cnt_w;
+			bonus->mini.x_tail = bonus->mini.x_head + bonus->mini.w/info->map.w;
+			draw_lectangle(info->map.tab[cnt_h][cnt_w], info, bonus);
 		}
 	}
 
 }
 
-int		draw_minimap(t_all *s)
+int		draw_minimap(t_info *info)
 {
 	t_mini	mini;
-	t_bonus	b;
+	t_bonus	bonus;
 	int		ret;
 	
 	ret = 0;
 	init_mini(&mini);
-	b.mini = mini;	
-	declare_mini(s,&b);
-	if (b.mini.w * b.mini.h != 0)
+	bonus.mini = mini;	
+	declare_mini(info,&bonus);
+	if (bonus.mini.w * bonus.mini.h != 0)
 	{
-		draw_mini(s, &b);
-		ret = mark_objects(s, &b.mini);
+		draw_mini(info, &bonus);
+		ret = mark_objects(info, &bonus.mini);
 	}
 	return (ret);
 }

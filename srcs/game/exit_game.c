@@ -2,7 +2,7 @@
 
 /*******************************************
 -function: close window
--ar:	s 		->	structure(t_all)
+-ar:	s 		->	structure(t_info)
 		win		-> 	window number
 -return: int (1 or)
 -call: non
@@ -10,24 +10,24 @@
 #include <signal.h>
 #include <sys/types.h>
 
-int		exit_game(t_all *s, int win)
+int		exit_game(t_info *info, int win)
 {
 	int i;
 
 	i = -1;
-	while (++i < s->map.h)
-		s->map.tab[i] = ft_free(s->map.tab[i]);
-	s->map.tab = ft_free(s->map.tab);
-	s->tex.n = ft_free(s->tex.n);
-	s->tex.s = ft_free(s->tex.s);
-	s->tex.e = ft_free(s->tex.e);
-	s->tex.w = ft_free(s->tex.w);
-	s->tex.i = ft_free(s->tex.i);
+	while (++i < info->map.h)
+		info->map.tab[i] = ft_free(info->map.tab[i]);
+	info->map.tab = ft_free(info->map.tab);
+	info->tex.n = ft_free(info->tex.n);
+	info->tex.s = ft_free(info->tex.s);
+	info->tex.e = ft_free(info->tex.e);
+	info->tex.w = ft_free(info->tex.w);
+	info->tex.i = ft_free(info->tex.i);
 	if (win == 1)
-		mlx_destroy_window(s->mlx.ptr, s->win.ptr);
-	s->mlx.ptr = ft_free(s->mlx.ptr);
-	if (s->pid > 0)
-		kill(s->pid + 1, SIGTERM);
+		mlx_destroy_window(info->mlx.ptr, info->win.ptr);
+	info->mlx.ptr = ft_free(info->mlx.ptr);
+	if (info->pid > 0)
+		kill(info->pid + 1, SIGTERM);
 	exit(0);
 	return(1);
 }

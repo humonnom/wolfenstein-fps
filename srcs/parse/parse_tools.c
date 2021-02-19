@@ -1,18 +1,18 @@
 #include "cub3d.h"
 
-int		parse_resolution(t_all *s, char *line, int *i)
+int		parse_resolution(t_info *info, char *line, int *i)
 {
-	if (s->win.x != 0 || s->win.y != 0)
+	if (info->win.x != 0 || info->win.y != 0)
 		return (RES_DOUBLE);
 	(*i)++;
-	s->win.x = ft_atoiskip(line, i);
-	s->win.y = ft_atoiskip(line, i);
-	if (s->win.x > 2560)
-		s->win.x = 2560;
-	if (s->win.y > 1400)
-		s->win.y = 1400;
+	info->win.x = ft_atoiskip(line, i);
+	info->win.y = ft_atoiskip(line, i);
+	if (info->win.x > 2560)
+		info->win.x = 2560;
+	if (info->win.y > 1400)
+		info->win.y = 1400;
 	ft_spaceskip(line, i);
-	if (s->win.x <= 0 || s->win.y <= 0 || line[*i] != '\0')
+	if (info->win.x <= 0 || info->win.y <= 0 || line[*i] != '\0')
 		return (RES_INV);
 	return (0);	
 }
@@ -38,66 +38,66 @@ int		parse_colors(unsigned int *color, char *line, int *i)
 	return (0);
 }
 
-void	parse_plane(t_all *s)
+void	parse_plane(t_info *info)
 {
-	if (s->dir.x == 0)
+	if (info->dir.x == 0)
 	{
-		s->plane.x = PLANEY;
-		s->plane.y = PLANEX;
+		info->plane.x = PLANEY;
+		info->plane.y = PLANEX;
 	}
-	s->plane.x *= (s->dir.d == 'S') ? -1 : 1;
-	s->plane.y *= (s->dir.d == 'E') ? -1 : 1;
+	info->plane.x *= (info->dir.d == 'S') ? -1 : 1;
+	info->plane.y *= (info->dir.d == 'E') ? -1 : 1;
 }
 
-void	parse_pos(t_all *s)
+void	parse_pos(t_info *info)
 {
 	char	c;
 	int		i;
 	int		j;
 
 	i = -1;
-	while (++i < s->map.h)
+	while (++i < info->map.h)
 	{
 		j = -1;
-		while (++j < s->map.w)
+		while (++j < info->map.w)
 		{
-			c = s->map.tab[i][j];
+			c = info->map.tab[i][j];
 			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 			{
-				s->pos.y = (double)i + 0.5;
-				s->pos.x = (double)j + 0.5;
-				s->dir.x = (c == 'E' || c == 'W') ? 1 : 0;
-				s->dir.x *= (c == 'W') ? -1 : 1;
-				s->dir.y = (c == 'S' || c == 'N') ? 1 : 0;
-				s->dir.y *= (c == 'S') ? -1 : 1;
-				s->err.p++;
-				s->dir.d = c;
+				info->pos.y = (double)i + 0.5;
+				info->pos.x = (double)j + 0.5;
+				info->dir.x = (c == 'E' || c == 'W') ? 1 : 0;
+				info->dir.x *= (c == 'W') ? -1 : 1;
+				info->dir.y = (c == 'S' || c == 'N') ? 1 : 0;
+				info->dir.y *= (c == 'S') ? -1 : 1;
+				info->err.p++;
+				info->dir.d = c;
 			}
 		}
 	}
 }
 
-int		parse_sprite(t_all *s)
+int		parse_sprite(t_info *info)
 {
 	int	i;
 	int	j;
 	int	k;
 
-	if (s->sprite != NULL)
-		s->sprite = ft_free(s->sprite);
-	if (!(s->sprite = malloc(sizeof(t_sprite) * s->map.sprite)))
+	if (info->sprite != NULL)
+		info->sprite = ft_free(info->sprite);
+	if (!(info->sprite = malloc(sizeof(t_sprite) * info->map.sprite)))
 		return (ERR);
 	i = 0;
 	j = -1;
-	while (++j < s->map.h)
+	while (++j < info->map.h)
 	{
 		k = -1;
-		while (++k < s->map.w)
+		while (++k < info->map.w)
 		{
-			if (s->map.tab[j][k] == '2')
+			if (info->map.tab[j][k] == '2')
 			{
-				s->sprite[i].y = (double)j + 0.5;
-				s->sprite[i++].x = (double)k + 0.5;
+				info->sprite[i].y = (double)j + 0.5;
+				info->sprite[i++].x = (double)k + 0.5;
 			}
 		}
 	}	

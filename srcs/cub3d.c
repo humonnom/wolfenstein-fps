@@ -1,23 +1,23 @@
 #include "cub3d.h"
 
-int		cub3d_loop(t_all s, char *cub, int save)
+int		cub3d_loop(t_info info, char *cub, int save)
 {
-	s.mlx.ptr = mlx_init();
-	if (parse_file(&s, cub) == -1)
-		return (exit_game(&s, 0));
+	info.mlx.ptr = mlx_init();
+	if (parse_file(&info, cub) == -1)
+		return (exit_game(&info, 0));
 	if (save == 1)
-		save_bitmap(&s);
-	s.win.ptr = mlx_new_window(s.mlx.ptr, s.win.x, s.win.y, "cub3D");
-	draw_view(&s, PRINT);
-	mlx_hook(s.win.ptr, KEY, 0, get_key, &s);	
-	mlx_hook(s.win.ptr, EXIT_BTN, 0, exit_game, &s);	
-	mlx_loop(s.mlx.ptr);
+		save_bitmap(&info);
+	info.win.ptr = mlx_new_window(info.mlx.ptr, info.win.x, info.win.y, "cub3D");
+	draw_view(&info, PRINT);
+	mlx_hook(info.win.ptr, KEY, 0, get_key, &info);	
+	mlx_hook(info.win.ptr, EXIT_BTN, 0, exit_game, &info);	
+	mlx_loop(info.mlx.ptr);
 	return (1);
 }
 
 int		main(int argc, char **argv)
 {
-	t_all	s;
+	t_info	info;
 
 	if (!(argc >= 2 && argc <= 3))
 		return(err_filter(ARG_NUM));
@@ -25,15 +25,15 @@ int		main(int argc, char **argv)
 		return(err_filter(MAP_NAME));
 	if (!(argc == 2 || !ft_strncmp(argv[2], "--save", 6)))
 		return(err_filter(SAVE_OPT));
-	s.pid = -1;
-//	s.pid = fork();
-//	if (s.pid == 0)
+	info.pid = -1;
+//	info.pid = fork();
+//	if (info.pid == 0)
 //		system("afplay ../bonus/sound/human_dream.mp3");
-	if (s.pid != 0)
+	if (info.pid != 0)
 	{
-		if (!init_all(&s))
+		if (!init_info(&info))
 			return(err_filter(INIT_FAIL));
-		cub3d_loop(s, argv[1], argc == 3);
+		cub3d_loop(info, argv[1], argc == 3);
 	}
 	return(0);
 }

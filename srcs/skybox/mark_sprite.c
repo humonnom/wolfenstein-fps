@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int				mark_sprite(t_all *s, const t_mini *m)
+int				mark_sprite(t_info *info, const t_mini *m)
 {
 	t_pos	pos;
 	int		sprite_pos;
@@ -10,15 +10,15 @@ int				mark_sprite(t_all *s, const t_mini *m)
 
 	ret = 0;
 	i = -1;
-	sprite_num = s->map.sprite;
+	sprite_num = info->map.sprite;
 	while (++i < sprite_num && ret == 0)
 	{
-		if (!(pos.x = s->sprite[i].x) || !(pos.y = s->sprite[i].y))
+		if (!(pos.x = info->sprite[i].x) || !(pos.y = info->sprite[i].y))
 			ret = 1;
 		if (ret == 0)
-			ret = (!(sprite_pos = get_position(pos, m->bsize, s->win.x, s->map.h))); 
+			ret = (!(sprite_pos = get_position(pos, m->bsize, info->win.x, info->map.h))); 
 		if (ret == 0)
-			draw_circle(s, sprite_pos, WHITE);
+			draw_circle(info, sprite_pos, WHITE);
 	}
 	return (ret);
 }

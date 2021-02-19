@@ -1,5 +1,5 @@
 #include "cub3d.h"
-static void	init_view(t_all *s)
+static void	init_view(t_info *info)
 {
 	t_ray	ray;
 	t_hit	hit;
@@ -11,18 +11,18 @@ static void	init_view(t_all *s)
 	ray.w = 0;
 	hit.f = 0;
 	hit.s = 0;
-	s->ray = ray;
-	s->hit = hit;
+	info->ray = ray;
+	info->hit = hit;
 }
 
-void	draw_view(t_all *s, int print)
+void	draw_view(t_info *info, int print)
 {
-	init_view(s);
-	draw_window(s);
-	draw_minimap(s);
-//	draw_sprite(s);
+	init_view(info);
+	draw_window(info);
+	draw_minimap(info);
+//	draw_sprite(info);
 	if (print)
-		mlx_put_image_to_window(s->mlx.ptr, s->win.ptr, s->img.ptr, 0, 0);
-	free(s->img.ptr);
-	free(s->img.adr);
+		mlx_put_image_to_window(info->mlx.ptr, info->win.ptr, info->img.ptr, 0, 0);
+	free(info->img.ptr);
+	free(info->img.adr);
 }

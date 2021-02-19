@@ -2,13 +2,13 @@
 
 /*******************************************
 -function: init structures(2)
--ar:	s 		->	structure(t_all)
+-ar:	s 		->	structure(t_info)
 		cub		->	char *, map file name
 		save	-> 	save mode(0 or 1)
 -return: non
 -call: ft_cubed()
  *******************************************/
-static void	init_map(t_all *s)
+static void	init_map(t_info *info)
 {
 	t_map	map;
 	t_tex	tex;
@@ -26,11 +26,11 @@ static void	init_map(t_all *s)
 	map.h = 0;
 	tex.c = NONE;
 	tex.f = NONE;
-	s->tex = tex;
-	s->map = map;
+	info->tex = tex;
+	info->map = map;
 }
 
-static void	init_else(t_all *s)
+static void	init_else(t_info *info)
 {
 	t_time	time;
 	t_sprite	*sprite;
@@ -45,17 +45,17 @@ static void	init_else(t_all *s)
 	dir.d = '0';
 	plane.x = PLANEX;
 	plane.y = PLANEY;
-	s->pos = pos;
-	s->dir = dir;
-	s->plane = plane;
+	info->pos = pos;
+	info->dir = dir;
+	info->plane = plane;
 	sprite = NULL;
 	time.ms = SPEED;
 	time.rs = TURN;
-	s->time = time;
-	s->sprite = sprite;
+	info->time = time;
+	info->sprite = sprite;
 }
 
-static void	init_ray(t_all *s)
+static void	init_ray(t_info *info)
 {
 	t_camera	camera;
 	t_dist	dist;
@@ -74,12 +74,12 @@ static void	init_ray(t_all *s)
 	screen.ds = 0;
 	screen.de = 0;
 	screen.lh = 0;
-	s->camera = camera;
-	s->dist = dist;
-	s->step = step;
+	info->camera = camera;
+	info->dist = dist;
+	info->step = step;
 }
 
-static void	init_mlx(t_all *s)
+static void	init_mlx(t_info *info)
 {
 	t_mlx	mlx;
 	t_win	win;
@@ -95,17 +95,17 @@ static void	init_mlx(t_all *s)
 	err.n = 0;
 	err.m = 0;
 	err.p = 0;
-	s->mlx = mlx;
-	s->win = win;
-	s->img = img;
-	s->err = err;
+	info->mlx = mlx;
+	info->win = win;
+	info->img = img;
+	info->err = err;
 }
 
-int			init_all(t_all *s)
+int			init_info(t_info *info)
 {
-	init_mlx(s);
-	init_ray(s);
-	init_map(s);
-	init_else(s);
+	init_mlx(info);
+	init_ray(info);
+	init_map(info);
+	init_else(info);
 	return (DONE);
 }

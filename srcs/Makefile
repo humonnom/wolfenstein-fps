@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC =	cub3d
 
-INIT =	init_all
+INIT =	init_info
 
 
 PARSE = parse_file \
