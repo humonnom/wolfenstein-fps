@@ -24,6 +24,9 @@
 # define KEY 2
 # define PIXEL_SIZE 64
 
+# define PRINT 1
+# define NON_PRINT 0
+
 # define ERR -1
 # define DONE 1
 # define FILE_OPEN -20
@@ -156,6 +159,9 @@ typedef struct	s_ray
 {
 	double			x;
 	double			y;
+	double			i;
+	double			v;
+	double			w;
 }				t_ray;
 
 typedef struct  s_hit
@@ -275,11 +281,9 @@ int 			init_all(t_all *s);
 /*error.c*/
 int				err_filter(int err);
 
-//=====================/*view*/==========================
-/*view.c*/
+/*draw*/
+void			draw_view(t_all *s, int print);
 void			draw_window(t_all *s);
-
-/*view_col.c*/
 void			draw_window_col(t_all *s, int x);
 
 //=====================/*parse*/==========================
@@ -335,5 +339,9 @@ void			handle_sound(int step);
 
 //====================/*handle sprite*/=======================
 int				handle_sprite(t_all *s);
+
+//====================/*save*/=======================
+int				save_bitmap(t_all *s);
+int				make_bitmap_file(t_all *s);
 
 #endif

@@ -99,6 +99,6 @@ int		get_key(int key, t_all *s)
 		handle_sound(1);
 	else if(key == VOLUME_DOWN)
 		handle_sound(-1);
-	draw_window(s);
+	draw_view(s, PRINT);
 	return (DONE);
 }

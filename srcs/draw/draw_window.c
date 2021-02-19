@@ -1,19 +1,6 @@
 #include "cub3d.h"
 
-static void	init_view(t_all *s)
-{
-	t_ray	ray;
-	t_hit	hit;
-
-	ray.x = 0;
-	ray.y = 0;
-	hit.f = 0;
-	hit.s = 0;
-	s->ray = ray;
-	s->hit = hit;
-}
-
-static void	draw_view(t_all *s)
+void	draw_window(t_all *s)
 {
 	int		tab[3];
 	int		x;
@@ -23,15 +10,5 @@ static void	draw_view(t_all *s)
 	x = -1;
 	while(++x < s->win.x)
 		draw_window_col(s, x);
-	draw_minimap(s);
-//	draw_sprite(s);
 }
 
-void	draw_window(t_all *s)
-{
-	init_view(s);
-	draw_view(s);
-	mlx_put_image_to_window(s->mlx.ptr, s->win.ptr, s->img.ptr, 0, 0);
-	free(s->img.ptr);
-	free(s->img.adr);
-}

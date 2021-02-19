@@ -17,7 +17,8 @@ PARSE = parse_file \
 
 GNL =	get_next_line
 
-DRAW =	draw_window \
+DRAW =	draw_view \
+		draw_window \
 		draw_window_col \
 		set_wall
 
@@ -30,9 +31,12 @@ SKYBOX = draw_minimap \
 
 SOUND =	sound
 
-GAME =	key \
+GAME =	handle_key \
 		error \
 		exit_game
+
+SAVE =	save_bitmap \
+		make_bitmap_file
 
 FIL =	$(addsuffix .c, $(addprefix ./, $(SRC))) \
 		$(addsuffix .c, $(addprefix parse/, $(PARSE))) \
@@ -42,7 +46,8 @@ FIL =	$(addsuffix .c, $(addprefix ./, $(SRC))) \
 		$(addsuffix .c, $(addprefix sound/, $(SOUND))) \
 		$(addsuffix .c, $(addprefix game/, $(GAME))) \
 		$(addsuffix .c, $(addprefix init/, $(INIT))) \
-		$(addsuffix .c, $(addprefix err/, $(ERR)))
+		$(addsuffix .c, $(addprefix err/, $(ERR))) \
+		$(addsuffix .c, $(addprefix save/, $(SAVE)))
 
 OBJ = $(FIL:.c=.o)
 

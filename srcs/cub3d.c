@@ -6,9 +6,9 @@ int		cub3d_loop(t_all s, char *cub, int save)
 	if (parse_file(&s, cub) == -1)
 		return (exit_game(&s, 0));
 	if (save == 1)
-		printf("This is save mode\n");
+		save_bitmap(&s);
 	s.win.ptr = mlx_new_window(s.mlx.ptr, s.win.x, s.win.y, "cub3D");
-	draw_window(&s);
+	draw_view(&s, PRINT);
 	mlx_hook(s.win.ptr, KEY, 0, get_key, &s);	
 	mlx_hook(s.win.ptr, EXIT_BTN, 0, exit_game, &s);	
 	mlx_loop(s.mlx.ptr);
