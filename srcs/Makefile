@@ -25,6 +25,7 @@ DRAW =	draw_view \
 		draw_background \
 		draw_window \
 		draw_window_col \
+		draw_sprite_col \
 		set_wall
 
 SKYBOX = draw_minimap \

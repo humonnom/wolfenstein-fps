@@ -36,10 +36,6 @@ void	set_wall(t_info *info, int x)
 	t_wall	w;
 	int		y;
 
-	y = info->screen.ds - 1;
-	pixel = info->hit.s ? BLUE/2 : RED;
-	while (++y < info->screen.de)
-		info->img.adr[(info->win.x * y) + x] = pixel;
 	init_wall(&w);
 	get_wall_info(info, &w);
 	y = info->screen.ds - 1;

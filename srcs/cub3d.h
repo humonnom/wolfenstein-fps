@@ -290,6 +290,7 @@ void			draw_view(t_info *info, int print);
 void			draw_background(t_info *info);
 void			draw_window(t_info *info);
 void			draw_window_col(t_info *info, int x);
+void			draw_sprite_col(t_info *info, int x);
 
 //=====================/*parse*/==========================
 int				parse_file(t_info *info, char *cub);
