@@ -6,7 +6,7 @@ static int		parse_line(t_info *info, char *line)
 	
 	i = 0;
 	ft_spaceskip(line, &i);
-	if ((line[i] == '1' || info->err.m == 1) && line[i] != '\0')
+	if ((line[i] == '1' || line[i] == ' ' || info->err.m == 1) && line[i] != '\0')
 		info->err.n = parse_map(info, line, &i);
 	else if (line[i] == 'R' && line[i + 1] == ' ')
 		info->err.n = parse_resolution(info, line, &i);
@@ -24,8 +24,11 @@ static int		parse_line(t_info *info, char *line)
 		info->err.n = parse_colors(&info->tex.f, line, &i);
 	else if (line[i] == 'C' && line[i + 1] == ' ')
 		info->err.n = parse_colors(&info->tex.c, line, &i);
-	if (ft_spaceskip(line, &i) && info->err.n == 0 && line[i] != '\0')
-		return (report_err(LINE_INV));
+	else if (ft_spaceskip(line, &i) && info->err.n == 0 && line[i] != '\0')
+	{
+		ps("here?\n");
+		info->err.n = LINE_INV;
+	}
 	return (info->err.n < 0 ? report_err(info->err.n) : 0);		
 }
 
@@ -33,22 +36,21 @@ int		parse_file(t_info *info, char *cub)
 {
 	char	*line;
 	int		fd;
-	int		ret;
-
-	ret = 1;
-	fd = open(cub, O_RDONLY);
-	if (fd == ERR)
+	int		read;
+	
+	if ((fd = open(cub, O_RDONLY)) == ERR)
 		return (report_err(FILE_OPEN));
-	while (ret == 1)
+	read = 1;
+	while (read > 0)
 	{
-		ret = get_next_line(fd, &line);
-		if (parse_line(info, line) == ERR)
-			ret = ERR;
+		read = (get_next_line(fd, &line));
+		if (parse_line(info, line))
+			return (FILE_PARSE);
 		free(line);
 	}
 	close(fd);
-	if (ret == ERR || ret == -3)
-		return (report_err(FILE_PARSE));
+	if (arrange_map(info->map.w, info->map.tab))
+		return (FILE_PARSE);
 	parse_pos(info);
 	parse_plane(info);
 	info->sprite = NULL;

@@ -12,8 +12,6 @@
 # include <time.h>
 # include <signal.h>
 # include <stdio.h>
-//# include <OpenAL/al.h>
-//# include <OpenAL/alc.h>
 
 # include "../mlx/mlx.h"
 # include "libft/libft.h"
@@ -294,24 +292,22 @@ void			draw_window(t_info *info);
 void			draw_window_col(t_info *info, int x);
 
 //=====================/*parse*/==========================
-/*parse.c*/
 int				parse_file(t_info *info, char *cub);
 
-/*parse_check.c*/
 int				parse_check(t_info *info);
 
-/*parse_map.c*/
+int				parse_map_check(t_info *info);
+
 int				parse_map(t_info *info, char *line, int *i);
+
 char			*parse_map_part(t_info *info, char *line, int *i);
-int				get_part_len(t_info *info, char *line);
 
-
-/*parse_tex.c*/
 int				parse_texture(
 				t_info *info,
 				unsigned int **adr,
 				char *line, int *i);
 
+int				arrange_map(int max_width, char **map);
 
 /*parse_tools.c*/
 void			parse_pos(t_info *info);
