@@ -3,7 +3,7 @@
 static void	init_else(t_info *info)
 {
 	t_time	time;
-	t_sprite	*sprite;
+	t_list	*sprite;
 	t_pos	pos;
 	t_dir	dir;
 	t_plane	plane;

@@ -30,6 +30,8 @@ int		report_err(int err)
 	(err == -22) ? write_err("Invalid argument number\n") : 0;
 	(err == -23) ? write_err("Invalid map name\n") : 0;
 	(err == -24) ? write_err("Save fail\n") : 0;
+	(err == -25) ? write_err("Init fail\n") : 0;
+	(err == -26) ? write_err("Sprite specified twice\n") : 0;
 	return (-1);
 }
 

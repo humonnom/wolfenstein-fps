@@ -54,6 +54,7 @@
 # define MAP_NAME -23
 # define SAVE_OPT -24
 # define INIT_FAIL -25
+# define SPRITE_DOUBLE -26
 
 # define NONE 0xFF000000
 # define WHITE 0x00FFFFFF
@@ -99,7 +100,12 @@ typedef struct  s_sprite
 {
     double          x;
     double          y;
-    double          d;
+	double			draw_x;
+	double			draw_y;
+	double			dist;
+	double			lh;
+	double			ds;
+	double			de;
 }               t_sprite;
 
 typedef struct		s_wall
@@ -250,7 +256,7 @@ typedef struct		s_info
 	t_dist			dist;
 	t_step			step;
 	t_screen		screen;
-	t_sprite		*sprite;
+	t_list			*sprite;
 
 }					t_info;
 
@@ -290,7 +296,8 @@ void			draw_view(t_info *info, int print);
 void			draw_background(t_info *info);
 void			draw_window(t_info *info);
 void			draw_window_col(t_info *info, int x);
-void			draw_sprite_col(t_info *info, int x);
+void			draw_sprite(t_info *info);
+void			draw_sprite_col(t_info *info, t_sprite *sprite);
 
 //=====================/*parse*/==========================
 int				parse_file(t_info *info, char *cub);
@@ -334,6 +341,7 @@ int				get_position(t_pos pos, int bsize, int win_x, int map_h);
 
 //=====================/*wall.c*/==========================
 void			set_wall(t_info *info, int x);
+void			set_sprite(t_info *info, t_sprite *sprite, int x);
 
 //=====================/*key.c*/==========================
 int				get_key(int key, t_info *info);

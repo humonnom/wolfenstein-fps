@@ -16,6 +16,7 @@ PARSE = parse_file \
 		parse_texture \
 		parse_check \
 		parse_map_check \
+		parse_sprite \
 		parse_tools \
 		arrange_map
 
@@ -25,7 +26,9 @@ DRAW =	draw_view \
 		draw_background \
 		draw_window \
 		draw_window_col \
+		draw_sprite \
 		draw_sprite_col \
+		set_sprite \
 		set_wall
 
 SKYBOX = draw_minimap \

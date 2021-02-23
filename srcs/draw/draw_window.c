@@ -11,8 +11,5 @@ void	draw_window(t_info *info)
 	x = -1;
 	while(++x < info->win.x)
 		draw_window_col(info, x);
-//	x = -1;
-//	while(++x < info->win.x)
-//		draw_sprite_col(info, x);
 }
 

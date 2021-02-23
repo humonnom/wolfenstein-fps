@@ -77,29 +77,3 @@ void	parse_pos(t_info *info)
 	}
 }
 
-int		parse_sprite(t_info *info)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	if (info->sprite != NULL)
-		info->sprite = ft_free(info->sprite);
-	if (!(info->sprite = malloc(sizeof(t_sprite) * info->map.sprite)))
-		return (ERR);
-	i = 0;
-	j = -1;
-	while (++j < info->map.h)
-	{
-		k = -1;
-		while (++k < info->map.w)
-		{
-			if (info->map.tab[j][k] == '2')
-			{
-				info->sprite[i].y = (double)j + 0.5;
-				info->sprite[i++].x = (double)k + 0.5;
-			}
-		}
-	}	
-	return (DONE);
-}

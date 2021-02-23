@@ -58,38 +58,62 @@ static void	set_dda(t_info *info)
 			info->map.y += info->step.y;
 			info->hit.s = 1;
 		}
-		if (info->map.tab[info->map.y][info->map.x] == '2')
-		{
-			printf("sprite crush\n");
+		if (info->map.tab[info->map.y][info->map.x] == '1')
 			info->hit.f = 1;
-		}
+		if (info->map.tab[info->map.y][info->map.x] == '2')
+			info->hit.f = 2;
 	}
 }
 
-static void	set_range(t_info *info)
+static void	set_range(t_info *info, t_sprite *sprite)
 {
+	pxy(pos);
+	printf("%f\n", sprite->x);
+	printf("%f\n", sprite->y);
 	if (info->hit.s == 0)
 	{
-		info->dist.pw = (info->map.x - info->pos.x + (1 - info->step.x) / 2);
-		info->dist.pw /= info->ray.x;
+		sprite->dist = ((info->map.x - info->pos.x + (1 - info->step.x) / 2) \
+						/ info->ray.x);
 	}
 	else
 	{
-		info->dist.pw = (info->map.y - info->pos.y + (1 - info->step.y) / 2); 
-		info->dist.pw /= info->ray.y;
+		sprite->dist = ((info->map.y - info->pos.y + (1 - info->step.y) / 2) \
+						/ info->ray.y);
 	}
-	info->screen.lh = (int)(info->win.y / info->dist.pw);
-	info->screen.ds = -(info->screen.lh) / 2 + info->win.y / 2;
-	info->screen.ds = (info->screen.ds < 0) ? 0 : info->screen.ds;
-	info->screen.de = info->screen.lh / 2 + info->win.y / 2;
-	info->screen.de = (info->screen.de >= info->win.y) ? info->win.y - 1 : info->screen.de;
+	sprite->lh = (int)(info->win.y / sprite->dist);
+	sprite->ds = -(sprite->lh) / 2 + info->win.y / 2;
+	sprite->de = sprite->lh / 2 + info->win.y / 2;
+	if (sprite->ds < 0)
+		sprite->ds = 0;
+	if (sprite->de >= info->win.y)
+		sprite->de = info->win.y - 1;
 }
-
-void	draw_sprite_col(t_info *info, int x)
+# if 0
+static void	get_sprite_pos(t_sprite *sprite)
 {
-  	set_init(info, x);
-	set_step(info);	
-	set_dda(info);
-	set_range(info);
-	set_wall(info, x);
+	if (!sprite->draw_x && !sprite->draw_y)
+	{
+		sprite->draw_x = ;
+		sprite->draw_y = ;
+	}
+}
+# endif
+void	draw_sprite_col(t_info *info, t_sprite *sprite)
+{
+	int	x;
+	
+	x = -1;
+	while(++x < info->win.x)
+	{
+	  	set_init(info, x);
+		set_step(info);
+		set_dda(info);
+		if (info->hit.f == 2)
+		{
+			set_range(info, sprite);
+			set_sprite(info, sprite, x);
+		}
+	}
+	pxy(plane);	
+	pxy(dir);	
 }

@@ -15,7 +15,8 @@ static void	handle_move(t_info *info, int c)
 	y = info->pos.y + info->dir.y * info->time.ms * c;
 	if (x > 0 && y > 0 &&\
 		x < info->map.w && y < info->map.h &&\
-		info->map.tab[y][x] != '1')
+		info->map.tab[y][x] != '1' &&\
+		info->map.tab[y][x] != '2')
 	{
 		info->pos.x += info->dir.x * info->time.ms * c;
 		info->pos.y += info->dir.y * info->time.ms * c;
@@ -60,7 +61,8 @@ static void	handle_strafe(t_info *info, int c)
 	y = info->pos.y + info->dir.x * info->time.ms * c;
 	if (x > 0 && y > 0 &&\
 		x < info->map.w && y < info->map.h &&\
-		info->map.tab[y][x] != '1')
+		info->map.tab[y][x] != '1' &&\
+		info->map.tab[y][x] != '2')
 	{
 		info->pos.x += info->dir.y * info->time.ms * -c;
 		info->pos.y += info->dir.x * info->time.ms * c;
