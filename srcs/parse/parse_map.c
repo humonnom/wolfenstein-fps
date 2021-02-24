@@ -5,6 +5,8 @@ int		parse_map(t_info *info, char *line, int *i)
 	int		j;
 
 	info->err.m = 1;
+	if (line[0] == '\0')
+		printf("========================\n");
 	if (!(buf = malloc(sizeof(char *) * (info->map.h + 2))))
 		return (MAP_ALLOC_FAIL);
 	j = info->map.h + 1;

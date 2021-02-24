@@ -14,7 +14,7 @@ static void	get_str_cpy(char *str, char **str_cpy)
 	*str_cpy = tmp;
 }
 
-static int		get_str_len_exce(char *str, char c)
+static int	get_str_len_exce(char *str, char c)
 {
 	int count;
 	int i;
@@ -33,11 +33,13 @@ char	*parse_map_part(t_info *info, char *line, int *i)
 {
 	char	*part;
 	char	*line_cpy;
-	int		j;
-	int		index;
+	int	j;
+	int	index;
 
 	j = -1;
 	line_cpy = NULL;
+	if (line[0] == '\0')
+		printf("=====================================\n");
 	get_str_cpy(line, &line_cpy);
 	if (!(part = malloc(sizeof(char) * (get_str_len_exce(line_cpy, ' ') + 1))))
 		return (0);
@@ -51,10 +53,7 @@ char	*parse_map_part(t_info *info, char *line, int *i)
 		else if (line_cpy[index] == '3')
 			part[++j] = ' ';
 		else if (line_cpy[index] != ' ')
-		{
-			printf("%c\n", line_cpy[index]);
 			return(ft_free(part));
-		}
 	}
 	part[++j] = '\0';
 	(*i) += ft_strlen(line);

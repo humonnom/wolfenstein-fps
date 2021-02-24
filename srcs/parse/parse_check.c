@@ -1,5 +1,5 @@
 #include "cub3d.h"
-int		parse_check(t_info *info)
+int	parse_check(t_info *info)
 {
 	if (info->win.x <= 0 || info->win.y <= 0)
 		return (report_err(RES_MISSING));

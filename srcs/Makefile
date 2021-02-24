@@ -10,6 +10,7 @@ INIT =	init_info
 
 
 PARSE = parse_file \
+		parse_file_post \
 		parse_map \
 		parse_map_part \
 		parse_map_tools \
@@ -18,7 +19,8 @@ PARSE = parse_file \
 		parse_map_check \
 		parse_sprite \
 		parse_tools \
-		arrange_map
+		arrange_map \
+		map_check_open
 
 GNL =	get_next_line
 

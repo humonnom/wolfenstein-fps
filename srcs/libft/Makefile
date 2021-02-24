@@ -25,6 +25,7 @@ FUNCS = ft_memset \
 		ft_memmove \
 		ft_memchr \
 		ft_memcmp \
+		ft_2strlen \
 		ft_strlen \
 		ft_strlcpy \
 		ft_strlcat \
@@ -43,6 +44,7 @@ FUNCS = ft_memset \
 		ft_toupper \
 		ft_tolower \
 		ft_calloc \
+		ft_2strdup \
 		ft_strdup \
 		ft_substr \
 		ft_strjoin \

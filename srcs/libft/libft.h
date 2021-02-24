@@ -46,11 +46,13 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strnstr(const char *str, const char *target,
 								size_t len);
 char				*ft_strdup(const char *s1);
+char				**ft_2strdup(char *const *s1);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_strncmp_reverse(const char *s1, const char *s2, size_t n);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
+size_t				ft_2strlen(char *const *s);
 
 int					ft_toupper(int c);
 int					ft_tolower(int c);
