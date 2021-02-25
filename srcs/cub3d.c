@@ -2,15 +2,20 @@
 
 int		cub3d_loop(t_info info, char *cub, int save)
 {
+	int	ret;
+
+	ret = 0;
 	info.mlx.ptr = mlx_init();
-	if (parse_file(&info, cub))
+	if (!!(ret = parse_file(&info, cub)))
 	{
+		ps("[cub3d_loop]\n");
 		report_err(FILE_PARSE);
 		return (exit_game(&info, 0));
 	}
-	ps("parse seccess!\n");
 	if (save == 1)
 		save_bitmap(&info);
+	ps("parse sucess\n");
+	exit_game(&info, 0);
 //	info.win.ptr = mlx_new_window(info.mlx.ptr, info.win.x, info.win.y, "cub3D");
 //	draw_view(&info, PRINT);
 //	mlx_hook(info.win.ptr, KEY, 0, get_key, &info);	

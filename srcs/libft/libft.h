@@ -25,6 +25,7 @@ typedef struct		s_list
 
 void				ft_del(void *target);
 void				*ft_free(void *target);
+void				ft_2strfree(char **string);
 double				ft_max(double x, double y);
 double				ft_min(double x, double y);
 int					ft_cumulate(int x);

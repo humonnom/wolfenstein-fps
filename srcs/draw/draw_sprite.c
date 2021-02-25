@@ -1,7 +1,4 @@
 #include "cub3d.h"
-
-
-
 static void	get_sprite_drawing_info(t_info *info)
 {
 	t_sprite	*sprite;
@@ -19,6 +16,7 @@ static void	get_sprite_drawing_info(t_info *info)
 		cur = cur->next;
 		ret = 1;
 	}
+
 }
 
 void	draw_sprite(t_info *info)

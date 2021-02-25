@@ -152,6 +152,7 @@ typedef struct  s_map
     int             x;
     int             y;
     int             sprite;
+	int				space;
 }               t_map;
 
 typedef struct  s_tex

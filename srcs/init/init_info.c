@@ -37,6 +37,7 @@ static void	init_map(t_info *info)
 	tex.w = NULL;
 	tex.i = NULL;
 	map.sprite = 0;
+	map.space = 0;
 	map.x = 0;
 	map.y = 0;
 	map.w = 0;

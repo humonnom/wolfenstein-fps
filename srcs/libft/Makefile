@@ -65,6 +65,7 @@ FUNCS = ft_memset \
 		ft_lstclear \
 		ft_lstiter \
 		ft_lstmap \
+		ft_2strfree \
 		ft_mini
 
 SRCS = $(addsuffix .c, $(FUNCS))
