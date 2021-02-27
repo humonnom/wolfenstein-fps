@@ -6,10 +6,11 @@ int		cub3d_loop(t_info info, char *cub, int save)
 
 	ret = 0;
 	info.mlx.ptr = mlx_init();
-	if (!!(ret = parse_file(&info, cub)))
+	//ps("cub3d loop\n");
+	if ((ret = parse_file(&info, cub)))
 	{
-		ps("[cub3d_loop]\n");
-		report_err(FILE_PARSE);
+		ps("[cub3d_loop, 12]\n");
+		report_err(ret);
 		return (exit_game(&info, 0));
 	}
 	if (save == 1)
@@ -40,6 +41,7 @@ int		main(int argc, char **argv)
 //		system("afplay ../bonus/sound/human_dream.mp3");
 	if (info.pid != 0)
 	{
+		//ps("main\n");
 		init_info(&info);
 		cub3d_loop(info, argv[1], argc == 3);
 	}

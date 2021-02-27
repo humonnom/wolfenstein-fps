@@ -40,6 +40,7 @@ int		parse_sprite(t_info *info)
 				if (!(tmp_spr = get_content(k + 0.5, j + 0.5)))
 					ret = 1;
 				ft_lstadd_back(&info->sprite, ft_lstnew(tmp_spr));	
+				info->map.sprite++;
 			}
 		}
 	}	

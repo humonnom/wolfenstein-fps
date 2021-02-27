@@ -308,9 +308,9 @@ int				parse_check(t_info *info);
 
 int				parse_map_check(t_info *info);
 
-int				parse_map(t_info *info, char *line, int *i);
+int				parse_map(t_info *info, char *line);
 
-char			*parse_map_part(t_info *info, char *line, int *i);
+char			*parse_map_part(t_info *info, char *line);
 
 int				parse_texture(
 				t_info *info,
