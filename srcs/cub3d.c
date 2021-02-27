@@ -15,7 +15,7 @@ int		cub3d_loop(t_info info, char *cub, int save)
 	}
 	if (save == 1)
 		save_bitmap(&info);
-	ps("parse sucess\n");
+	ps("parse success\n");
 	exit_game(&info, 0);
 //	info.win.ptr = mlx_new_window(info.mlx.ptr, info.win.x, info.win.y, "cub3D");
 //	draw_view(&info, PRINT);

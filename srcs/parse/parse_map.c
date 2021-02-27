@@ -55,5 +55,5 @@ int		parse_map(t_info *info, char *line)
 	info->map.h++;
 	info->map.w = ft_max(info->map.w, ft_strlen(info->map.tab[0]));
 	//ps("[parse_map] end\n");
-	return (0);
+	return (info->err.n);
 }

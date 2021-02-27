@@ -302,7 +302,7 @@ void			draw_sprite_col(t_info *info, t_sprite *sprite);
 
 //=====================/*parse*/==========================
 int				parse_file(t_info *info, char *cub);
-int				parse_file_post(t_info *info, int map_empty_flag);
+int				parse_file_post(t_info *info);
 
 int				parse_check(t_info *info);
 

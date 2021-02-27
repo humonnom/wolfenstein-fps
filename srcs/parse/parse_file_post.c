@@ -1,11 +1,11 @@
 #include "cub3d.h"
 
-int	parse_file_post(t_info *info, int map_empty_flag)	
+int	parse_file_post(t_info *info)	
 {
 	int ret;
 
 	ret = 0;
-	if (map_empty_flag > 2 || arrange_map(info->map.w, info->map.tab))
+	if (arrange_map(info->map.w, info->map.tab))
 		ret = 1;
 	if (ret == 0)
 	{

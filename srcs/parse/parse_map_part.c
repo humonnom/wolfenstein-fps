@@ -59,8 +59,6 @@ char	*parse_map_part(t_info *info, char *line)
 	//ps("\t");printf("[%s\n]", parsed);
 	while (line_cpy[++index])
 	{
-		//printf("line_cpy[%d] : [%c]\n", index, line_cpy[index]);
-		//ps("[parse_map_part] 56\n");
 		if (ft_strchr("012NSWE ", line_cpy[index]))
 			parsed[++j] = line_cpy[index];
 		else if (line_cpy[index] != '3')

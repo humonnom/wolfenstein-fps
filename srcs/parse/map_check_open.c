@@ -1,28 +1,16 @@
 #include "cub3d.h"
 
-# if 1 
-typedef struct		s_iter
+static char		**init_iter_info(char **map, int *i, int *j)
 {
-	int				start_i;
-	int				start_j;
-	int				i;
-	int				j;
-	int				i_step;
-	int				j_step;
-	int				main_step_flag;
-}					t_iter;
-
-static void		init_iter_info(t_iter *iter, char **map)
-{
-	int j;
-
-	j = 0;
-	ft_spaceskip(map[0], &j);
-	iter->i = 0;
-	iter->j = j + 1;
-	map[0][j] = 'x';
+	(*i) = 0;
+	(*j) = 0;
+	ft_spaceskip(map[0], j);
+	if (map[0][(*j)] != '1')
+		return (0);
+	map[0][(*j)] = 'x';
+	return (map);
 }
-
+#if 0
 static void			print_map(char **map)
 {
 	int i;
@@ -33,57 +21,46 @@ static void			print_map(char **map)
 		ps(map[i]);	
 	}
 }
+#endif
 
-static int			map_check_iter(t_iter *iter, char **map, int step, char old, char new)
+static int			map_check_iter(char **map, int i, int j, int step)
 {
-	char cur;
-	char *next_line;
-
-	cur = map[iter->i][iter->j];
-	next_line = map[iter->i + step];
-	if (map[iter->i][iter->j + step] && map[iter->i][iter->j + step] == 'x')
+	if (map[i][j + step] && map[i][j + step] == 'x')
 		return (0);
-	if (map[iter->i + step] && map[iter->i + step][iter->j] == 'x')
+	if (map[i + step] && map[i + step][j] == 'x')
 		return (0);
-	else if (cur == old && map[iter->i][iter->j + step] && map[iter->i][iter->j + step] == old)
+	if (map[i][j + step] && map[i][j + step] == '1')
 	{
-		map[iter->i][iter->j] = new;
-		print_map(map);
-		pd(iter->i);
-		pd(iter->j);
-		iter->j += step;
+		j += step;
+		map[i][j] = 'w';
 	}
-	else if (cur == old && map[iter->i + step] && map[iter->i + step][iter->j] == old)
+	else if (map[i + step] && map[i + step][j] == '1')
 	{
-		map[iter->i][iter->j] = new;
-		print_map(map);
-		pd(iter->i);
-		pd(iter->j);
-		iter->i += step;
+		i += step;
+		map[i][j] = 'w';
 	}
 	else if (step == 1)
-		return (map_check_iter(iter, map, -1, old, new));
-	else if (step == -1 && old == '1')
-		return (map_check_iter(iter, map, -1, 'w', 'c'));
-	else
+		return (map_check_iter(map, i, j, -1));
+	else 
 		return (1);
-	return (map_check_iter(iter, map, step, old, new));
+	return (map_check_iter(map, i, j, 1));
 }
-
-# endif
 
 int			map_check_open(char **map)
 {
 	int		ret;
 	char	**map_cpy;
-	t_iter	iter;
+	int		i;
+	int		j;
 
 	ret = 0;
+	map_cpy = NULL;
 	ret = (!(map_cpy = ft_2strdup(map)));
-	init_iter_info(&iter, map_cpy);
-	if (map_check_iter(&iter, map_cpy, 1, '1', 'w'))
-		ret = 1;
 	if (ret == 0)
+		ret = (!(map_cpy = init_iter_info(map_cpy, &i, &j)));
+	if (ret == 0)
+		ret = (map_check_iter(map_cpy, i, j, 1));
+	if (map_cpy)
 		ft_2strfree(map_cpy);
 	return (ret);
 }

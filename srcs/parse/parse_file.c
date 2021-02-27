@@ -88,7 +88,7 @@ static int		parse_line(t_info *info, char *line, int *map_flag)
 		//pd(ret);
 	}
 //	printf("[[[parse_line]]] return :%d\n", ret);
-	if (ret == 0 && (*map_flag) > 2)
+	if ((*map_flag) > 2)
 		ret = LINE_INV;
 	info->err.n = ret; 
 	return (ret);
@@ -116,13 +116,7 @@ int		parse_file(t_info *info, char *cub)
 		free(line);
 	}
 	close(fd);
-//	pd(ret);
-//	ps("parse done\n");
-//	int i = -1;
-//	while (info->map.tab[++i])
-//		ps(info->map.tab[i]);
-//	if (ret == 0 && parse_file_post(info, map_flag) != 0)
-//		ret = MAP_INV;
-//	return (parse_check(info));
-	return (ret);
+	if (ret == 0 && parse_file_post(info) != 0)
+		ret = MAP_INV;
+	return (parse_check(info));
 }
