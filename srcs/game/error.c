@@ -26,6 +26,7 @@ int		report_err(int err)
 	(err == -17) ? write_err("No starting position\n") : 0;
 	(err == -18) ? write_err("Multiple starting positions\n") : 0;
 	(err == -19) ? write_err("Map isn't surrounded by walls\n") : 0;
+	(err == -20) ? write_err("File open fail\n") : 0;
 	(err == -21) ? write_err("Minimap mark fail\n") : 0;
 	(err == -22) ? write_err("Invalid argument number\n") : 0;
 	(err == -23) ? write_err("Invalid map name\n") : 0;

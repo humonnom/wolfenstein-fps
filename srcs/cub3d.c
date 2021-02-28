@@ -6,10 +6,8 @@ int		cub3d_loop(t_info info, char *cub, int save)
 
 	ret = 0;
 	info.mlx.ptr = mlx_init();
-	//ps("cub3d loop\n");
 	if ((ret = parse_file(&info, cub)))
 	{
-		ps("[cub3d_loop, 12]\n");
 		report_err(ret);
 		return (exit_game(&info, 0));
 	}

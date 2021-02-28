@@ -306,7 +306,7 @@ int				parse_file_post(t_info *info);
 
 int				parse_check(t_info *info);
 
-int				parse_map_check(t_info *info);
+int				map_check(t_map *map);
 
 int				parse_map(t_info *info, char *line);
 
@@ -319,7 +319,6 @@ int				parse_texture(
 
 int				arrange_map(int max_width, char **map);
 
-int				map_check_open(char **map);
 /*parse_tools.c*/
 void			parse_pos(t_info *info);
 void			parse_plane(t_info *info);

@@ -15,7 +15,7 @@ int	parse_check(t_info *info)
 		ret = POS_MISSING;
 	else if (info->err.p > 1)
 		ret = POS_DOUBLE;
-	else if (parse_map_check(info))
+	else if (map_check(&(info->map)))
 		ret = MAP_CRACK;
 	info->err.n = ret;
 	return (ret);

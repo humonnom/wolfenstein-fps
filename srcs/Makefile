@@ -16,11 +16,10 @@ PARSE = parse_file \
 		parse_map_tools \
 		parse_texture \
 		parse_check \
-		parse_map_check \
+		map_check \
 		parse_sprite \
 		parse_tools \
-		arrange_map \
-		map_check_open
+		arrange_map
 
 GNL =	get_next_line
 

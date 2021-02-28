@@ -43,11 +43,7 @@ static int		parse_line_map(t_info *info, char *line, int *map_flag)
 	int	ret;
 
 	ret = 0;
-	//ps("parse_line_map48\n");
-	//pd(ret);
 	*map_flag += handle_map_flag(line[0], *map_flag);
-	//ps("parse_line_map51\n");
-	//pd(ret);
 	if (ret == 0)
 		ret = parse_map(info, line);
 	//ps("parse_line_map54\n");
@@ -110,13 +106,13 @@ int		parse_file(t_info *info, char *cub)
 	while (ret == 0 && read > 0)
 	{
 		read = (get_next_line(fd, &line));
-		//ps("get_next_line\n");
-		//ps(line);
 		ret = parse_line(info, line, &map_flag);
 		free(line);
 	}
 	close(fd);
 	if (ret == 0 && parse_file_post(info) != 0)
 		ret = MAP_INV;
+	if (ret)
+		return (ret);
 	return (parse_check(info));
 }
