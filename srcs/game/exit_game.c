@@ -12,12 +12,10 @@
 
 int		exit_game(t_info *info, int win)
 {
-	int i;
-	t_list	*cur;
-	t_list	*tmp;
+//	t_list	*cur;
+//	t_list	*tmp;
 
-	i = -1;
-	//ft_2strfree(info->map.tab);
+	ft_2strfree(info->map.tab);
 	info->tex.n = ft_free(info->tex.n);
 	info->tex.s = ft_free(info->tex.s);
 	info->tex.e = ft_free(info->tex.e);
@@ -25,17 +23,18 @@ int		exit_game(t_info *info, int win)
 	info->tex.i = ft_free(info->tex.i);
 	if (win == 1)
 		mlx_destroy_window(info->mlx.ptr, info->win.ptr);
-	info->mlx.ptr = ft_free(info->mlx.ptr);
+	free(info->mlx.ptr);
 	if (info->pid > 0)
 		kill(info->pid + 1, SIGTERM);
-	cur = info->sprite;
-	while (cur)
-	{
-		tmp = cur->next;
-		ft_lstdelone(cur, &free);
-		cur = tmp;
-	}
+//	cur = info->sprite;
+//	while (cur)
+//	{
+//		tmp = cur->next;
+//		ft_lstdelone(cur, &free);
+//		cur = tmp;
+//	}
 //	while (1)
 //		;
+	exit(0);
 	return(1);
 }

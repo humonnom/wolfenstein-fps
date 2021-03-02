@@ -9,12 +9,8 @@ static	t_sprite *get_content(double x, double y)
 	{
 		ret->x = x;
 		ret->y = y;
-		ret->draw_x = 0;
-		ret->draw_y = 0;
-		ret->dist = 0;
-		ret->lh = 0;
-		ret->ds = 0;
-		ret->de = 0;
+		ret->coef_x = 0;
+		ret->coef_y = 0;
 	}
 	return (ret);
 }

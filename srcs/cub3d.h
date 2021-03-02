@@ -1,10 +1,11 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-/*------------------FOR TEST ONLY------------------*/
-/*-------------------------------------------------*/
 
-// Library //
+/*
+** Library
+*/
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
@@ -17,7 +18,14 @@
 # include "libft/libft.h"
 # include "gnl/get_next_line.h"
 
-// Define //
+/********
+** define 
+********/
+
+/*
+** minimap 
+*/
+
 # define EXIT_BTN 17
 # define KEY 2
 # define PIXEL_SIZE 64
@@ -86,7 +94,10 @@
 # define PLANEX 0.00
 # define PLANEY 0.66
 
-//      bonus      //
+/*
+** minimap 
+*/
+
 # define BLOCK_MIN 15
 # define BLOCK_MAX 20
 
@@ -100,12 +111,10 @@ typedef struct  s_sprite
 {
     double          x;
     double          y;
-	double			draw_x;
-	double			draw_y;
-	double			dist;
-	double			lh;
-	double			ds;
-	double			de;
+    double          coef_x;
+    double          coef_y;
+	double			dist_x;
+	double			dist_y;
 }               t_sprite;
 
 typedef struct		s_wall
@@ -261,9 +270,6 @@ typedef struct		s_info
 
 }					t_info;
 
-////////////////////bonus////////////////////
-
-
 typedef struct	s_mini
 {
 	int	w;
@@ -280,28 +286,37 @@ typedef struct	s_bonus
 	t_mini	mini;
 }				t_bonus;
 
-
-//=====================/*meta*/==========================
-/*cub3D.c*/
 int				main(int argc, char **argv);
+
 int				cub3d_loop(t_info info, char *cub, int save);
 
-/*init_info.c*/
 void 			init_info(t_info *info);
 
-/*error.c*/
 int				report_err(int err);
 
-/*draw*/
 void			draw_view(t_info *info, int print);
-void			draw_background(t_info *info);
-void			draw_window(t_info *info);
-void			draw_window_col(t_info *info, int x);
-void			draw_sprite(t_info *info);
-void			draw_sprite_col(t_info *info, t_sprite *sprite);
 
-//=====================/*parse*/==========================
+void			draw_background(t_info *info);
+
+void			draw_window(t_info *info);
+
+void			draw_window_col(t_info *info, int x);
+
+void			draw_sprite_meta(t_info *info);
+
+void			draw_sprite(
+				t_info *info,
+				t_sprite *sprite);
+
+void			draw_sprite_col(
+				t_info *info,
+				t_sprite *sprite);
+/*
+** parse
+*/
+
 int				parse_file(t_info *info, char *cub);
+
 int				parse_file_post(t_info *info);
 
 int				parse_check(t_info *info);
@@ -319,46 +334,72 @@ int				parse_texture(
 
 int				arrange_map(int max_width, char **map);
 
-/*parse_tools.c*/
 void			parse_pos(t_info *info);
+
 void			parse_plane(t_info *info);
+
 int				parse_resolution(t_info *info, char *line, int *i);
+
 int				parse_colors(unsigned int *color, char *line, int *i);
+
 int				parse_sprite(t_info *info);
 
-//=====================/* minimap */==========================
-/* minimap.c */
+/*
+** minimap
+*/
+
 int				draw_minimap(t_info *info);
 
-//mark_obj
 int				mark_objects(t_info *info, const t_mini *m);
 
 int				mark_sprite(t_info *info, const t_mini *m);
+
 int				mark_user_position(t_info *info, const t_mini *m);
+
 void			mark_direction(t_info *info, const t_mini *m, int pos);
 
-//tools
-void			draw_circle(t_info *info, int poinfo, int color);
-int				get_position(t_pos pos, int bsize, int win_x, int map_h);
+/*
+** tools
+*/
 
-//=====================/*wall.c*/==========================
+void			draw_rect(
+				t_info *info,
+				int poinfo,
+				int color,
+				int	width);
+
+int				get_position(
+				t_pos pos,
+				int bsize,
+				int win_x,
+				int map_h);
+
 void			set_wall(t_info *info, int x);
+
 void			set_sprite(t_info *info, t_sprite *sprite, int x);
 
-//=====================/*key.c*/==========================
+
+/*
+** game
+*/
+
 int				get_key(int key, t_info *info);
+
 int				exit_game(t_info *info, int win);
 
 
-//=====================/*sound.c*/==========================
-int				run_sound();
-void			handle_sound(int step);
+/*
+** sprite
+*/
 
-//====================/*handle sprite*/=======================
 int				handle_sprite(t_info *info);
 
-//====================/*save*/=======================
+/*
+** save 
+*/
+
 int				save_bitmap(t_info *info);
+
 int				make_bitmap_file(t_info *info);
 
 #endif

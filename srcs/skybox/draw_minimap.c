@@ -23,7 +23,7 @@ static void	declare_mini(t_info *info, t_bonus *bonus)
 	}
 }
 
-static void	draw_lectangle(int sort, t_info *info, t_bonus *bonus)
+static void	draw_lectangle(char sort, t_info *info, t_bonus *bonus)
 {
 	int cur;
 	int	end;
@@ -38,12 +38,17 @@ static void	draw_lectangle(int sort, t_info *info, t_bonus *bonus)
 		x = cur - 1;
 		while(++cur < end)
 		{
-			if (cur == x || cur == end - 1||\
-				y_head == bonus->mini.y_tail - 1 || y_head == bonus->mini.y_head)
-					info->img.adr[cur] = BLACK ;
+			if (cur == x)
+				info->img.adr[cur] =  BLACK;
+			else if (cur == end - 1)
+				info->img.adr[cur] =  BLACK;
+			else if (y_head == bonus->mini.y_tail - 1)
+				info->img.adr[cur] =  BLACK;
+			else if (y_head == bonus->mini.y_head)
+				info->img.adr[cur] =  BLACK;
 			else if (sort == '1')
-				info->img.adr[cur] = GREY;
-			else
+				info->img.adr[cur] = LIGHT_BLUE_GREY ;
+			else if (ft_strchr("EWSN20", sort))
 				info->img.adr[cur] = WHITE;
 		}
 	}
@@ -82,7 +87,7 @@ int		draw_minimap(t_info *info)
 	init_mini(&mini);
 	bonus.mini = mini;	
 	declare_mini(info,&bonus);
-	if (bonus.mini.w > 0 || bonus.mini.h > 0)
+	if (bonus.mini.w > 0 && bonus.mini.h > 0 && bonus.mini.w < info->win.x && bonus.mini.h < info->win.y)
 	{
 		draw_map(info, &bonus);
 		ret = mark_objects(info, &bonus.mini);

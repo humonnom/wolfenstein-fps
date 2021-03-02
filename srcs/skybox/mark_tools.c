@@ -8,13 +8,13 @@ int	get_position(t_pos pos, int bsize, int win_x, int map_h)
 	return (position);
 }
 
-void draw_circle(t_info *info, int pos, int color)
+void draw_rect(t_info *info, int pos, int color, int width)
 {
 	int pm;
 	int	i;
 	int	j;
 	
-	pm = 3;
+	pm = width / 2;
 	i = -pm;
 	while(++i < pm)
 	{

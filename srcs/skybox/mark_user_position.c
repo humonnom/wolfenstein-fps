@@ -7,7 +7,7 @@ int			mark_user_position(t_info *info, const t_mini *m)
 
 	ret = (!(user_pos = get_position(info->pos, m->bsize, info->win.x, info->map.h)));
 	if (ret == 0)
-		draw_circle(info, user_pos, BLUE);
+		draw_rect(info, user_pos, BLUE, 6);
 	if (ret == 0)
 		return (user_pos);	
 	return (ret);

@@ -30,7 +30,6 @@ static void		get_sprite_info(t_info *info, t_wall *w)
 	w->texture_x = (info->ray.x < 0) ? info->tex.w : info->tex.e;
 	w->texture_y = (info->ray.y < 0) ? info->tex.s : info->tex.n;
 }
-# endif
 void	set_sprite(t_info *info, t_sprite *sprite, int x)
 {
 //	unsigned int pixel;
@@ -48,3 +47,4 @@ void	set_sprite(t_info *info, t_sprite *sprite, int x)
 	}
 //	pixel = x;
 }
+# endif
