@@ -38,6 +38,7 @@ SKYBOX = draw_minimap \
 		 mark_user_position \
 		 mark_direction \
 		 mark_sprite \
+		 mark_coef \
 		 mark_tools
 
 SOUND =	sound

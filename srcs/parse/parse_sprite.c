@@ -11,6 +11,14 @@ static	t_sprite *get_content(double x, double y)
 		ret->y = y;
 		ret->coef_x = 0;
 		ret->coef_y = 0;
+		ret->dist_x = 0;
+		ret->dist_y = 0;
+		ret->draw_start = 0;
+		ret->draw_end = 0;
+		ret->center = 0;
+	 	ret->depth_unit = 0;
+		ret->dist = 0;
+		ret->side_len = 0;
 	}
 	return (ret);
 }

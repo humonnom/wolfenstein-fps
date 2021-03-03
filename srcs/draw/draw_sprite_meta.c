@@ -1,6 +1,6 @@
 #include "cub3d.h"
 #if 1
-static 	void get_sprite_distance(t_plane plane, t_dir dir, t_pos pos, t_sprite *sprite)
+static 	void get_coef(t_plane plane, t_dir dir, t_pos pos, t_sprite *sprite)
 {
 	double	a;
 	double	b;
@@ -31,22 +31,19 @@ void	draw_sprite_meta(t_info *info)
 	while (cur && ret == 0)
 	{
 		sprite = cur->content;
-		get_sprite_distance(info->plane, info->dir, info->pos, sprite);
+		get_coef(info->plane, info->dir, info->pos, sprite);
 		cur = cur->next;
 		ret = 1;
 	}
+	//sort_sprite(sprite);
+	ret = 0;
 	cur = info->sprite;
-	sprite = cur->content;
-	//arrange_order(sprite);
-	//draw all sprite using while();
-	draw_sprite(info, sprite);
-//	ret = 0;
-//	cur = info->sprite;
-//	while (cur && ret == 0)
-//	{
-//		sprite = cur->content;
-//		printf("sprite coef_x:%f\n", sprite->coef_x);
-//		printf("sprite coef_y:%f\n", sprite->coef_y);
-//		cur = cur->next;
-//	}
+	while (cur && ret == 0)
+	{
+		sprite = cur->content;
+		set_sprite(info, sprite);
+		draw_sprite(info, sprite);
+		cur = cur->next;
+		ret = 1;
+	}
 }

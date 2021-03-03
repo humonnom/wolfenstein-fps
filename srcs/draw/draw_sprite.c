@@ -1,24 +1,5 @@
 #include "cub3d.h"
 #if 0
-static void	set_range(t_info *info)
-{
-	if (info->hit.s == 0)
-	{
-		info->dist.pw = (info->map.x - info->pos.x + (1 - info->step.x) / 2);
-		info->dist.pw /= info->ray.x;
-	}
-	else
-	{
-		info->dist.pw = (info->map.y - info->pos.y + (1 - info->step.y) / 2); 
-		info->dist.pw /= info->ray.y;
-	}
-	info->screen.lh = (int)(info->win.y / info->dist.pw);
-	info->screen.ds = -(info->screen.lh) / 2 + info->win.y / 2;
-	info->screen.ds = (info->screen.ds < 0) ? 0 : info->screen.ds;
-	info->screen.de = info->screen.lh / 2 + info->win.y / 2;
-	info->screen.de = (info->screen.de >= info->win.y) ? info->win.y - 1 : info->screen.de;
-}
-#endif
 void draw_rect_window(t_info *info, double x, int color, int width)
 {
 	int pos;
@@ -37,29 +18,42 @@ void draw_rect_window(t_info *info, double x, int color, int width)
 	}
 }
 
-static int	get_drawing_sprite_info(t_info *info, t_sprite *sprite)
+static int	draw_sprite_col_tmp
+			(t_info	*info,
+			double draw_start,
+			double draw_end,
+			double sprite_center,
+			double sprite_side_len)
 {
-//	int i;
-//	double	draw_start_x;
-//	double	draw_end_x;
-	double	sprite_center_x;
-//	double	sray_dir;
-	//distance -> get ds, de(scale)
-	//position -> get sprite_center_x
-	sprite_center_x = sprite->coef_x * (info->win.x / 2);
-	return (sprite_center_x);
+		int i = 0;
+		while (++i < info->win.y)
+		{
+			double center = info->win.x/2 + sprite_center + (i * info->win.x);
+			double start = info->win.x/2 + draw_start + (i * info->win.x);
+			double end = info->win.x/2 + draw_end + (i * info->win.x);
+			info->img.adr[(int)center] = BLUE;
+			info->img.adr[(int)start] = RED;
+			info->img.adr[(int)end] = RED;
+		}
 }
+#endif
 
 void	draw_sprite(t_info *info, t_sprite *sprite)
 {
-		//if sprite in the screen, draw sprite;
-	//tmp draw red rect
-	draw_rect_window(info, get_drawing_sprite_info(info, sprite), RED, 100);
+
+	int x = 0;
+	while (++x < info->win.x)
+	{
+		if (x > sprite->draw_start && x < sprite->draw_end)
+			draw_sprite_col(info, sprite, x);
+	}
 #if 0
+	//draw_sprite_col_tmp(info, draw_start, draw_end, sprite_center, sprite_side_len);
+	//tmp draw red rect
+	//draw_rectwindow(info, get_drawing_sprite_info(info, sprite), RED, 100);
 	draw sprite
 //	while (draw_start_x ~ draw_end_x)
 	{
-		draw_sprite_col(info, sprite);
 	}
 #endif
 }

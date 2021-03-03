@@ -115,6 +115,12 @@ typedef struct  s_sprite
     double          coef_y;
 	double			dist_x;
 	double			dist_y;
+	double			draw_start;
+	double			draw_end;
+	double			center;
+	double		 	depth_unit;
+	double			dist;
+	double			side_len;
 }               t_sprite;
 
 typedef struct		s_wall
@@ -310,7 +316,8 @@ void			draw_sprite(
 
 void			draw_sprite_col(
 				t_info *info,
-				t_sprite *sprite);
+				t_sprite *sprite, 
+				int x);
 /*
 ** parse
 */
@@ -358,6 +365,8 @@ int				mark_user_position(t_info *info, const t_mini *m);
 
 void			mark_direction(t_info *info, const t_mini *m, int pos);
 
+void		mark_coef(t_info *info, const t_mini *m, int pos, t_list *s);
+
 /*
 ** tools
 */
@@ -376,7 +385,7 @@ int				get_position(
 
 void			set_wall(t_info *info, int x);
 
-void			set_sprite(t_info *info, t_sprite *sprite, int x);
+void			set_sprite(t_info *info, t_sprite *sprite);
 
 
 /*
