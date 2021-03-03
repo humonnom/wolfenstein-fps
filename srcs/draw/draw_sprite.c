@@ -18,19 +18,16 @@ void draw_rect_window(t_info *info, double x, int color, int width)
 	}
 }
 
-static int	draw_sprite_col_tmp
+static void	draw_sprite_col_tmp
 			(t_info	*info,
-			double draw_start,
-			double draw_end,
-			double sprite_center,
-			double sprite_side_len)
+			 t_sprite *sprite)
 {
 		int i = 0;
 		while (++i < info->win.y)
 		{
-			double center = info->win.x/2 + sprite_center + (i * info->win.x);
-			double start = info->win.x/2 + draw_start + (i * info->win.x);
-			double end = info->win.x/2 + draw_end + (i * info->win.x);
+			double center = info->win.x/2 + sprite->center + (i * info->win.x);
+			double start = info->win.x/2 + sprite->draw_start + (i * info->win.x);
+			double end = info->win.x/2 + sprite->draw_end + (i * info->win.x);
 			info->img.adr[(int)center] = BLUE;
 			info->img.adr[(int)start] = RED;
 			info->img.adr[(int)end] = RED;
@@ -40,13 +37,33 @@ static int	draw_sprite_col_tmp
 
 void	draw_sprite(t_info *info, t_sprite *sprite)
 {
-
-	int x = 0;
+	int x;
+	int center;
+	
+	center = sprite->center + info->win.x / 2;
+	x = 0;
 	while (++x < info->win.x)
 	{
-		if (x > sprite->draw_start && x < sprite->draw_end)
-			draw_sprite_col(info, sprite, x);
+		if (x > center + sprite->draw_start && x < center + sprite->draw_end)
+			if (sprite->coef_y >= 0)
+				draw_sprite_col(info, sprite, x);
 	}
+//	pf(center + sprite->draw_start);
+//	pf(center + sprite->draw_end);
+//	pd(center);
+//	pf(sprite->depth_unit);
+//	pf(sprite->side_len);
+//	pf(sprite->draw_start);
+//	pf(sprite->draw_end);
+	printf("========================\n");
+	pf(sprite->depth_unit);
+	pf(sprite->dist);
+	pf(sprite->coef_x);
+	pf(sprite->coef_y);
+	pf(info->dir.x);
+	pf(info->dir.y);
+	pf(info->plane.x);
+	pf(info->plane.y);
 #if 0
 	//draw_sprite_col_tmp(info, draw_start, draw_end, sprite_center, sprite_side_len);
 	//tmp draw red rect

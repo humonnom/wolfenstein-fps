@@ -3,11 +3,14 @@
 void	draw_sprite_col(t_info *info, t_sprite *sprite, int x)
 {
 	int	pixer;
+	int	center;
 	int dot;	
 	int	y;
 
-	y = info->win.y / 2 - sprite->side_len / 2;
-	while (++y < info->win.y / 2 + sprite->side_len / 2)
+	center = info->win.y / 2;
+	//y = center - sprite->side_len / 2;
+	y = center;
+	while (++y < center + 3)//+ sprite->side_len / 2)
 	{
 		pixer = RED;
 		if (x > sprite->center - 5  && x < sprite->center + 5)
