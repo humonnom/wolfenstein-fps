@@ -121,6 +121,7 @@ typedef struct  s_sprite
 	double		 	depth_unit;
 	double			dist;
 	double			side_len;
+	int				visible;
 }               t_sprite;
 
 typedef struct		s_wall
@@ -385,8 +386,6 @@ int				get_position(
 
 void			set_wall(t_info *info, int x);
 
-void			set_sprite(t_info *info, t_sprite *sprite);
-
 
 /*
 ** game
@@ -401,7 +400,11 @@ int				exit_game(t_info *info, int win);
 ** sprite
 */
 
+void			set_sprite(t_info *info, t_sprite *sprite);
+
 int				handle_sprite(t_info *info);
+
+void			turn_on_sprite_flag(int x, int y, t_list *sprite);
 
 /*
 ** save 

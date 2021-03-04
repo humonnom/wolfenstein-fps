@@ -60,6 +60,8 @@ static void	set_dda(t_info *info)
 		}
 		if (info->map.tab[info->map.y][info->map.x] == '1')
 			info->hit.f = 1;
+//		if (info->map.tab[info->map.y][info->map.x] == '2')
+//			turn_on_sprite_flag(info->map.x, info->map.y, info->sprite);
 	}
 }
 

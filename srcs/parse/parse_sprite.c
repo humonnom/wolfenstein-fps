@@ -19,6 +19,7 @@ static	t_sprite *get_content(double x, double y)
 	 	ret->depth_unit = 0;
 		ret->dist = 0;
 		ret->side_len = 0;
+		ret->visible = 0;
 	}
 	return (ret);
 }
