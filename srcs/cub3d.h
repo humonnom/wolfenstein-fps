@@ -90,7 +90,7 @@
 # define VOLUME_DOWN 125
 
 # define SPEED 0.07
-# define TURN 0.04
+# define TURN 0.02
 # define PLANEX 0.00
 # define PLANEY 0.66
 
@@ -117,10 +117,12 @@ typedef struct  s_sprite
 	double			dist_y;
 	double			draw_start;
 	double			draw_end;
-	double			center;
+	double			center_x;
 	double		 	depth_unit;
 	double			dist;
 	double			side_len;
+	double			tex_scale;
+	double			tex_step;
 	int				visible;
 }               t_sprite;
 
@@ -274,7 +276,7 @@ typedef struct		s_info
 	t_step			step;
 	t_screen		screen;
 	t_list			*sprite;
-
+	double			*zbuf;
 }					t_info;
 
 typedef struct	s_mini
@@ -311,14 +313,15 @@ void			draw_window_col(t_info *info, int x);
 
 void			draw_sprite_meta(t_info *info);
 
-void			draw_sprite(
+int				draw_sprite(
 				t_info *info,
 				t_sprite *sprite);
 
 void			draw_sprite_col(
 				t_info *info,
 				t_sprite *sprite, 
-				int x);
+				int x,
+				int	spr_x);
 /*
 ** parse
 */
@@ -400,11 +403,11 @@ int				exit_game(t_info *info, int win);
 ** sprite
 */
 
-void			set_sprite(t_info *info, t_sprite *sprite);
+void			set_sprite(t_info *info);
 
 int				handle_sprite(t_info *info);
 
-void			turn_on_sprite_flag(int x, int y, t_list *sprite);
+void			turn_on_spr_flag(int x, int y, t_list *spr_list);
 
 /*
 ** save 

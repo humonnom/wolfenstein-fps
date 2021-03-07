@@ -32,6 +32,7 @@ static t_vecd	get_coef_spr(
 	ret.y /= det;
 	return (ret);
 }
+
 static t_draw	set_sprite_draw(
 				const t_disp *disp,
 				const t_vecd coef,

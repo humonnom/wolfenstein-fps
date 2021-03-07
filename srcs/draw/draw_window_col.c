@@ -60,8 +60,8 @@ static void	set_dda(t_info *info)
 		}
 		if (info->map.tab[info->map.y][info->map.x] == '1')
 			info->hit.f = 1;
-//		if (info->map.tab[info->map.y][info->map.x] == '2')
-//			turn_on_sprite_flag(info->map.x, info->map.y, info->sprite);
+		if (info->map.tab[info->map.y][info->map.x] == '2')
+			turn_on_spr_flag(info->map.x, info->map.y, info->sprite);
 	}
 }
 
@@ -91,4 +91,5 @@ void	draw_window_col(t_info *info, int x)
 	set_dda(info);
 	set_range(info);
 	set_wall(info, x);
+	info->zbuf[x] = info->dist.pw;
 }

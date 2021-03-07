@@ -1,4 +1,14 @@
 #include "cub3d.h"
+static int		get_zbuf(double **zbuf, int width)
+{
+	double *buf;
+
+	if (!(buf = (double *)malloc(sizeof(double) * width)))
+		return (1);
+	buf = ft_memset((void *)buf, 0, width);
+	*zbuf = buf;
+	return (0);
+}
 
 int		cub3d_loop(t_info info, char *cub, int save)
 {
@@ -13,8 +23,9 @@ int		cub3d_loop(t_info info, char *cub, int save)
 	}
 	if (save == 1)
 		save_bitmap(&info);
-	ps("parse success\n");
 	info.win.ptr = mlx_new_window(info.mlx.ptr, info.win.x, info.win.y, "cub3D");
+	if (get_zbuf(&(info.zbuf), info.win.x))
+		return (1);
 	draw_view(&info, PRINT);
 	mlx_hook(info.win.ptr, KEY, 0, get_key, &info);	
 	mlx_hook(info.win.ptr, EXIT_BTN, 0, exit_game, &info);	

@@ -25,7 +25,6 @@ static void		get_wall_info(t_info *info, t_wall *w)
 		w->tex_x = PIXEL_SIZE - w->tex_x - 1;
 	w->step = 1.0 * PIXEL_SIZE / info->screen.lh;
 	w->texpos = (info->screen.ds - info->win.y / 2 + info->screen.lh / 2) * w->step;
-	
 	w->texture_x = (info->ray.x < 0) ? info->tex.w : info->tex.e;
 	w->texture_y = (info->ray.y < 0) ? info->tex.s : info->tex.n;
 }

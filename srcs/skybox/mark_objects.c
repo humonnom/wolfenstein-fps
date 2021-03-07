@@ -9,8 +9,6 @@ int		mark_objects(t_info *info, const t_mini *m)
 	if (ret == 0)
 		mark_direction(info, m, user_pos);
 	if (ret == 0)
-		mark_coef(info, m, user_pos, info->sprite);
-	if (ret == 0)
 		ret = mark_sprite(info, m);
 	return (ret ? MARK_ERR : 0);
 }

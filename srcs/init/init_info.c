@@ -70,6 +70,7 @@ static void	init_ray(t_info *info)
 	info->camera = camera;
 	info->dist = dist;
 	info->step = step;
+	info->zbuf = NULL;
 }
 
 static void	init_mlx(t_info *info)

@@ -31,6 +31,7 @@ DRAW =	draw_view \
 		draw_sprite \
 		draw_sprite_col \
 		set_sprite \
+		turn_on_spr_flag \
 		set_wall
 
 SKYBOX = draw_minimap \

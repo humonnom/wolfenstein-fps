@@ -12,10 +12,11 @@
 
 int		exit_game(t_info *info, int win)
 {
-//	t_list	*cur;
-//	t_list	*tmp;
+	t_list	*cur;
+	t_list	*tmp;
 
-	ft_2strfree(info->map.tab);
+	if (info->map.tab)
+		ft_2strfree(info->map.tab);
 	info->tex.n = ft_free(info->tex.n);
 	info->tex.s = ft_free(info->tex.s);
 	info->tex.e = ft_free(info->tex.e);
@@ -26,15 +27,14 @@ int		exit_game(t_info *info, int win)
 	free(info->mlx.ptr);
 	if (info->pid > 0)
 		kill(info->pid + 1, SIGTERM);
-//	cur = info->sprite;
-//	while (cur)
-//	{
-//		tmp = cur->next;
-//		ft_lstdelone(cur, &free);
-//		cur = tmp;
-//	}
-//	while (1)
-//		;
+	free(info->zbuf);
+	cur = info->sprite;
+	while (cur)
+	{
+		tmp = cur->next;
+		ft_lstdelone(cur, &free);
+		cur = tmp;
+	}
 	exit(0);
 	return(1);
 }

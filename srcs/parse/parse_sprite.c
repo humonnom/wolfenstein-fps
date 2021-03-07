@@ -15,11 +15,13 @@ static	t_sprite *get_content(double x, double y)
 		ret->dist_y = 0;
 		ret->draw_start = 0;
 		ret->draw_end = 0;
-		ret->center = 0;
+		ret->center_x = 0;
 	 	ret->depth_unit = 0;
 		ret->dist = 0;
 		ret->side_len = 0;
 		ret->visible = 0;
+		ret->tex_scale = 0;
+		ret->tex_step = 0;
 	}
 	return (ret);
 }
