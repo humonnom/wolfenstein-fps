@@ -10,11 +10,11 @@ static void	sort_sprite(t_list *sprite)
 	while (begin->next)
 	{
 		cur = begin;
-		while (cur->next->next)
+		while (cur->next)
 		{
 			spr1 = cur->content;
 			spr2 = cur->next->content;
-			if (spr1->dist > spr2->dist)
+			if (spr1->dist < spr2->dist)
 			{
 				cur->content = spr2;
 				cur->next->content = spr1;

@@ -25,10 +25,10 @@ int		cub3d_loop(t_info info, char *cub, int save)
 		save_bitmap(&info);
 	info.win.ptr = mlx_new_window(info.mlx.ptr, info.win.x, info.win.y, "cub3D");
 	if (get_zbuf(&(info.zbuf), info.win.x))
-		return (1);
+		return (exit_game(&info, 1));
 	draw_view(&info, PRINT);
-	mlx_hook(info.win.ptr, KEY, 0, get_key, &info);	
-	mlx_hook(info.win.ptr, EXIT_BTN, 0, exit_game, &info);	
+	mlx_hook(info.win.ptr, KEY, 0, &get_key, &info);	
+	mlx_hook(info.win.ptr, EXIT_BTN, 0, &exit_game, &info);	
 	mlx_loop(info.mlx.ptr);
 	return (1);
 }
@@ -49,7 +49,6 @@ int		main(int argc, char **argv)
 //		system("afplay ../bonus/sound/human_dream.mp3");
 	if (info.pid != 0)
 	{
-		//ps("main\n");
 		init_info(&info);
 		cub3d_loop(info, argv[1], argc == 3);
 	}
