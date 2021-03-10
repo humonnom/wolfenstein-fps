@@ -1,6 +1,6 @@
 #include "cub3d.h"
 #if 1 
-static	t_sprite *get_content(double x, double y)
+t_sprite *get_content(double x, double y)
 {
 	t_sprite	*ret;
 
@@ -20,6 +20,7 @@ static	t_sprite *get_content(double x, double y)
 		ret->dist = 0;
 		ret->side_len = 0;
 		ret->visible = 0;
+		ret->crushed = 0;
 		ret->tex_scale = 0;
 		ret->tex_step = 0;
 	}

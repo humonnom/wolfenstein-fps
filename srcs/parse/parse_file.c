@@ -31,7 +31,7 @@ static int		parse_line_else(t_info *info, char *line)
 	else if (line[i] == 'R' && line[i + 1] == ' ')
 		ret = parse_resolution(info, line, &i);
 	else if (line[i] == 'F' && line[i + 1] == ' ')
-		ret  = parse_colors(&info->tex.f, line, &i);
+		ret = parse_colors(&info->tex.f, line, &i);
 	else if (line[i] == 'C' && line[i + 1] == ' ')
 		ret = parse_colors(&info->tex.c, line, &i);
 	if (line[i])
@@ -46,11 +46,6 @@ static int		parse_line_map(t_info *info, char *line, int *map_flag)
 	*map_flag += handle_map_flag(line[0], *map_flag);
 	if (ret == 0)
 		ret = parse_map(info, line);
-	//ps("parse_line_map54\n");
-	//pd(ret);
-//	printf("line[i] : %c\n", line[i]);
-//	pd(i);
-//	printf("[[[parse_line_map]]] return :%d\n", pd(ret));
 	return (ret);
 }
 
@@ -60,30 +55,13 @@ static int		parse_line(t_info *info, char *line, int *map_flag)
 
 	ret = 0;
 	if (*map_flag && line[0] == '\0')
-	{
 		(*map_flag)++;
-		//ps("parse_line 69\n");
-		//pd(ret);
-	}
 	else if (ret == 0 && ft_strchr("NSWESFCR", line[0]))
-	{
 		ret = parse_line_else(info, line);
-		//ps("parse_line 75\n");
-		//pd(ret);
-	}
 	else if (ret == 0 && ft_strchr("1 ", line[0]))
-	{
 		ret = parse_line_map(info, line, map_flag);
-		//ps("parse_line 80\n");
-		//pd(ret);
-	}
 	else
-	{
 		ret = LINE_INV;
-		//ps("parse_line 93\n");
-		//pd(ret);
-	}
-//	printf("[[[parse_line]]] return :%d\n", ret);
 	if ((*map_flag) > 2)
 		ret = LINE_INV;
 	info->err.n = ret; 
@@ -109,6 +87,7 @@ int		parse_file(t_info *info, char *cub)
 		ret = parse_line(info, line, &map_flag);
 		free(line);
 	}
+	parse_hand(info);
 	close(fd);
 	if (ret == 0 && parse_file_post(info) != 0)
 		ret = MAP_INV;

@@ -19,10 +19,9 @@ void	draw_view(t_info *info, int print)
 {
 	init_view(info);
 	draw_window(info);
-	if (print)
-		mlx_put_image_to_window(info->mlx.ptr, info->win.ptr, info->img.ptr, 0, 0);
 	draw_sprite_meta(info);
 	draw_minimap(info);
+	draw_hand(info);
 	if (print)
 		mlx_put_image_to_window(info->mlx.ptr, info->win.ptr, info->img.ptr, 0, 0);
 	free(info->img.ptr);

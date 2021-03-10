@@ -1,10 +1,10 @@
 R  800 500
-NO ../textures/bigbang/tshirt1.xpm
-SO ../textures/bigbang/tshirt2.xpm
-WE ../textures/bigbang/tshirt3.xpm
-EA ../textures/bigbang/tshirt4.xpm
+NO ./textures/bigbang/tshirt1.xpm
+SO ./textures/bigbang/tshirt2.xpm
+WE ./textures/bigbang/tshirt3.xpm
+EA ./textures/bigbang/tshirt4.xpm
 
-S ../textures/bigbang/tshirt4.xpm
+S ./textures/chest.xpm
 F 224,172,105
 C 205,249,255
 

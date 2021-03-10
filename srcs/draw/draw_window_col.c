@@ -86,7 +86,7 @@ static void	set_range(t_info *info)
 
 void	draw_window_col(t_info *info, int x)
 {
-  	set_init(info, x);
+ 	set_init(info, x);
 	set_step(info);	
 	set_dda(info);
 	set_range(info);

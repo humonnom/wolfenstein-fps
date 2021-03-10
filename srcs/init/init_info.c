@@ -36,6 +36,7 @@ static void	init_map(t_info *info)
 	tex.e = NULL;
 	tex.w = NULL;
 	tex.i = NULL;
+	tex.h = NULL;
 	map.sprite = 0;
 	map.space = -2;
 	map.x = 0;
@@ -103,7 +104,6 @@ static void	init_mlx(t_info *info)
 *******************************************/
 void		init_info(t_info *info)
 {
-	//ps("init\n");
 	init_mlx(info);
 	init_ray(info);
 	init_map(info);

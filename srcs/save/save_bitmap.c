@@ -6,7 +6,8 @@ int		save_bitmap(t_info *info)
 
 	ret = 0;
 	draw_view(info, NON_PRINT);
-	make_bitmap_file(info);
+	if ((make_bitmap_file(info)))
+		report_err(FILE_OPEN);
 	exit_game(info, 0);
 	return (ret);
 } 

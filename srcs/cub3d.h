@@ -28,6 +28,8 @@
 
 # define EXIT_BTN 17
 # define KEY 2
+# define KEY_PRESS 2
+# define KEY_RELEASE 3
 # define PIXEL_SIZE 64
 
 # define PRINT 1
@@ -124,6 +126,7 @@ typedef struct  s_sprite
 	double			tex_scale;
 	double			tex_step;
 	int				visible;
+	int				crushed;
 }               t_sprite;
 
 typedef struct		s_wall
@@ -180,6 +183,7 @@ typedef struct  s_tex
     unsigned int    *e;
     unsigned int    *w;
     unsigned int    *i;
+	unsigned int	*h;
     unsigned int    c;
     unsigned int    f;
 }               t_tex;
@@ -303,6 +307,10 @@ void 			init_info(t_info *info);
 
 int				report_err(int err);
 
+/*
+** draw
+*/
+
 void			draw_view(t_info *info, int print);
 
 void			draw_background(t_info *info);
@@ -322,6 +330,10 @@ void			draw_sprite_col(
 				t_sprite *sprite, 
 				int x,
 				int	spr_x);
+
+void			draw_hand(
+				t_info *info);
+
 /*
 ** parse
 */
@@ -333,6 +345,8 @@ int				parse_file_post(t_info *info);
 int				parse_check(t_info *info);
 
 int				map_check(t_map *map);
+
+void			parse_hand(t_info *info);
 
 int				parse_map(t_info *info, char *line);
 
@@ -354,6 +368,8 @@ int				parse_resolution(t_info *info, char *line, int *i);
 int				parse_colors(unsigned int *color, char *line, int *i);
 
 int				parse_sprite(t_info *info);
+
+t_sprite		*get_content(double x, double y);
 
 /*
 ** minimap
@@ -404,6 +420,8 @@ int				exit_game(t_info *info, int win);
 */
 
 void			set_sprite(t_info *info);
+
+void			get_set(t_info *info, t_sprite *sprite);
 
 int				handle_sprite(t_info *info);
 

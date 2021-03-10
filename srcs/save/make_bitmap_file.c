@@ -69,14 +69,14 @@ static void	put_bit_header(t_info *info, int fd)
 
 int		make_bitmap_file(t_info *info)
 {
-	int ret;
 	int fd;
 
-	ret = 0;
 	fd = open("bitmap.bmp", O_CREAT | O_WRONLY |O_TRUNC, S_IRWXU);
+	if (fd == -1)
+		return (1);
 	put_bit_header(info, fd);
 	put_bit_info(info, fd);
 	put_bit_data(info, fd);
 	close(fd);
-	return (ret);
+	return (0);
 }

@@ -25,6 +25,46 @@ static void	sort_sprite(t_list *sprite)
 	}
 }
 
+static int	handle_map_spr(char **map, t_sprite *spr)
+{
+	int changed;
+
+	changed = 0;
+	if (spr->crushed)	
+	{
+		map[(int)spr->y][(int)spr->x] = 0;
+		changed = 1;
+	}
+	(void)map;
+	return (changed);
+}
+
+static void	handle_crushed_sprite(char **map, t_list **head)
+{
+	t_list		*cur;
+	t_list		*tmp;
+
+	cur = *head;
+	if (handle_map_spr(map, cur->content))
+	{
+		tmp = cur->next;
+		ft_lstdelone(cur, &free);
+		*head = tmp;
+		return ;
+	}
+	while (cur->next)
+	{
+		if (handle_map_spr(map, cur->next->content))
+		{
+			tmp = cur->next->next;
+			ft_lstdelone(cur->next, &free);
+			cur->next = tmp;
+			return ;
+		}
+		cur = cur->next;
+	}
+}
+
 void	draw_sprite_meta(t_info *info)
 {
 	t_sprite	*tmp_spr;
@@ -36,11 +76,16 @@ void	draw_sprite_meta(t_info *info)
 	while (cur)
 	{
 		tmp_spr = cur->content;
-		if (tmp_spr->visible)
+		if (tmp_spr->visible && !tmp_spr->crushed)
 		{
-			draw_sprite(info, tmp_spr);
+			if ((fabs(tmp_spr->dist_x) <= 1) && \
+				(fabs(tmp_spr->dist_y) <= 1))
+				tmp_spr->crushed = 1;
+			else
+				draw_sprite(info, tmp_spr);
 			tmp_spr->visible = 0;
 		}
 		cur = cur->next;
 	}
+	handle_crushed_sprite(info->map.tab, &(info->sprite));
 }
