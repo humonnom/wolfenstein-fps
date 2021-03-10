@@ -1,4 +1,5 @@
 #include "cub3d.h"
+
 static void	sort_sprite(t_list *sprite)
 {
 	t_sprite	*spr1;
@@ -30,12 +31,11 @@ static int	handle_map_spr(char **map, t_sprite *spr)
 	int changed;
 
 	changed = 0;
-	if (spr->crushed)	
+	if (spr->crushed)
 	{
 		map[(int)spr->y][(int)spr->x] = 0;
 		changed = 1;
 	}
-	(void)map;
 	return (changed);
 }
 
@@ -65,7 +65,7 @@ static void	handle_crushed_sprite(char **map, t_list **head)
 	}
 }
 
-void	draw_sprite_meta(t_info *info)
+void		draw_sprite_meta(t_info *info)
 {
 	t_sprite	*tmp_spr;
 	t_list		*cur;

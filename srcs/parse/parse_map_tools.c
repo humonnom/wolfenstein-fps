@@ -11,7 +11,6 @@ int		get_part_len(t_info *info, char *line)
 		if (ft_strchr("0123NSWE", line[i]))
 			count++;
 	}
-	pd(count);
 	if (info->map.w < count)
 		info->map.w = count;
 	return(count);

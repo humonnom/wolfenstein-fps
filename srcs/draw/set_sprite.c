@@ -1,5 +1,10 @@
 #include "cub3d.h"
-static 	void get_coef(t_plane plane, t_dir dir, t_pos pos, t_sprite *sprite)
+
+static void	get_coef(
+			t_plane plane,
+			t_dir dir,
+			t_pos pos,
+			t_sprite *sprite)
 {
 	double	a;
 	double	b;
@@ -18,21 +23,22 @@ static 	void get_coef(t_plane plane, t_dir dir, t_pos pos, t_sprite *sprite)
 	sprite->coef_y = (c * sprite->dist_x + d * sprite->dist_y);
 }
 
-void	get_set(t_info *info, t_sprite *sprite)
+void		get_set(t_info *info, t_sprite *spr)
 {
-	if (sprite->coef_x == 0)
-		sprite->coef_x = 0.001;
-	sprite->center_x = (int)((1 + sprite->coef_x / sprite->coef_y) * (info->win.x / 2));
-	sprite->depth_unit = (fabs(sprite->coef_x)) / (fabs(sprite->coef_y));
-	sprite->dist = (fabs(sprite->coef_x)) / sprite->depth_unit; 
-	sprite->side_len = (int)((info->win.y / sprite->dist) / 2) * 2;
-	sprite->draw_start = sprite->center_x - sprite->side_len / 2; 
-	sprite->draw_end = sprite->center_x + sprite->side_len / 2;
-	sprite->tex_scale = sprite->side_len / PIXEL_SIZE; 
-	sprite->tex_step = 1.0 / sprite->tex_scale; 
+	if (spr->coef_x == 0)
+		spr->coef_x = 0.001;
+	spr->center_x = \
+	(int)((1 + spr->coef_x / spr->coef_y) * (info->win.x / 2));
+	spr->depth_unit = (fabs(spr->coef_x)) / (fabs(spr->coef_y));
+	spr->dist = (fabs(spr->coef_x)) / spr->depth_unit;
+	spr->side_len = (int)((info->win.y / spr->dist) / 2) * 2;
+	spr->draw_start = spr->center_x - spr->side_len / 2;
+	spr->draw_end = spr->center_x + spr->side_len / 2;
+	spr->tex_scale = spr->side_len / PIXEL_SIZE;
+	spr->tex_step = 1.0 / spr->tex_scale;
 }
 
-void	set_sprite(t_info *info)
+void		set_sprite(t_info *info)
 {
 	t_sprite	*tmp_spr;
 	t_list		*cur;
@@ -46,5 +52,3 @@ void	set_sprite(t_info *info)
 		cur = cur->next;
 	}
 }
-//	sray = coef.x + coef.y
-//	sray / coef.y = coef.x / coef.y + 1

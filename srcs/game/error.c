@@ -1,38 +1,75 @@
 #include "cub3d.h"
-
-static void	write_err(const char *s)
+static void	print_err_head(int err)
 {
-	write(2, s, ft_strlen(s)); 
+	if (err == FILE_OPEN)
+		printf("Couldn't open file (FD)\n");
+	if (err == FILE_PARSE)
+		printf("Couldn't parse file (GNL)\n");
+	if (err == RES_DOUBLE)
+		printf("Resolution specified twice\n");
+	if (err == RES_INV)
+		printf("Invalid resolution\n");
+	if (err == FC_DOUBLE)
+		printf("Floor/ceiling specified twice\n");
+	if (err == FC_INV)
+		printf("Invalid floor/ceiling line\n");
+	if (err == TEX_DOUBLE)
+		printf("Texture path specified twice\n");
+	if (err == TEX_ALLOC_FAIL)
+		printf("Malloc fail (texture path)\n");
+	if (err == TEX_INV)
+		printf("Invalid texture image\n");
+}
+
+static void	print_err_mid(int err)
+{
+	if (err == LINE_INV)
+		printf("Invalid line in file\n");
+	if (err == MAP_ALLOC_FAIL)
+		printf("Malloc fail (map table)\n");
+	if (err == MAP_INV)
+		printf("Invalid map\n");
+	if (err == MAP_SHAPE)
+		printf("Map isn't a rectangle\n");
+	if (err == RES_MISSING)
+		printf("No resolution specified\n");
+	if (err == TEX_MISSING)
+		printf("Missing texture\n");
+	if (err == FC_MISSING)
+		printf("Missing floor/ceiling color\n");
+	if (err == POS_MISSING)
+		printf("No starting position\n");
+	if (err == POS_DOUBLE)
+		printf("Multiple starting positions\n");
+	if (err == MAP_CRACK)
+		printf("Map isn't surrounded by walls\n");
+}
+
+static void	print_err_tail(int err)
+{
+	if (err == MARK_ERR)
+		printf("Minimap mark fail\n");
+	if (err == ARG_NUM)
+		printf("Invalid argument number\n");
+	if (err == MAP_NAME)
+		printf("Invalid map name\n");
+	if (err == SAVE_OPT)
+		printf("Invalid save option\n");
+	if (err == INIT_FAIL)
+		printf("Init fail\n");
+	if (err == SPRITE_DOUBLE)
+		printf("Sprite specified twice\n");
 }
 
 int		report_err(int err)
 {
-	(err == -1) ? write_err("Couldn't open file (FD)\n") : 0;
-	(err == -2) ? write_err("Couldn't parse file (GNL)\n") : 0;
-	(err == -3) ? write_err("Resolution specified twice\n") : 0;
-	(err == -4) ? write_err("Invalid resolution\n") : 0;
-	(err == -5) ? write_err("Floor/ceiling specified twice\n") : 0;
-	(err == -6) ? write_err("Invalid floor/ceiling line\n") : 0;
-	(err == -7) ? write_err("Texture path specified twice\n") : 0;
-	(err == -8) ? write_err("Malloc fail (texture path)\n") : 0;
-	(err == -9) ? write_err("Invalid texture image\n") : 0;
-	(err == -10) ? write_err("Invalid line in file\n") : 0;
-	(err == -11) ? write_err("Malloc fail (map table)\n") : 0;
-	(err == -12) ? write_err("Invalid map\n") : 0;
-	(err == -13) ? write_err("Map isn't a rectangle\n") : 0;
-	(err == -14) ? write_err("No resolution specified\n") : 0;
-	(err == -15) ? write_err("Missing texture\n") : 0;
-	(err == -16) ? write_err("Missing floor/ceiling color\n") : 0;
-	(err == -17) ? write_err("No starting position\n") : 0;
-	(err == -18) ? write_err("Multiple starting positions\n") : 0;
-	(err == -19) ? write_err("Map isn't surrounded by walls\n") : 0;
-	(err == -20) ? write_err("File open fail\n") : 0;
-	(err == -21) ? write_err("Minimap mark fail\n") : 0;
-	(err == -22) ? write_err("Invalid argument number\n") : 0;
-	(err == -23) ? write_err("Invalid map name\n") : 0;
-	(err == -24) ? write_err("Save fail\n") : 0;
-	(err == -25) ? write_err("Init fail\n") : 0;
-	(err == -26) ? write_err("Sprite specified twice\n") : 0;
+	if (err == -1)
+		printf("Error\n");
+	else if (err > -11)
+		print_err_head(err);
+	else if (err > -21)
+		print_err_mid(err);
+	else
+		print_err_tail(err);
 	return (-1);
 }
-

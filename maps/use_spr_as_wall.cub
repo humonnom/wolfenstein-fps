@@ -1,0 +1,17 @@
+R 800 500
+NO ./textures/item.xpm
+SO ./textures/item.xpm
+WE ./textures/item.xpm
+EA ./textures/item.xpm
+
+S ./textures/item.xpm
+F 224,172,105
+C 205,249,255
+
+11111111111111
+10200010000201
+10000010002001
+10200000020001
+100100W0011111
+10010000200001
+11111111111111

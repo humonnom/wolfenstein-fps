@@ -4,7 +4,7 @@ int	draw_sprite(t_info *info, t_sprite *sprite)
 {
 	int x;
 	int spr_x;
-	
+
 	x = -1;
 	while (++x < info->win.x)
 	{
@@ -17,4 +17,3 @@ int	draw_sprite(t_info *info, t_sprite *sprite)
 	}
 	return (0);
 }
-

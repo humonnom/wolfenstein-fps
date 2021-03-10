@@ -1,21 +1,31 @@
 #include "cub3d.h"
 
-static void	set_init(t_info *info, int x)
+static void	set_init(t_info *i, int x)
 {
 	double	tmpx;
 	double	tmpy;
 
-	info->map.x = info->pos.x;
-	info->map.y = info->pos.y;
-	info->hit.f = 0;
-	info->hit.s = 0;
-	info->camera.x = 2 * x / (double)(info->win.x) - 1;
-	info->ray.x = info->dir.x + info->plane.x * info->camera.x;
-	info->ray.y = info->dir.y + info->plane.y * info->camera.x;
-	tmpx = (sqrt(1 + (info->ray.y * info->ray.y) / (info->ray.x * info->ray.x)));
-	tmpy = (sqrt(1 + (info->ray.x * info->ray.x) / (info->ray.y * info->ray.y)));
-	info->dist.dx = (info->ray.y == 0) ? 0 : ((info->ray.x == 0) ? 1 : tmpx);
-	info->dist.dy = (info->ray.x == 0) ? 0 : ((info->ray.y == 0) ? 1 : tmpy);
+	i->map.x = i->pos.x;
+	i->map.y = i->pos.y;
+	i->hit.f = 0;
+	i->hit.s = 0;
+	i->camera.x = 2 * x / (double)(i->win.x) - 1;
+	i->ray.x = i->dir.x + i->plane.x * i->camera.x;
+	i->ray.y = i->dir.y + i->plane.y * i->camera.x;
+	tmpx = (sqrt(1 + (i->ray.y * i->ray.y) / (i->ray.x * i->ray.x)));
+	tmpy = (sqrt(1 + (i->ray.x * i->ray.x) / (i->ray.y * i->ray.y)));
+	if (i->ray.y == 0)
+		i->dist.dx = 0;
+	else if (i->ray.x == 0)
+		i->dist.dx = 1;
+	else
+		i->dist.dx = tmpx;
+	if (i->ray.x == 0)
+		i->dist.dy = 0;
+	else if (i->ray.x == 0)
+		i->dist.dy = 1;
+	else
+		i->dist.dy = tmpy;
 }
 
 static void	set_step(t_info *info)
@@ -74,20 +84,22 @@ static void	set_range(t_info *info)
 	}
 	else
 	{
-		info->dist.pw = (info->map.y - info->pos.y + (1 - info->step.y) / 2); 
+		info->dist.pw = (info->map.y - info->pos.y + (1 - info->step.y) / 2);
 		info->dist.pw /= info->ray.y;
 	}
 	info->screen.lh = (int)(info->win.y / info->dist.pw);
 	info->screen.ds = -(info->screen.lh) / 2 + info->win.y / 2;
-	info->screen.ds = (info->screen.ds < 0) ? 0 : info->screen.ds;
+	if (info->screen.ds < 0)
+		info->screen.ds = 0;
 	info->screen.de = info->screen.lh / 2 + info->win.y / 2;
-	info->screen.de = (info->screen.de >= info->win.y) ? info->win.y - 1 : info->screen.de;
+	if (info->screen.de >= info->win.y)
+		info->screen.de = info->win.y - 1;
 }
 
-void	draw_window_col(t_info *info, int x)
+void		draw_window_col(t_info *info, int x)
 {
- 	set_init(info, x);
-	set_step(info);	
+	set_init(info, x);
+	set_step(info);
 	set_dda(info);
 	set_range(info);
 	set_wall(info, x);

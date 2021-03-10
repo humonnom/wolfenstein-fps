@@ -97,10 +97,6 @@ int		get_key(int key, t_info *info)
 		handle_rotate(info, 1);
 	else if(key == RIGHT)
 		handle_rotate(info, -1);
-//	else if(key == VOLUME_UP)
-//		handle_sound(1);
-//	else if(key == VOLUME_DOWN)
-//		handle_sound(-1);
 	draw_view(info, PRINT);
-	return (DONE);
+	return (0);
 }

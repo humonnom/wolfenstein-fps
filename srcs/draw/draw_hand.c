@@ -1,9 +1,10 @@
 #include "cub3d.h"
-static	void	draw_hand_col(
-				t_info *info,
-				t_sprite *hand,
-				int x,
-				int xpm_x)
+
+static void	draw_hand_col(
+			t_info *info,
+			t_sprite *hand,
+			int x,
+			int xpm_x)
 {
 	int	pixel;
 	int	dot;
@@ -26,16 +27,16 @@ static	void	draw_hand_col(
 				pixel < pow(PIXEL_SIZE, 2))
 		{
 			if (info->tex.h[pixel] != NONE)
-				info->img.adr[dot] = info->tex.h[pixel]; 
+				info->img.adr[dot] = info->tex.h[pixel];
 		}
 	}
 }
 
-void	draw_hand(t_info *info)
+void		draw_hand(t_info *info)
 {
 	int				i;
+	int				x;
 	t_sprite		*hand;
-	int 			x;
 
 	i = 0;
 	if (info->tex.h == 0)

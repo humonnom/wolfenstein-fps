@@ -1,7 +1,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-
 /*
 ** Library
 */
@@ -18,12 +17,8 @@
 # include "libft/libft.h"
 # include "gnl/get_next_line.h"
 
-/********
-** define 
-********/
-
 /*
-** minimap 
+** define
 */
 
 # define EXIT_BTN 17
@@ -32,39 +27,40 @@
 # define KEY_RELEASE 3
 # define PIXEL_SIZE 64
 
-# define PRINT 1
-# define NON_PRINT 0
-
-# define FLOOR 1
-# define CEILING 0
+/*
+** error
+*/
 
 # define ERR -1
-# define DONE 1
-# define FILE_OPEN -20
-# define FILE_PARSE -2
-# define RES_DOUBLE -3
-# define RES_INV -4
-# define FC_DOUBLE -5
-# define FC_INV -6
-# define TEX_DOUBLE -7
-# define TEX_ALLOC_FAIL -8
-# define TEX_INV -9
-# define LINE_INV -10
-# define MAP_ALLOC_FAIL -11
-# define MAP_INV -12
-# define MAP_SHAPE -13
-# define RES_MISSING -14
-# define TEX_MISSING -15
-# define FC_MISSING -16
-# define POS_MISSING -17
-# define POS_DOUBLE -18
-# define MAP_CRACK -19
+# define FILE_OPEN -2
+# define FILE_PARSE -3
+# define RES_DOUBLE -4
+# define RES_INV -5
+# define FC_DOUBLE -6
+# define FC_INV -7
+# define TEX_DOUBLE -8
+# define TEX_ALLOC_FAIL -9
+# define TEX_INV -10
+# define LINE_INV -11
+# define MAP_ALLOC_FAIL -12
+# define MAP_INV -13
+# define MAP_SHAPE -14
+# define RES_MISSING -15
+# define TEX_MISSING -16
+# define FC_MISSING -17
+# define POS_MISSING -18
+# define POS_DOUBLE -19
+# define MAP_CRACK -20
 # define MARK_ERR -21
 # define ARG_NUM -22
 # define MAP_NAME -23
 # define SAVE_OPT -24
 # define INIT_FAIL -25
 # define SPRITE_DOUBLE -26
+
+/*
+** color
+*/
 
 # define NONE 0xFF000000
 # define WHITE 0x00FFFFFF
@@ -79,6 +75,10 @@
 # define YELLOW 0x00FFFF00
 # define CYAN 0x0000FFFF
 
+/*
+** key
+*/
+
 # define ESC 53
 # define W 13
 # define A 0
@@ -91,43 +91,44 @@
 # define VOLUME_UP 126
 # define VOLUME_DOWN 125
 
+/*
+** preset for game
+*/
+
 # define SPEED 0.07
-# define TURN 0.02
+# define TURN 0.03
+
 # define PLANEX 0.00
 # define PLANEY 0.66
-
-/*
-** minimap 
-*/
 
 # define BLOCK_MIN 15
 # define BLOCK_MAX 20
 
-//      test        //
-# define ps(X) printf("%s\n", X)
-# define pf(X) printf(""#X" :%f\n", X)
-# define pd(X) printf(""#X" :%d\n", X)
-# define pxy(X) printf(""#X" :(%f, %f)\n", (double)info->X.x, (double)info->X.y)
+# define PRINT 1
+# define NON_PRINT 0
 
-typedef struct  s_sprite
+# define FLOOR 1
+# define CEILING 0
+
+typedef struct		s_sprite
 {
-    double          x;
-    double          y;
-    double          coef_x;
-    double          coef_y;
+	double			x;
+	double			y;
+	double			coef_x;
+	double			coef_y;
 	double			dist_x;
 	double			dist_y;
 	double			draw_start;
 	double			draw_end;
 	double			center_x;
-	double		 	depth_unit;
+	double			depth_unit;
 	double			dist;
 	double			side_len;
 	double			tex_scale;
 	double			tex_step;
 	int				visible;
 	int				crushed;
-}               t_sprite;
+}					t_sprite;
 
 typedef struct		s_wall
 {
@@ -165,100 +166,99 @@ typedef struct		s_win
 	int				y;
 }					t_win;
 
-typedef struct  s_map
+typedef struct		s_map
 {
-    char            **tab; //map 전체저장
-    int             w;
-    int             h;	//map의 높이
-    int             x;
-    int             y;
-    int             sprite;
+	char			**tab;
+	int				w;
+	int				h;
+	int				x;
+	int				y;
+	int				sprite;
 	int				space;
-}               t_map;
+}					t_map;
 
-typedef struct  s_tex
+typedef struct		s_tex
 {
-    unsigned int    *n;
-    unsigned int    *s;
-    unsigned int    *e;
-    unsigned int    *w;
-    unsigned int    *i;
+	unsigned int	*n;
+	unsigned int	*s;
+	unsigned int	*e;
+	unsigned int	*w;
+	unsigned int	*i;
 	unsigned int	*h;
-    unsigned int    c;
-    unsigned int    f;
-}               t_tex;
+	unsigned int	c;
+	unsigned int	f;
+}					t_tex;
 
-typedef struct	s_ray
+typedef struct		s_ray
 {
 	double			x;
 	double			y;
 	double			i;
 	double			v;
 	double			w;
-}				t_ray;
+}					t_ray;
 
-typedef struct  s_hit
+typedef struct		s_hit
 {
-	int			f;
-	int			s;
-}               t_hit;
+	int				f;
+	int				s;
+}					t_hit;
 
-typedef struct	s_pos
+typedef struct		s_pos
 {
 	double			x;
 	double			y;
-}				t_pos;
+}					t_pos;
 
-typedef struct	s_dir
+typedef struct		s_dir
 {
 	double			x;
 	double			y;
 	char			d;
-}				t_dir;
+}					t_dir;
 
-
-typedef struct	s_plane
+typedef struct		s_plane
 {
 	double			x;
 	double			y;
 
-}				t_plane;
+}					t_plane;
 
-typedef struct	s_time
+typedef struct		s_time
 {
 	double			ms;
 	double			rs;
-}				t_time;
+}					t_time;
 
-typedef struct	s_camera
+typedef struct		s_camera
 {
 	double			x;
 	double			y;
 
-}				t_camera;
+}					t_camera;
 
-typedef struct	s_step
+typedef struct		s_step
 {
 	int				x;
 	int				y;
 
-}				t_step;
+}					t_step;
 
-typedef struct	s_dist
+typedef struct		s_dist
 {
 	double			sx;
 	double			sy;
 	double			dx;
 	double			dy;
 	double			pw;
-}				t_dist;
+}					t_dist;
 
-typedef struct	s_screen
+typedef struct		s_screen
 {
 	int				lh;
 	int				ds;
 	int				de;
-}				t_screen;
+}					t_screen;
 
 typedef struct		s_info
 {
@@ -283,156 +283,177 @@ typedef struct		s_info
 	double			*zbuf;
 }					t_info;
 
-typedef struct	s_mini
+typedef struct		s_mini
 {
-	int	w;
-	int	h;
-	int x_head;
-	int	x_tail;
-	int	y_head;
-	int y_tail;
-	int bsize;
-}				t_mini;
+	int				w;
+	int				h;
+	int				x_head;
+	int				x_tail;
+	int				y_head;
+	int				y_tail;
+	int				bsize;
+}					t_mini;
 
-typedef struct	s_bonus
+typedef struct		s_bonus
 {
-	t_mini	mini;
-}				t_bonus;
+	t_mini			mini;
+}					t_bonus;
 
-int				main(int argc, char **argv);
+/*
+** general
+*/
 
-int				cub3d_loop(t_info info, char *cub, int save);
+int					main(int argc, char **argv);
 
-void 			init_info(t_info *info);
+int					cub3d_loop(
+					t_info info,
+					char *cub,
+					int save);
 
-int				report_err(int err);
+void				init_info(t_info *info);
+
+int					report_err(int err);
 
 /*
 ** draw
 */
 
-void			draw_view(t_info *info, int print);
+void				draw_view(t_info *info, int print);
 
-void			draw_background(t_info *info);
+void				draw_background(t_info *info);
 
-void			draw_window(t_info *info);
+void				draw_window(t_info *info);
 
-void			draw_window_col(t_info *info, int x);
+void				draw_window_col(t_info *info, int x);
 
-void			draw_sprite_meta(t_info *info);
+void				draw_sprite_meta(t_info *info);
 
-int				draw_sprite(
-				t_info *info,
-				t_sprite *sprite);
+int					draw_sprite(
+					t_info *info,
+					t_sprite *sprite);
 
-void			draw_sprite_col(
-				t_info *info,
-				t_sprite *sprite, 
-				int x,
-				int	spr_x);
+void				draw_sprite_col(
+					t_info *info,
+					t_sprite *sprite,
+					int x,
+					int	spr_x);
 
-void			draw_hand(
-				t_info *info);
+void				draw_hand(
+					t_info *info);
 
 /*
 ** parse
 */
 
-int				parse_file(t_info *info, char *cub);
+int					parse_file(t_info *info, char *cub);
 
-int				parse_file_post(t_info *info);
+int					parse_file_post(t_info *info);
 
-int				parse_check(t_info *info);
+int					parse_check(t_info *info);
 
-int				map_check(t_map *map);
+int					map_check(t_map *map);
 
-void			parse_hand(t_info *info);
+void				parse_hand(t_info *info);
 
-int				parse_map(t_info *info, char *line);
+int					parse_map(t_info *info, char *line);
 
-char			*parse_map_part(t_info *info, char *line);
+char				*parse_map_part(t_info *info, char *line);
 
-int				parse_texture(
-				t_info *info,
-				unsigned int **adr,
-				char *line, int *i);
+int					parse_texture(
+					t_info *info,
+					unsigned int **adr,
+					char *line, int *i);
 
-int				arrange_map(int max_width, char **map);
+int					arrange_map(int max_width, char **map);
 
-void			parse_pos(t_info *info);
+void				parse_pos(t_info *info);
 
-void			parse_plane(t_info *info);
+void				parse_plane(t_info *info);
 
-int				parse_resolution(t_info *info, char *line, int *i);
+int					parse_resolution(
+					t_info *info,
+					char *line,
+					int *i);
 
-int				parse_colors(unsigned int *color, char *line, int *i);
+int					parse_colors(
+					unsigned int *color,
+					char *line,
+					int *i);
 
-int				parse_sprite(t_info *info);
+int					parse_sprite(t_info *info);
 
-t_sprite		*get_content(double x, double y);
+t_sprite			*get_content(double x, double y);
 
 /*
 ** minimap
 */
 
-int				draw_minimap(t_info *info);
+int					draw_minimap(t_info *info);
 
-int				mark_objects(t_info *info, const t_mini *m);
+int					mark_objects(t_info *info, const t_mini *m);
 
-int				mark_sprite(t_info *info, const t_mini *m);
+int					mark_sprite(t_info *info, const t_mini *m);
 
-int				mark_user_position(t_info *info, const t_mini *m);
+int					mark_user_position(t_info *info, const t_mini *m);
 
-void			mark_direction(t_info *info, const t_mini *m, int pos);
+void				mark_direction(
+					t_info *info,
+					const t_mini *m,
+					int pos);
 
-void		mark_coef(t_info *info, const t_mini *m, int pos, t_list *s);
+void				mark_coef(
+					t_info *info,
+					const t_mini *m,
+					int pos,
+					t_list *s);
 
 /*
 ** tools
 */
 
-void			draw_rect(
-				t_info *info,
-				int poinfo,
-				int color,
-				int	width);
+void				draw_rect(
+					t_info *info,
+					int poinfo,
+					int color,
+					int	width);
 
-int				get_position(
-				t_pos pos,
-				int bsize,
-				int win_x,
-				int map_h);
+int					get_position(
+					t_pos pos,
+					int bsize,
+					int win_x,
+					int map_h);
 
-void			set_wall(t_info *info, int x);
-
+void				set_wall(t_info *info, int x);
 
 /*
 ** game
 */
 
-int				get_key(int key, t_info *info);
+int					get_key(int key, t_info *info);
 
-int				exit_game(t_info *info, int win);
-
+int					exit_game(t_info *info, int win);
 
 /*
 ** sprite
 */
 
-void			set_sprite(t_info *info);
+void				set_sprite(t_info *info);
 
-void			get_set(t_info *info, t_sprite *sprite);
+void				get_set(t_info *info, t_sprite *sprite);
 
-int				handle_sprite(t_info *info);
+int					handle_sprite(t_info *info);
 
-void			turn_on_spr_flag(int x, int y, t_list *spr_list);
+void				turn_on_spr_flag(
+					int x,
+					int y,
+					t_list *spr_list);
 
 /*
-** save 
+** save
 */
 
-int				save_bitmap(t_info *info);
+int					save_bitmap(t_info *info);
 
-int				make_bitmap_file(t_info *info);
+int					make_bitmap_file(t_info *info);
 
 #endif

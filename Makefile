@@ -8,7 +8,6 @@ SRC = cub3d
 
 INIT =	init_info
 
-
 PARSE = parse_file \
 		parse_file_post \
 		parse_hand \

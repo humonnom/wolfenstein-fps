@@ -1,4 +1,5 @@
 #include "cub3d.h"
+
 void	turn_on_spr_flag(int x, int y, t_list *spr_list)
 {
 	t_list		*cur;

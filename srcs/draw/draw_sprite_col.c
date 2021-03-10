@@ -27,7 +27,7 @@ void	draw_sprite_col(
 				pixel < pow(PIXEL_SIZE, 2))
 		{
 			if (info->tex.i[pixel] != NONE)
-				info->img.adr[dot] = info->tex.i[pixel]; 
+				info->img.adr[dot] = info->tex.i[pixel];
 		}
 	}
 }

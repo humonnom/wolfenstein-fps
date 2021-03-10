@@ -1,10 +1,10 @@
 R  500 500
-NO ../textures/brick.xpm
-SO ../textures/blue.xpm
-WE ../textures/wood.xpm
-EA ../textures/grey.xpm
+NO ./textures/brick.xpm
+SO ./textures/blue.xpm
+WE ./textures/wood.xpm
+EA ./textures/grey.xpm
 
-S ../textures/chest.xpm
+S ./textures/chest.xpm
 F 224,172,105
 C 205,249,255
 

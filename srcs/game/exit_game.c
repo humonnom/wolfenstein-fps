@@ -1,12 +1,12 @@
 #include "cub3d.h"
 
 /*******************************************
--function: close window
--ar:	s 		->	structure(t_info)
-		win		-> 	window number
--return: int (1 or)
--call: non
- *******************************************/
+**-function: close window
+**-ar:	s 		->	structure(t_info)
+**		win		-> 	window number
+**-return: int (1 or)
+**-call: non
+********************************************/
 #include <signal.h>
 #include <sys/types.h>
 
