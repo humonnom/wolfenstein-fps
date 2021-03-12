@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:35:05 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 22:35:07 by juepark          ###   ########.fr       */
+/*   Updated: 2021/03/13 01:17:05 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ typedef struct		s_sprite
 	double			tex_scale;
 	double			tex_step;
 	int				visible;
-	int				crushed;
 }					t_sprite;
 
 typedef struct		s_wall
@@ -273,7 +272,6 @@ typedef struct		s_screen
 
 typedef struct		s_info
 {
-	pid_t			pid;
 	t_mlx			mlx;
 	t_err			err;
 	t_win			win;

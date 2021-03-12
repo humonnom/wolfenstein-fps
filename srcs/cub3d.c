@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:30:23 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 22:36:47 by juepark          ###   ########.fr       */
+/*   Updated: 2021/03/13 01:05:52 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,6 @@ int				main(int argc, char **argv)
 		return (report_err(MAP_NAME));
 	if (!(argc == 2 || !ft_strncmp(argv[2], "--save", 6)))
 		return (report_err(SAVE_OPT));
-	info.pid = -1;
-	if (argc == 2)
-		info.pid = fork();
-	if (info.pid == 0)
-		system("afplay ./sound/human_dream.mp3");
-	if (info.pid != 0)
-	{
-		init_info(&info);
-		return (cub3d_loop(info, argv[1], argc == 3));
-	}
-	return (0);
+	init_info(&info);
+	return (cub3d_loop(info, argv[1], argc == 3));
 }

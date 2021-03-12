@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:31:46 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 22:31:49 by juepark          ###   ########.fr       */
+/*   Updated: 2021/03/13 01:06:58 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int			exit_game(t_info *info, int win)
 	clear_tex(info);
 	if (win == 1)
 		mlx_destroy_window(info->mlx.ptr, info->win.ptr);
-	if (info->pid > 0)
-		kill(info->pid + 1, SIGTERM);
 	cur = info->sprite;
 	while (cur)
 	{
