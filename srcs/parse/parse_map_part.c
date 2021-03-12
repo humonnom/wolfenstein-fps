@@ -1,6 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map_part.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 21:44:06 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 21:44:07 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int	get_str_len_exce(const char *str, char c, int space_flag)
+static int		get_parsed_len(
+				const char *str,
+				char c,
+				int space_flag)
 {
 	int count;
 	int i;
@@ -17,11 +32,11 @@ static int	get_str_len_exce(const char *str, char c, int space_flag)
 	return (count);
 }
 
-static char	*get_str_cpy(char *str, int space_flag)
+static char		*get_line_cpy(char *str, int space_flag, char subs)
 {
-	int i;
-	int step;
-	char *str_cpy;
+	int		i;
+	int		step;
+	char	*str_cpy;
 
 	if (!(str_cpy = ft_strdup(str)))
 		return (NULL);
@@ -30,50 +45,50 @@ static char	*get_str_cpy(char *str, int space_flag)
 	while (space_flag >= 0 && str_cpy[i])
 	{
 		if (str_cpy[i] == ' ')
-			str_cpy[i] = '3';	
+			str_cpy[i] = subs;
 		i += step;
 	}
-	//printf("str_cpy(' ' -> 3): [%s]\n", str_cpy);
 	return (str_cpy);
 }
 
-char	*parse_map_part(t_info *info, char *line)
+static char		*get_parsed_map(
+				char *parsed,
+				char *line_cpy,
+				char subs)
 {
-	char	*parsed;
-	char	*line_cpy;
-	int		j;
 	int		index;
-	int		parsed_len;
+	int		j;
 
 	j = -1;
-	////ps(line);
-	//ps("[parse_map_part] 49\n");
-	if (!(line_cpy = get_str_cpy(line, info->map.space)))
-		return (0);
-	//ps("[line_cpy] : ");ps(line_cpy);
-	parsed_len = get_str_len_exce(line_cpy, '3', info->map.space);
-	if (!(parsed = malloc(sizeof(char) * (parsed_len + 1))))
-		return (0);
-	//ps("[parse_map_part] 56\n");
 	index = -1;
-	//ps("\t");printf("[%s\n]", parsed);
 	while (line_cpy[++index])
 	{
 		if (ft_strchr("012NSWE ", line_cpy[index]))
 			parsed[++j] = line_cpy[index];
-		else if (line_cpy[index] != '3')
+		else if (line_cpy[index] != subs)
 		{
-			//ps("[parse_map_part] 67\n");
-			free(line_cpy);
 			free(parsed);
-			return(NULL);
-		}	
+			return (NULL);
+		}
 	}
-	//ps("[parse_map_part] 72\n");
 	parsed[++j] = '\0';
-//	printf("parsed[i]: %c\n", parsed[*i]);
-	//ps("[parse_map_part] 75\n");
-//	printf("[parsed_line] :%s\n", parsed);
+	return (parsed);
+}
+
+char			*parse_map_part(t_info *info, char *line)
+{
+	char	*parsed;
+	char	*line_cpy;
+	int		parsed_len;
+	char	subs;
+
+	subs = '3';
+	if (!(line_cpy = get_line_cpy(line, info->map.space, subs)))
+		return (0);
+	parsed_len = get_parsed_len(line_cpy, subs, info->map.space);
+	if (!(parsed = malloc(sizeof(char) * (parsed_len + 1))))
+		return (0);
+	parsed = get_parsed_map(parsed, line_cpy, subs);
 	ft_free(line_cpy);
 	return (parsed);
 }

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 21:45:02 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 21:45:02 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int		parse_xpm(t_info *info, unsigned int **adr, char *file)
+static int	parse_xpm(t_info *info, unsigned int **adr, char *file)
 {
 	int		fd;
 	void	*img;
@@ -19,12 +31,15 @@ static int		parse_xpm(t_info *info, unsigned int **adr, char *file)
 	return (0);
 }
 
-int		parse_texture(t_info *info, unsigned int **adr, char *line, int *i)
+int			parse_texture(
+			t_info *info,
+			unsigned int **adr,
+			char *line,
+			int *i)
 {
 	char	*file;
 	int		get;
 
-	get = 0;
 	if (*adr != NULL)
 		return (TEX_DOUBLE);
 	(*i) += 2;
@@ -34,5 +49,7 @@ int		parse_texture(t_info *info, unsigned int **adr, char *line, int *i)
 	(*i) += ft_strlen(file);
 	get = parse_xpm(info, adr, file);
 	file = ft_free(file);
-	return ( get == ERR ? TEX_INV : 0);
+	if (get == ERR)
+		return (TEX_INV);
+	return (0);
 }

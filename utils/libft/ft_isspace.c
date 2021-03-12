@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_window.c                                      :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/12 16:16:51 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 16:16:51 by juepark          ###   ########.fr       */
+/*   Created: 2021/03/12 16:10:04 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 16:10:06 by juepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	draw_window(t_info *info)
+int		ft_isspace(int c)
 {
-	int		x;
+	if (c == ' ' || c == '\t' || c == '\n' || \
+		c == '\r' || c == '\v' || c == '\f')
+		return (1);
+	return (0);
+}
 
-	x = -1;
-	while (++x < info->win.x)
-		draw_window_col(info, x);
+int		ft_spaceskip(const char *s, int *i)
+{
+	while (ft_isspace(s[*i]))
+		(*i)++;
+	return (1);
 }

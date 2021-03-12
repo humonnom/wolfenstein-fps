@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jackjoo <jackjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/12 13:27:08 by juepark           #+#    #+#             */
-/*   Updated: 2021/02/19 13:17:50 by jackjoo          ###   ########.fr       */
+/*   Created: 2021/03/12 16:11:24 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 16:11:26 by juepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ int		ft_strchr_i(const char *s, int c)
 		return (ft_strlen(s));
 	return (-1);
 }
-

@@ -3,13 +3,12 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jackjoo <jackjoo@student.42.fr>            +#+  +:+       +#+         #
+#    By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/10/12 13:59:53 by juepark           #+#    #+#              #
-#    Updated: 2021/02/18 01:37:11 by jackjoo          ###   ########.fr        #
+#    Created: 2021/03/12 16:14:49 by juepark           #+#    #+#              #
+#    Updated: 2021/03/12 16:14:51 by juepark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror

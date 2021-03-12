@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mark_direction.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 20:44:29 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 20:44:30 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void		mark_direction(t_info *info, const t_mini *m, int pos)
@@ -21,4 +33,3 @@ void		mark_direction(t_info *info, const t_mini *m, int pos)
 			info->img.adr[dir] = DARK_BLUE;
 	}
 }
-

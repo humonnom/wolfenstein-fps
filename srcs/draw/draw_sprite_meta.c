@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_sprite_meta.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 20:41:41 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 20:41:42 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	sort_sprite(t_list *sprite)
@@ -70,6 +82,8 @@ void		draw_sprite_meta(t_info *info)
 	t_sprite	*tmp_spr;
 	t_list		*cur;
 
+	if (info->sprite == NULL)
+		return ;
 	set_sprite(info);
 	sort_sprite(info->sprite);
 	cur = info->sprite;

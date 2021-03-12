@@ -1,38 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mark_tools.c                                       :+:      :+:    :+:   */
+/*   ft_mini.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/12 21:42:23 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 21:42:25 by juepark          ###   ########.fr       */
+/*   Created: 2021/03/12 16:10:41 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 16:10:43 by juepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int		get_position(t_pos pos, int bsize, int win_x, int map_h)
+void	ft_del(void *target)
 {
-	int position;
-
-	position = (int)(pos.x * bsize) + \
-			(int)((map_h - pos.y) * bsize) * win_x;
-	return (position);
+	target = 0;
 }
 
-void	draw_rect(t_info *info, int pos, int color, int width)
+void	*ft_free(void *target)
 {
-	int pm;
-	int	i;
-	int	j;
+	free(target);
+	return (0);
+}
 
-	pm = width / 2;
-	i = -pm;
-	while (++i < pm)
+double	ft_max(double x, double y)
+{
+	return (x > y ? x : y);
+}
+
+double	ft_min(double x, double y)
+{
+	return (x > y ? y : x);
+}
+
+int		ft_cumulate(int x)
+{
+	int	result;
+
+	result = 0;
+	while (x)
 	{
-		j = -pm;
-		while (++j < pm)
-			info->img.adr[pos + j + (info->win.x * i)] = color;
+		result += x;
+		x--;
 	}
+	return (result);
 }

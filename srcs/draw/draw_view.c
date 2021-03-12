@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_view.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 20:41:57 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 20:41:59 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	init_view(t_info *info)
@@ -18,7 +30,13 @@ static void	init_view(t_info *info)
 
 void		draw_view(t_info *info, int print)
 {
+	int		tab[3];
+
 	init_view(info);
+	info->img.ptr = mlx_new_image(info->mlx.ptr, info->win.x, info->win.y);
+	info->img.adr = (unsigned int *)mlx_get_data_addr(info->img.ptr,\
+			&tab[0], &tab[1], &tab[2]);
+	draw_background(info);
 	draw_window(info);
 	draw_sprite_meta(info);
 	draw_minimap(info);

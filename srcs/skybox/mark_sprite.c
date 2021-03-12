@@ -1,29 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mark_sprite.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 21:42:16 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 21:42:18 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int				mark_sprite(t_info *info, const t_mini *m)
+int	mark_sprite(t_info *info, const t_mini *m)
 {
 	t_list		*cur;
-	t_pos		pos;
 	t_sprite	*sprite;
+	t_pos		pos;
 	int			sprite_pos;
-	int			ret;
 
-	ret = 0;
 	cur = info->sprite;
-	while (ret == 0 && cur)
+	if (!cur)
+		return (1);
+	while (cur)
 	{
 		if (!(sprite = cur->content))
-			ret = 1;
-		else
-		{
-			pos.x = sprite->x;
-			pos.y = sprite->y;
-		}
-		if (ret == 0)
-			ret = (!(sprite_pos = get_position(pos, m->bsize, info->win.x, info->map.h))); 
-		if (ret == 0)
+			break ;
+		pos.x = sprite->x;
+		pos.y = sprite->y;
+		sprite_pos = get_position(pos, m->bsize, info->win.x, info->map.h);
+		if (sprite_pos)
 			draw_rect(info, sprite_pos, LIGHT_BLUE_GREY, 6);
 		cur = cur->next;
 	}
-	return (ret);
+	return (0);
 }

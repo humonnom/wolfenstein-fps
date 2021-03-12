@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isoverflow.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jackjoo <jackjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 16:28:16 by juepark           #+#    #+#             */
-/*   Updated: 2021/02/19 13:17:50 by jackjoo          ###   ########.fr       */
+/*   Created: 2021/03/12 20:43:05 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 20:43:07 by juepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_isoverflow(long long small, long long big)
 {
-	if (!s)
-		return ;
-	while (*s)
-	{
-		ft_putchar_fd(*s, fd);
-		s++;
-	}
+	if (small > big)
+		return (1);
+	return (0);
 }

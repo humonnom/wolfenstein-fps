@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_file.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 21:43:32 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 21:43:32 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-static int		handle_map_flag(char c, int map_flag)
+
+static int	handle_map_flag(char c, int map_flag)
 {
 	int ret;
 
@@ -11,7 +24,7 @@ static int		handle_map_flag(char c, int map_flag)
 	return (ret);
 }
 
-static int		parse_line_else(t_info *info, char *line)
+static int	parse_line_else(t_info *info, char *line)
 {
 	int ret;
 	int i;
@@ -38,7 +51,8 @@ static int		parse_line_else(t_info *info, char *line)
 		ret = LINE_INV;
 	return (ret);
 }
-static int		parse_line_map(t_info *info, char *line, int *map_flag)
+
+static int	parse_line_map(t_info *info, char *line, int *map_flag)
 {
 	int	ret;
 
@@ -49,7 +63,7 @@ static int		parse_line_map(t_info *info, char *line, int *map_flag)
 	return (ret);
 }
 
-static int		parse_line(t_info *info, char *line, int *map_flag)
+static int	parse_line(t_info *info, char *line, int *map_flag)
 {
 	int	ret;
 
@@ -64,11 +78,11 @@ static int		parse_line(t_info *info, char *line, int *map_flag)
 		ret = LINE_INV;
 	if ((*map_flag) > 2)
 		ret = LINE_INV;
-	info->err.n = ret; 
+	info->err.n = ret;
 	return (ret);
 }
 
-int		parse_file(t_info *info, char *cub)
+int			parse_file(t_info *info, char *cub)
 {
 	char	*line;
 	int		fd;

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arrange_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 16:33:43 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 16:35:41 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static	char *renew_map_line(char *old, int width)
+static char	*renew_map_line(char *old, int width)
 {
 	char	*new;
 	char	*tmp;
@@ -28,7 +40,7 @@ static	char *renew_map_line(char *old, int width)
 	return (new);
 }
 
-int		arrange_map(int max_width, char **map)
+int			arrange_map(int max_width, char **map)
 {
 	int i;
 	int ret;

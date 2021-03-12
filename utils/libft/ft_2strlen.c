@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_window.c                                      :+:      :+:    :+:   */
+/*   ft_2strlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/12 16:16:51 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 16:16:51 by juepark          ###   ########.fr       */
+/*   Created: 2021/03/12 16:08:48 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 16:08:50 by juepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	draw_window(t_info *info)
+size_t	ft_2strlen(char *const *s)
 {
-	int		x;
+	int i;
 
-	x = -1;
-	while (++x < info->win.x)
-		draw_window_col(info, x);
+	i = 0;
+	while (*(s + i))
+		i++;
+	return (i);
 }

@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jackjoo <jackjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/12 13:18:26 by juepark           #+#    #+#             */
-/*   Updated: 2021/02/18 01:37:11 by jackjoo          ###   ########.fr       */
+/*   Created: 2021/03/12 16:11:11 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 16:11:12 by juepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+void	ft_putstr_fd(char *s, int fd)
 {
-	return (c >= 32 && c < 127);
+	if (!s)
+		return ;
+	while (*s)
+	{
+		ft_putchar_fd(*s, fd);
+		s++;
+	}
 }

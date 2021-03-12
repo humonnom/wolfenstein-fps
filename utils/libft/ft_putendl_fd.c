@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jackjoo <jackjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/12 13:36:20 by juepark           #+#    #+#             */
-/*   Updated: 2021/02/19 13:17:50 by jackjoo          ###   ########.fr       */
+/*   Created: 2021/03/12 16:10:53 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 16:10:55 by juepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char *last_one;
-
-	last_one = 0;
-	while (*s)
-	{
-		if (*s == c)
-			last_one = (char *)s;
-		s++;
-	}
-	if (!c)
-		return (char *)s;
-	return (last_one);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

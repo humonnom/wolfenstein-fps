@@ -1,27 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 22:31:46 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 22:31:49 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-/*******************************************
-**-function: close window
-**-ar:	s 		->	structure(t_info)
-**		win		-> 	window number
-**-return: int (1 or)
-**-call: non
-********************************************/
-#include <signal.h>
-#include <sys/types.h>
+static void	clear_tex(t_info *info)
+{
+	info->tex.n = ft_free(info->tex.n);
+	info->tex.s = ft_free(info->tex.s);
+	info->tex.e = ft_free(info->tex.e);
+	info->tex.w = ft_free(info->tex.w);
+	info->tex.i = ft_free(info->tex.i);
+	info->tex.h = ft_free(info->tex.h);
+}
 
-int		exit_game(t_info *info, int win)
+int			exit_game(t_info *info, int win)
 {
 	t_list	*cur;
 	t_list	*tmp;
 
 	if (info->map.tab)
 		ft_2strfree(info->map.tab);
-	info->tex.n = ft_free(info->tex.n);
-	info->tex.s = ft_free(info->tex.s);
-	info->tex.e = ft_free(info->tex.e);
-	info->tex.w = ft_free(info->tex.w);
-	info->tex.i = ft_free(info->tex.i);
+	clear_tex(info);
 	if (win == 1)
 		mlx_destroy_window(info->mlx.ptr, info->win.ptr);
 	if (info->pid > 0)
@@ -33,8 +41,7 @@ int		exit_game(t_info *info, int win)
 		ft_lstdelone(cur, &free);
 		cur = tmp;
 	}
-	free(info->zbuf);
-	free(info->mlx.ptr);
+	info->zbuf = ft_free(info->zbuf);
 	exit(0);
-	return(1);
+	return (1);
 }

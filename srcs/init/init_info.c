@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_info.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 16:33:07 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 16:33:08 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	init_else(t_info *info)
@@ -52,8 +64,8 @@ static void	init_map(t_info *info)
 static void	init_ray(t_info *info)
 {
 	t_camera	camera;
-	t_dist	dist;
-	t_step	step;
+	t_dist		dist;
+	t_step		step;
 	t_screen	screen;
 
 	camera.x = 0;
@@ -64,7 +76,7 @@ static void	init_ray(t_info *info)
 	dist.dy = 0;
 	dist.pw = 0;
 	step.x = 0;
-    step.y = 0;
+	step.y = 0;
 	screen.ds = 0;
 	screen.de = 0;
 	screen.lh = 0;
@@ -96,12 +108,6 @@ static void	init_mlx(t_info *info)
 	info->err = err;
 }
 
-/*******************************************
-**-function: init info 
-**-ar:	info 		->	structure(t_info)
-**-return: non
-**-call: ft_cubed()
-*******************************************/
 void		init_info(t_info *info)
 {
 	init_mlx(info);

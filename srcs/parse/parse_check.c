@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_check.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 21:43:26 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 21:43:27 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
 int	parse_check(t_info *info)
 {
 	int	ret;
@@ -7,7 +20,7 @@ int	parse_check(t_info *info)
 	if (info->win.x <= 0 || info->win.y <= 0)
 		ret = RES_MISSING;
 	else if (info->tex.n == NULL || info->tex.s == NULL ||\
-			info->tex.e == NULL || info->tex.w == NULL || info->tex.i == NULL )
+			info->tex.e == NULL || info->tex.w == NULL || info->tex.i == NULL)
 		ret = TEX_MISSING;
 	else if (info->tex.c == NONE || info->tex.f == NONE)
 		ret = FC_MISSING;

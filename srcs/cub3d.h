@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 22:35:05 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 22:35:07 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -9,13 +21,12 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
-# include <time.h>
 # include <signal.h>
 # include <stdio.h>
 
 # include "../mlx/mlx.h"
-# include "libft/libft.h"
-# include "gnl/get_next_line.h"
+# include "../utils/libft/libft.h"
+# include "../utils/gnl/get_next_line.h"
 
 /*
 ** define
@@ -95,8 +106,8 @@
 ** preset for game
 */
 
-# define SPEED 0.07
-# define TURN 0.03
+# define SPEED 0.12
+# define TURN 0.07
 
 # define PLANEX 0.00
 # define PLANEY 0.66
@@ -353,6 +364,12 @@ int					parse_check(t_info *info);
 
 int					map_check(t_map *map);
 
+int					map_check_iter(
+					char **map,
+					int i,
+					int j,
+					int max[]);
+
 void				parse_hand(t_info *info);
 
 int					parse_map(t_info *info, char *line);
@@ -400,12 +417,6 @@ void				mark_direction(
 					t_info *info,
 					const t_mini *m,
 					int pos);
-
-void				mark_coef(
-					t_info *info,
-					const t_mini *m,
-					int pos,
-					t_list *s);
 
 /*
 ** tools

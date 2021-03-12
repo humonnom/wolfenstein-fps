@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 20:30:23 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 22:36:47 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int		get_zbuf(double **zbuf, int width)
@@ -31,7 +43,7 @@ int				cub3d_loop(t_info info, char *cub, int save)
 	draw_view(&info, PRINT);
 	mlx_hook(info.win.ptr, KEY_PRESS, 0, &get_key, &info);
 	mlx_hook(info.win.ptr, KEY_RELEASE, 0, &get_key, &info);
-	mlx_hook(info.win.ptr, EXIT_BTN, 0, &exit_game, &info);
+	mlx_hook(info.win.ptr, EXIT_BTN, (1L << 17), &exit_game, &info);
 	mlx_loop(info.mlx.ptr);
 	return (0);
 }
@@ -50,7 +62,7 @@ int				main(int argc, char **argv)
 	if (argc == 2)
 		info.pid = fork();
 	if (info.pid == 0)
-		system("afplay ./bonus/sound/human_dream.mp3");
+		system("afplay ./sound/human_dream.mp3");
 	if (info.pid != 0)
 	{
 		init_info(&info);

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_sprite.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 21:44:39 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 21:44:40 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-#if 1 
-t_sprite *get_content(double x, double y)
+
+t_sprite	*get_content(double x, double y)
 {
 	t_sprite	*ret;
 
@@ -16,7 +28,7 @@ t_sprite *get_content(double x, double y)
 		ret->draw_start = 0;
 		ret->draw_end = 0;
 		ret->center_x = 0;
-	 	ret->depth_unit = 0;
+		ret->depth_unit = 0;
 		ret->dist = 0;
 		ret->side_len = 0;
 		ret->visible = 0;
@@ -26,13 +38,13 @@ t_sprite *get_content(double x, double y)
 	}
 	return (ret);
 }
-#endif
-int		parse_sprite(t_info *info)
+
+int			parse_sprite(t_info *info)
 {
 	int			j;
 	int			k;
 	int			ret;
-	t_sprite	*tmp_spr;	
+	t_sprite	*tmp_spr;
 
 	ret = 0;
 	if (info->sprite != NULL)
@@ -47,10 +59,10 @@ int		parse_sprite(t_info *info)
 			{
 				if (!(tmp_spr = get_content(k + 0.5, j + 0.5)))
 					ret = 1;
-				ft_lstadd_back(&info->sprite, ft_lstnew(tmp_spr));	
+				ft_lstadd_back(&info->sprite, ft_lstnew(tmp_spr));
 				info->map.sprite++;
 			}
 		}
-	}	
+	}
 	return (ret);
 }

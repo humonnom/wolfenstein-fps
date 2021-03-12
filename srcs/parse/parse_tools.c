@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_tools.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 21:45:13 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 21:45:14 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int		parse_resolution(t_info *info, char *line, int *i)
@@ -14,7 +26,7 @@ int		parse_resolution(t_info *info, char *line, int *i)
 	ft_spaceskip(line, i);
 	if (info->win.x <= 0 || info->win.y <= 0 || line[*i] != '\0')
 		return (RES_INV);
-	return (0);	
+	return (0);
 }
 
 int		parse_colors(unsigned int *color, char *line, int *i)
@@ -76,4 +88,3 @@ void	parse_pos(t_info *info)
 		}
 	}
 }
-

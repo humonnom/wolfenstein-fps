@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 20:42:17 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 20:42:18 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
 static void	print_err_head(int err)
 {
 	if (err == FILE_OPEN)
@@ -61,7 +74,7 @@ static void	print_err_tail(int err)
 		printf("Sprite specified twice\n");
 }
 
-int		report_err(int err)
+int			report_err(int err)
 {
 	if (err == -1)
 		printf("Error\n");

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   make_bitmap_file.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 20:43:39 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 20:43:41 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	put_bit_data(t_info *info, int fd)
@@ -22,7 +34,7 @@ static void	put_bit_data(t_info *info, int fd)
 		}
 		i -= 2 * info->win.x;
 	}
-} 
+}
 
 static void	put_bit_info(t_info *info, int fd)
 {
@@ -46,7 +58,7 @@ static void	put_bit_info(t_info *info, int fd)
 	header[12] = (unsigned char)(1);
 	header[14] = (unsigned char)(32);
 	write(fd, header, 40);
-} 
+}
 
 static void	put_bit_header(t_info *info, int fd)
 {
@@ -67,11 +79,11 @@ static void	put_bit_header(t_info *info, int fd)
 	write(fd, header, 14);
 }
 
-int		make_bitmap_file(t_info *info)
+int			make_bitmap_file(t_info *info)
 {
 	int fd;
 
-	fd = open("bitmap.bmp", O_CREAT | O_WRONLY |O_TRUNC, S_IRWXU);
+	fd = open("bitmap.bmp", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 	if (fd == -1)
 		return (1);
 	put_bit_header(info, fd);

@@ -17,6 +17,7 @@ PARSE = parse_file \
 		parse_texture \
 		parse_check \
 		map_check \
+		map_check_iter \
 		parse_sprite \
 		parse_tools \
 		arrange_map
@@ -40,7 +41,6 @@ SKYBOX = draw_minimap \
 		 mark_user_position \
 		 mark_direction \
 		 mark_sprite \
-		 mark_coef \
 		 mark_tools
 
 GAME =	handle_key \
@@ -52,7 +52,7 @@ SAVE =	save_bitmap \
 
 FIL =	$(addsuffix .c, $(addprefix srcs/, $(SRC))) \
 		$(addsuffix .c, $(addprefix srcs/parse/, $(PARSE))) \
-		$(addsuffix .c, $(addprefix srcs/gnl/, $(GNL))) \
+		$(addsuffix .c, $(addprefix utils/gnl/, $(GNL))) \
 		$(addsuffix .c, $(addprefix srcs/draw/, $(DRAW))) \
 		$(addsuffix .c, $(addprefix srcs/skybox/, $(SKYBOX))) \
 		$(addsuffix .c, $(addprefix srcs/game/, $(GAME))) \
@@ -62,11 +62,13 @@ FIL =	$(addsuffix .c, $(addprefix srcs/, $(SRC))) \
 
 OBJ = $(FIL:.c=.o)
 
-LIBDIR = srcs/libft/
+LIBDIR = utils/libft/
+
+MLXDIR = mlx/
 
 INCDIR = srcs/
 
-LIBOPT = -L./srcs/libft -lft
+LIBOPT = -L./utils/libft -lft
 
 MLXOPT = -L./mlx -lmlx
 
@@ -79,12 +81,14 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIBDIR) all
+#	@$(MAKE) -C $(MLXDIR) all
 	@$(CC) -o $(NAME) $(LIBOPT) $(MLXOPT) $(LXFLAGS) $(OBJ)
 
 clean:
 	@rm -rf $(OBJ)
 	@rm -f bitmap.bmp
 	@$(MAKE) -C $(LIBDIR) clean
+#	@$(MAKE) -C $(MLXDIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
@@ -92,4 +96,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+lldb:
+	@$(CC) -g3 fsanitize=address -o $(NAME) $(LIBOPT) $(MLXOPT) $(LXFLAGS) $(OBJ)
+.PHONY: all clean fclean re lldb

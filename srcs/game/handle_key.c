@@ -1,11 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_key.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/12 20:42:32 by juepark           #+#    #+#             */
+/*   Updated: 2021/03/12 20:42:34 by juepark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-/*****************************************
-**-function: move
-**-ar:	s 		->	structure(t_info)
-**		c		-> 	plus/minus flag
-**-return: non
-**-call: ft_slist()
-******************************************/
+
 static void	handle_move(t_info *info, int c)
 {
 	int x;
@@ -23,13 +29,6 @@ static void	handle_move(t_info *info, int c)
 	}
 }
 
-/*******************************************
-**-function: rotate
-**-ar:	s 		->	structure(t_info)
-**		c		-> 	plus/minus flag
-**-return: non
-**-call:
-********************************************/
 static void	handle_rotate(t_info *info, double c)
 {
 	double olddir;
@@ -38,20 +37,17 @@ static void	handle_rotate(t_info *info, double c)
 
 	rotspeed = info->time.rs * c;
 	olddir = info->dir.x;
-	info->dir.x = info->dir.x * cos(rotspeed) - info->dir.y * sin(rotspeed);
-	info->dir.y = olddir * sin(rotspeed) + info->dir.y * cos(rotspeed);
+	info->dir.x = info->dir.x * cos(rotspeed) - info->dir.y * \
+					sin(rotspeed);
+	info->dir.y = olddir * sin(rotspeed) + info->dir.y * \
+					cos(rotspeed);
 	oldplane = info->plane.x;
-	info->plane.x = info->plane.x * cos(rotspeed) - info->plane.y * sin(rotspeed);
-	info->plane.y = oldplane * sin(rotspeed) + info->plane.y * cos(rotspeed);
+	info->plane.x = info->plane.x * cos(rotspeed) - \
+					info->plane.y * sin(rotspeed);
+	info->plane.y = oldplane * sin(rotspeed) + info->plane.y * \
+					cos(rotspeed);
 }
 
-/*******************************************
--function: strafe
--ar:	s 		->	structure(t_info)
-		c		-> 	plus/minus flag
--return: non
--call: ft_slist()
- *******************************************/
 static void	handle_strafe(t_info *info, int c)
 {
 	int x;
@@ -69,33 +65,21 @@ static void	handle_strafe(t_info *info, int c)
 	}
 }
 
-/*******************************************
--function: key handling
--ar:	key 	->	pressed key
-		arg		-> 	???
--return: int (1)
--call:	exit_game()
-		handle_move()
-		handle_strafe()
-		handle_move()
-		handle_rotate()
-		handle_draw()
- *******************************************/
-int		get_key(int key, t_info *info)
+int			get_key(int key, t_info *info)
 {
 	if (key == ESC)
 		exit_game(info, 1);
-	else if(key == W)
+	else if (key == W)
 		handle_move(info, 1);
-	else if(key == S)
+	else if (key == S)
 		handle_move(info, -1);
-	else if(key == A)
+	else if (key == A)
 		handle_strafe(info, 1);
-	else if(key == D)
+	else if (key == D)
 		handle_strafe(info, -1);
-	else if(key == LEFT)
+	else if (key == LEFT)
 		handle_rotate(info, 1);
-	else if(key == RIGHT)
+	else if (key == RIGHT)
 		handle_rotate(info, -1);
 	draw_view(info, PRINT);
 	return (0);
