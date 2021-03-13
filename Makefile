@@ -34,13 +34,6 @@ DRAW =	draw_view \
 		turn_on_spr_flag \
 		draw_hand
 
-SKYBOX = draw_minimap \
-		 mark_objects \
-		 mark_user_position \
-		 mark_direction \
-		 mark_sprite \
-		 mark_tools
-
 GAME =	handle_key \
 		error \
 		exit_game
@@ -53,7 +46,6 @@ GNL =	get_next_line
 FIL =	$(addsuffix .c, $(addprefix srcs/, $(SRC))) \
 		$(addsuffix .c, $(addprefix srcs/parse/, $(PARSE))) \
 		$(addsuffix .c, $(addprefix srcs/draw/, $(DRAW))) \
-		$(addsuffix .c, $(addprefix srcs/skybox/, $(SKYBOX))) \
 		$(addsuffix .c, $(addprefix srcs/game/, $(GAME))) \
 		$(addsuffix .c, $(addprefix srcs/init/, $(INIT))) \
 		$(addsuffix .c, $(addprefix srcs/err/, $(ERR))) \

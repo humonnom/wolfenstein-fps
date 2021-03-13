@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:35:05 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/13 01:17:05 by jackjoo          ###   ########.fr       */
+/*   Updated: 2021/03/14 00:21:52 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,22 +292,6 @@ typedef struct		s_info
 	double			*zbuf;
 }					t_info;
 
-typedef struct		s_mini
-{
-	int				w;
-	int				h;
-	int				x_head;
-	int				x_tail;
-	int				y_head;
-	int				y_tail;
-	int				bsize;
-}					t_mini;
-
-typedef struct		s_bonus
-{
-	t_mini			mini;
-}					t_bonus;
-
 /*
 ** general
 */
@@ -398,23 +382,6 @@ int					parse_colors(
 int					parse_sprite(t_info *info);
 
 t_sprite			*get_content(double x, double y);
-
-/*
-** minimap
-*/
-
-int					draw_minimap(t_info *info);
-
-int					mark_objects(t_info *info, const t_mini *m);
-
-int					mark_sprite(t_info *info, const t_mini *m);
-
-int					mark_user_position(t_info *info, const t_mini *m);
-
-void				mark_direction(
-					t_info *info,
-					const t_mini *m,
-					int pos);
 
 /*
 ** tools

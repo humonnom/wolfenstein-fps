@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap.c                                     :+:      :+:    :+:   */
+/*   draw_minimap_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:44:20 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 20:44:21 by juepark          ###   ########.fr       */
+/*   Updated: 2021/03/14 00:26:39 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ static void	draw_map(t_info *info, t_bonus *bonus)
 								cnt_w;
 			bonus->mini.x_tail = bonus->mini.x_head + \
 								bonus->mini.w / info->map.w;
-			draw_lectangle(info->map.tab[cnt_h][cnt_w], info, bonus);
+			if (info->map.tab[cnt_h][cnt_w] != ' ')
+				draw_lectangle(info->map.tab[cnt_h][cnt_w], info, bonus);
 		}
 	}
 }
