@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:35:05 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/14 00:21:52 by jackjoo          ###   ########.fr       */
+/*   Updated: 2021/03/18 17:00:04 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@
 */
 
 # define SPEED 0.12
-# define TURN 0.07
+# define TURN 0.06
 
 # define PLANEX 0.00
 # define PLANEY 0.66

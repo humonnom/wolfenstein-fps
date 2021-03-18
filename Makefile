@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 
 CC = gcc
 
@@ -129,7 +129,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIBDIR) all
-#	@$(MAKE) -C $(MLXDIR) all
+	@$(MAKE) -C $(MLXDIR) all
 	@echo "\033[35m-= Making Cub3D... =-"
 	@$(CC) -o $(NAME) $(LIBOPT) $(MLXOPT) $(LXFLAGS) $(OBJ)
 	@echo "\033[32m   ______      __   _____ ____  "
@@ -142,7 +142,7 @@ clean:
 	@rm -rf $(OBJ) $(B_OBJ)
 	@rm -f bitmap.bmp
 	@$(MAKE) -C $(LIBDIR) clean
-#	@$(MAKE) -C $(MLXDIR) clean
+	@$(MAKE) -C $(MLXDIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
@@ -150,7 +150,7 @@ fclean: clean
 
 bonus: fclean $(B_OBJ)
 	@$(MAKE) -C $(LIBDIR) all
-#	@$(MAKE) -C $(MLXDIR) all
+	@$(MAKE) -C $(MLXDIR) all
 	@echo "\033[35m-= Making Cub3D Bonus... =-"
 	@$(CC) -o $(NAME) $(LIBOPT) $(MLXOPT) $(LXFLAGS) $(B_OBJ)
 	@echo "\033[32m  __                                         "
@@ -165,4 +165,13 @@ bonus: fclean $(B_OBJ)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+norm :
+	@echo "\033[35m-= Checking norminette all c/h files... =-"
+	@norminette incs
+	@norminette srcs
+	@norminette bonus
+	@norminette utils/gnl
+	@norminette utils/libft/*.c
+	@norminette utils/libft/*.h
+		
+.PHONY: all clean fclean re bonus norm
