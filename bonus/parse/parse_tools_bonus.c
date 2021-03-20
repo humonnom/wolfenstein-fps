@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tools.c                                      :+:      :+:    :+:   */
+/*   parse_tools_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 21:45:13 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 21:45:14 by juepark          ###   ########.fr       */
+/*   Updated: 2021/03/20 12:06:56 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int		parse_resolution(t_info *info, char *line, int *i)
 	(*i)++;
 	info->win.x = ft_atoiskip(line, i);
 	info->win.y = ft_atoiskip(line, i);
-	if (info->win.x > 2560)
-		info->win.x = 2560;
-	if (info->win.y > 1400)
-		info->win.y = 1400;
+	if (info->win.x > IMAC_X)
+		info->win.x = IMAC_X;
+	if (info->win.y > IMAC_Y)
+		info->win.y = IMAC_Y;
 	ft_spaceskip(line, i);
 	if (info->win.x <= 0 || info->win.y <= 0 || line[*i] != '\0')
 		return (RES_INV);

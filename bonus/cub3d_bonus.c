@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:30:23 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 22:36:47 by juepark          ###   ########.fr       */
+/*   Updated: 2021/03/19 07:52:03 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				main(int argc, char **argv)
 	if (argc == 2)
 		info.pid = fork();
 	if (info.pid == 0)
-		system("afplay ./sound/human_dream.mp3");
+		system("afplay ./sound/human_dream.mp3 -v 0.1");
 	if (info.pid != 0)
 	{
 		init_info(&info);

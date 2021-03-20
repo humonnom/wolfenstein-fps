@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_sprite.c                                     :+:      :+:    :+:   */
+/*   parse_sprite_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 21:44:39 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 21:44:40 by juepark          ###   ########.fr       */
+/*   Updated: 2021/03/13 01:17:46 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_sprite	*get_content(double x, double y)
 		ret->dist = 0;
 		ret->side_len = 0;
 		ret->visible = 0;
-		ret->crushed = 0;
 		ret->tex_scale = 0;
 		ret->tex_step = 0;
 	}

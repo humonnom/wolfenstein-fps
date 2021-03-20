@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   map_check_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 21:43:09 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/12 21:43:10 by juepark          ###   ########.fr       */
+/*   Updated: 2021/03/20 11:27:36 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char		**map_check_pre(char **map, int *i, int *j)
 	return (map);
 }
 
-static int		map_check_post(char **map, char **map_cpy)
+static int		map_check_post(char **map, char **map_cpy, int max[])
 {
 	int i;
 	int j;
@@ -36,7 +36,10 @@ static int		map_check_post(char **map, char **map_cpy)
 		j = -1;
 		while (ret == 0 && map[i][++j])
 			if (map[i][j] == '1' && map_cpy[i][j] != 'w')
-				ret = MAP_INV;
+			{
+				if (check_load(map, i, j, max))
+					ret = MAP_INV;
+			}
 	}
 	return (ret);
 }
@@ -64,7 +67,8 @@ int				map_check(t_map *map)
 		max[1] = map->w;
 		max[2] = 1;
 		map_check_iter(map_cpy, i, j, max);
-		ret = map_check_post(map->tab, map_cpy);
+		max[2] = 1;
+		ret = map_check_post(map->tab, map_cpy, max);
 	}
 	ft_2strfree(map_cpy);
 	return (ret);

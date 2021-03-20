@@ -18,6 +18,7 @@ PARSE = parse_file \
 		parse_check \
 		map_check \
 		map_check_iter \
+		check_load \
 		parse_sprite \
 		parse_tools \
 		arrange_map
@@ -70,6 +71,7 @@ B_PARSE =	parse_file_bonus \
 			parse_check_bonus \
 			map_check_bonus \
 			map_check_iter_bonus \
+			check_load_bonus \
 			parse_sprite_bonus \
 			parse_tools_bonus \
 			arrange_map_bonus
@@ -161,7 +163,7 @@ bonus: fclean $(B_OBJ)
 	@echo "\033[32m    \ \____/\ \____/\ \_\ \_\ \____/\/\____/ "
 	@echo "\033[32m     \/___/  \/___/  \/_/\/_/\/___/  \/___/  "
 
-	./$(NAME) maps/conan.cub
+	./$(NAME) maps/west.cub
 
 re: fclean all
 

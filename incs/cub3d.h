@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:35:05 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/18 17:00:04 by jackjoo          ###   ########.fr       */
+/*   Updated: 2021/03/20 12:07:06 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
 # define PIXEL_SIZE 64
+
+# define IMAC_X 1680
+# define IMAC_Y 1050
+# define MAC_X 1680
+# define MAC_Y 1050
 
 /*
 ** error
@@ -348,6 +353,17 @@ int					map_check(t_map *map);
 
 int					map_check_iter(
 					char **map,
+					int i,
+					int j,
+					int max[]);
+
+int					check_load(
+					char **map,
+					int i,
+					int j,
+					int max[]);
+
+int					is_valid_range(
 					int i,
 					int j,
 					int max[]);
