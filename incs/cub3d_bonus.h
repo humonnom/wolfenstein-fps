@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:35:05 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/20 12:07:22 by jackjoo          ###   ########.fr       */
+/*   Updated: 2021/03/21 02:14:55 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -380,6 +380,13 @@ int					check_load(
 					int i,
 					int j,
 					int max[]);
+
+int					check_empty(
+					char **map,
+					int i,
+					int j,
+					int max[]);
+
 
 int					is_valid_range(
 					int i,

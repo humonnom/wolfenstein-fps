@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 21:43:09 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/20 11:27:36 by jackjoo          ###   ########.fr       */
+/*   Updated: 2021/03/21 02:18:52 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		map_check_post(char **map, char **map_cpy, int max[])
 		while (ret == 0 && map[i][++j])
 			if (map[i][j] == '1' && map_cpy[i][j] != 'w')
 			{
-				if (check_load(map, i, j, max))
+				if (check_empty(map, i, j, max))
 					ret = MAP_INV;
 			}
 	}

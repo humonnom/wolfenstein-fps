@@ -4,7 +4,7 @@ SO ./textures/south.xpm
 WE ./textures/west.xpm
 EA ./textures/east.xpm
 
-S ./textures/chest.xpm
+S ./textures/item.xpm
 F 100,100,100
 C 205,249,255
 

@@ -4,7 +4,7 @@ SO ./textures/bigbang/tshirt2.xpm
 WE ./textures/bigbang/tshirt3.xpm
 EA ./textures/bigbang/tshirt4.xpm
 
-S ./textures/chest.xpm
+S ./textures/item.xpm
 F 224,172,105
 C 205,249,255
 

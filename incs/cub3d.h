@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:35:05 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/20 12:07:06 by jackjoo          ###   ########.fr       */
+/*   Updated: 2021/03/21 01:23:58 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -358,6 +358,12 @@ int					map_check_iter(
 					int max[]);
 
 int					check_load(
+					char **map,
+					int i,
+					int j,
+					int max[]);
+
+int					check_empty(
 					char **map,
 					int i,
 					int j,
