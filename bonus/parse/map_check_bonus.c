@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 21:43:09 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/21 02:18:15 by jackjoo          ###   ########.fr       */
+/*   Updated: 2021/03/21 02:22:02 by jackjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int				map_check(t_map *map)
 	int		max[3];
 
 	ret = 0;
-	map_cpy = NULL;
 	if (!(map_cpy = ft_2strdup(map->tab)))
 		return (1);
 	if (ret == 0)
