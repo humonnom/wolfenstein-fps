@@ -1,4 +1,4 @@
-R  3000 3000
+R  300000 3000000
 NO ./textures/brick.xpm
 SO ./textures/blue.xpm
 WE ./textures/wood.xpm

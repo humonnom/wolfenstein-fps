@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:35:05 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/24 19:40:04 by juepark          ###   ########.fr       */
+/*   Updated: 2021/03/24 20:18:05 by juepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # define KEY_RELEASE 3
 # define PIXEL_SIZE 64
 
-# define IMAC_X 1680
-# define IMAC_Y 1050
+# define IMAC_X 2560 
+# define IMAC_Y 1420
 # define MAC_X 1680
 # define MAC_Y 1050
 
