@@ -127,6 +127,7 @@ LXFLAGS = -framework OpenGL -framework Appkit
 all: $(NAME)
 
 .c.o:
+	@printf "Generating cub3D... %-33.33s\r" $@
 	@$(CC) $(CFLAGS) -I$(INCDIR) -o $@ -c $<
 
 $(NAME): $(OBJ)

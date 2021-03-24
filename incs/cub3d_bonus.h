@@ -6,7 +6,7 @@
 /*   By: juepark <juepark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:35:05 by juepark           #+#    #+#             */
-/*   Updated: 2021/03/21 02:14:55 by jackjoo          ###   ########.fr       */
+/*   Updated: 2021/03/24 19:40:04 by juepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -387,12 +387,10 @@ int					check_empty(
 					int j,
 					int max[]);
 
-
 int					is_valid_range(
 					int i,
 					int j,
 					int max[]);
-
 
 void				parse_hand(t_info *info);
 
