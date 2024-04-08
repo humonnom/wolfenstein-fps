@@ -46,11 +46,9 @@ static void	draw_hand_col(
 
 void		draw_hand(t_info *info)
 {
-	int				i;
 	int				x;
 	t_sprite		*hand;
 
-	i = 0;
 	if (info->tex.h == 0)
 		return ;
 	if (!(hand = get_content(0, 0)))

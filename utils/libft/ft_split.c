@@ -17,11 +17,9 @@ static int		ft_countlines(const char *str, char c)
 	size_t	i;
 	size_t	flag;
 	size_t	count;
-	size_t	str_len;
 
 	i = 0;
 	count = 0;
-	str_len = ft_strlen(str);
 	flag = 0;
 	while (str[i])
 	{

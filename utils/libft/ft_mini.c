@@ -14,6 +14,7 @@
 
 void	ft_del(void *target)
 {
+    (void)target;
 	target = 0;
 }
 
