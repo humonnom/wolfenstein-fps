@@ -1,4 +1,4 @@
-# 42_cub3D
+# Wolfenstein - First Person Shooter Game
 
 ## How to run the program (no enemy)
 1. Clone the repository
